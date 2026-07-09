@@ -1,0 +1,61 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import PageHero from "../components/PageHero.astro";
+---
+
+<SiteLayout
+  title="Contact | MarineStream™"
+  description="Contact MarineStream about platform access, cleaning with capture, and IMS expertise."
+>
+  <PageHero eyebrow="Get in touch" title="Contact" lead="Tell us what you’re trying to deliver." />
+
+  <section class="section">
+    <div class="container grid-2">
+      <form
+        class="form"
+        name="contact"
+        method="POST"
+        netlify
+        netlify-honeypot="bot-field"
+        action="/contact-success"
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <p style="display: none;">
+          <label>Don’t fill this out: <input name="bot-field" /></label>
+        </p>
+        <label>
+          Name
+          <input type="text" name="name" required autocomplete="name" />
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required autocomplete="email" />
+        </label>
+        <label>
+          Organisation
+          <input type="text" name="organisation" autocomplete="organization" />
+        </label>
+        <label>
+          Message
+          <textarea name="message" required></textarea>
+        </label>
+        <button class="btn btn--primary" type="submit">Send message</button>
+      </form>
+      <div>
+        <p>
+          <strong>Email</strong><br />
+          <a href="mailto:mharvey@marinestream.com.au">mharvey@marinestream.com.au</a>
+        </p>
+        <p>
+          <strong>Phone</strong><br />
+          <a href="tel:+61894373900">+61 8 9437 3900</a>
+        </p>
+        <p>
+          <strong>Address</strong><br />
+          13 Possner Way<br />
+          Henderson, WA 6166
+        </p>
+      </div>
+    </div>
+  </section>
+</SiteLayout>

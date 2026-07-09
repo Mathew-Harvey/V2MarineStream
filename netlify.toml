@@ -1,0 +1,97 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[[redirects]]
+  from = "/core-pages/index.html"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/core-pages/blog.html"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/core-pages/sales.html"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/core-pages/equipment-products.html"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/core-pages/consultation-training.html"
+  to = "/services/expertise"
+  status = 301
+
+[[redirects]]
+  from = "/core-pages/software-platform.html"
+  to = "/services/platform"
+  status = 301
+
+[[redirects]]
+  from = "/core-pages/biofouling-management.html"
+  to = "/services/cleaning"
+  status = 301
+
+[[redirects]]
+  from = "/core-pages/rov-systems.html"
+  to = "/services/inspection"
+  status = 301
+
+[[redirects]]
+  from = "/core-pages/crawler-systems.html"
+  to = "/services/cleaning"
+  status = 301
+
+[[redirects]]
+  from = "/core-pages/meet-the-team.html"
+  to = "/about"
+  status = 301
+
+[[redirects]]
+  from = "/core-pages/privacy.html"
+  to = "/privacy"
+  status = 301
+
+[[redirects]]
+  from = "/blog/revolutionising-underwater-inspections/*"
+  to = "/blog/revolutionising-underwater-inspections"
+  status = 301
+
+[[redirects]]
+  from = "/blog/BeyondTheSurface/*"
+  to = "/blog/beyond-the-surface"
+  status = 301
+
+[[redirects]]
+  from = "/blog/PreventativeAdvantage/*"
+  to = "/blog/preventative-advantage"
+  status = 301
+
+[[redirects]]
+  from = "/blog/FromRovToRemote/*"
+  to = "/blog/from-rov-to-remote"
+  status = 301
+
+[[redirects]]
+  from = "/blog/TheHullTruth/*"
+  to = "/blog/the-hull-truth"
+  status = 301
+
+[[redirects]]
+  from = "/blog/CleanHullsClearWaters/*"
+  to = "/blog/clean-hulls-clear-waters"
+  status = 301
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"

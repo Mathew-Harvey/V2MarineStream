@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /forms.html
+
+Sitemap: https://www.marinestream.com.au/sitemap.xml

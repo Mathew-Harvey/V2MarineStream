@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  lead?: string;
+  eyebrow?: string;
+  parent?: { href: string; label: string };
+}
+
+const { title, lead, eyebrow, parent } = Astro.props;
+---
+
+<section class="page-hero">
+  <div class="container narrow">
+    {
+      parent && (
+        <p class="breadcrumb">
+          <a href="/">Home</a>
+          {" / "}
+          <a href={parent.href}>{parent.label}</a>
+        </p>
+      )
+    }
+    {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+    <h1>{title}</h1>
+    <hr class="accent-rule" />
+    {lead && <p class="page-hero__lead">{lead}</p>}
+    <slot />
+  </div>
+</section>
+<svg class="wave-divider" viewBox="0 0 1440 44" preserveAspectRatio="none" aria-hidden="true">
+  <path fill="#ffffff" d="M0,22 C240,44 480,0 720,14 C960,28 1200,44 1440,18 L1440,44 L0,44 Z"></path>
+</svg>

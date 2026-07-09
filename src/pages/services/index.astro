@@ -1,0 +1,23 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import ServiceGrid from "../../components/ServiceGrid.astro";
+---
+
+<SiteLayout
+  title="Services | MarineStream™"
+  description="Inspection, cleaning with capture, digital platform, and IMS expertise."
+>
+  <PageHero
+    eyebrow="What we do"
+    title="Services"
+    lead="Four offerings. Use them together or take what your teams need."
+    parent={{ href: "/services", label: "Services" }}
+  />
+
+  <section class="section">
+    <div class="container narrow">
+      <ServiceGrid />
+    </div>
+  </section>
+</SiteLayout>

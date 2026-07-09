@@ -1,0 +1,19 @@
+{
+  "name": "v2marinestream",
+  "version": "1.0.0",
+  "description": "MarineStream marketing site - IMO-compliant biofouling inspections and cleans",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mathew-Harvey/V2MarineStream.git"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "astro": "^5.13.0"
+  }
+}

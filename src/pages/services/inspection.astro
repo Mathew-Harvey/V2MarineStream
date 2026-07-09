@@ -1,0 +1,42 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+---
+
+<SiteLayout
+  title="Inspection | MarineStream™"
+  description="High-definition ROV and diver surveys with live multi-stakeholder access."
+>
+  <PageHero
+    eyebrow="Services"
+    title="Inspection"
+    lead="Hull, propeller, and niche-area surveys with fouling ratings captured at the point of survey."
+    parent={{ href: "/services", label: "Services" }}
+  />
+
+  <section class="section">
+    <div class="container narrow">
+      <img
+        class="service-photo"
+        src="/images/photos/rov-inspection.png"
+        alt="MarineStream ROV inspection"
+        loading="lazy"
+        width="900"
+        height="560"
+      />
+      <ul>
+        <li>4K imaging and HD recording</li>
+        <li>Positioning and sonar for repeatable coverage</li>
+        <li>Live multi-stakeholder access to footage</li>
+        <li>Direct MarineStream™ platform integration</li>
+      </ul>
+      <p>
+        Partners use these workflows to deliver consistent, auditable surveys — without reinventing
+        reporting for every client and jurisdiction.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn--navy" href="/contact">Enquire about inspection</a>
+      </div>
+    </div>
+  </section>
+</SiteLayout>

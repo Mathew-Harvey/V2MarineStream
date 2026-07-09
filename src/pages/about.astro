@@ -1,0 +1,40 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import PageHero from "../components/PageHero.astro";
+---
+
+<SiteLayout
+  title="About | MarineStream™"
+  description="MarineStream is a division of Franmarine — enabling partners to deliver IMO-compliant biofouling work."
+>
+  <PageHero
+    eyebrow="A division of Franmarine"
+    title="About"
+    lead="A division of Franmarine. Built to uplift partners delivering compliant biofouling work."
+  />
+
+  <section class="section">
+    <div class="container narrow">
+      <img
+        class="service-photo"
+        src="/images/photos/dashboard.png"
+        alt="MarineStream operations dashboard"
+        loading="lazy"
+        width="900"
+        height="560"
+      />
+      <p>
+        Franmarine has delivered underwater sustainment and biofouling management for decades.
+        MarineStream™ is the platform and capability stack that makes that work transparent,
+        standardised, and auditable — now available to diving contractors, hull cleaners, and ROV
+        operators.
+      </p>
+      <p>
+        <a href="https://www.franmarine.com.au/" rel="noopener noreferrer">Visit Franmarine →</a>
+      </p>
+      <div class="btn-row">
+        <a class="btn btn--navy" href="/contact">Get in touch</a>
+      </div>
+    </div>
+  </section>
+</SiteLayout>

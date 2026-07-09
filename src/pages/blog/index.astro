@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString("en-AU", { year: "numeric", month: "long", day: "numeric" });
+}
+---
+
+<SiteLayout
+  title="Blog | MarineStream™"
+  description="Insights on biofouling management, inspection, and maritime compliance."
+>
+  <PageHero eyebrow="Resources" title="Blog" lead="Practical insight for operators and partners." />
+
+  <section class="section">
+    <div class="container narrow">
+      {
+        posts.map((post) => (
+          <a class="blog-card" href={`/blog/${post.slug}`}>
+            <div class="blog-card__meta">
+              {formatDate(post.data.pubDate)} · {post.data.author}
+            </div>
+            <h3>{post.data.title}</h3>
+            <p>{post.data.description}</p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</SiteLayout>
