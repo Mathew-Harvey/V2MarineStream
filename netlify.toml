@@ -17,22 +17,22 @@
 
 [[redirects]]
   from = "/core-pages/sales.html"
-  to = "/services"
+  to = "/sales"
   status = 301
 
 [[redirects]]
   from = "/core-pages/equipment-products.html"
-  to = "/services"
+  to = "/sales/hardware"
   status = 301
 
 [[redirects]]
   from = "/core-pages/consultation-training.html"
-  to = "/services/expertise"
+  to = "/sales/training"
   status = 301
 
 [[redirects]]
   from = "/core-pages/software-platform.html"
-  to = "/services/platform"
+  to = "/sales/software"
   status = 301
 
 [[redirects]]
@@ -88,6 +88,16 @@
 [[redirects]]
   from = "/blog/CleanHullsClearWaters/*"
   to = "/blog/clean-hulls-clear-waters"
+  status = 301
+
+[[redirects]]
+  from = "/BiofoulingIdGuide/*"
+  to = "/tools/ims-species-guide/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/tools/ims-species-guide"
+  to = "/tools/ims-species-guide/"
   status = 301
 
 [[headers]]

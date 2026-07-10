@@ -1,0 +1,352 @@
+/* MarineStream V2 — shared styling for interactive tool pages */
+
+:root {
+  --brand-orange: #ff6600;
+  --brand-orange-dark: #e05a00;
+  --brand-orange-light: #ff8533;
+  --navy: #111111;
+  --navy-mid: #1a1a1a;
+  --white: #ffffff;
+  --off-white: #f9f9f9;
+  --ink: #050505;
+  --muted: #666666;
+  --text-secondary: #333333;
+  --line: rgba(5, 5, 5, 0.1);
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --radius: 0.6rem;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 5px 10px rgba(0, 0, 0, 0.08);
+  --header-h: 4.25rem;
+}
+
+body.tool-page {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+body.tool-page h1,
+body.tool-page h2,
+body.tool-page h3,
+body.tool-page .ms-hero-title {
+  font-family: var(--font-display);
+  color: var(--ink);
+}
+
+/* Hero — match V2 page-hero */
+body.tool-page .ms-hero {
+  min-height: 0;
+  height: auto;
+  padding: calc(var(--header-h) + 2.5rem) 0 3rem;
+  background:
+    linear-gradient(105deg, rgba(10, 10, 10, 0.96) 0%, rgba(10, 10, 10, 0.88) 45%, rgba(10, 10, 10, 0.62) 100%),
+    url("/images/photos/hero-background.jpg") center / cover no-repeat !important;
+  color: var(--white);
+  align-items: flex-end;
+}
+
+body.tool-page .ms-hero video,
+body.tool-page .ms-hero__video,
+body.tool-page .ms-hero-video,
+body.tool-page .hero-video {
+  display: none !important;
+}
+
+body.tool-page .ms-hero .container {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 42rem;
+  gap: 1.25rem;
+  padding-inline: 1.25rem;
+}
+
+body.tool-page .ms-hero-title {
+  font-size: clamp(1.9rem, 4vw, 2.75rem) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.015em;
+  line-height: 1.15 !important;
+  text-shadow: none;
+  color: var(--white) !important;
+  margin-bottom: 0.75rem;
+}
+
+body.tool-page .ms-hero-subtitle,
+body.tool-page .ms-hero-description {
+  color: rgba(255, 255, 255, 0.78) !important;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 36rem;
+}
+
+body.tool-page .ms-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brand-orange) !important;
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  margin-bottom: 0.6rem;
+}
+
+body.tool-page .ms-hero-badge i {
+  color: var(--brand-orange);
+}
+
+body.tool-page .ms-hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+body.tool-page .ms-hero-visual {
+  display: none;
+}
+
+body.tool-page .breadcrumb-container,
+body.tool-page .breadcrumb-nav {
+  margin-bottom: 0.75rem;
+}
+
+body.tool-page .breadcrumb-nav a,
+body.tool-page .breadcrumb a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+body.tool-page .breadcrumb-nav a:hover,
+body.tool-page .breadcrumb a:hover {
+  color: var(--brand-orange);
+}
+
+body.tool-page .beta-badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  vertical-align: middle;
+  background: var(--brand-orange);
+  color: var(--white);
+  border-radius: 0.25rem;
+}
+
+/* Buttons */
+body.tool-page .btn,
+body.tool-page .ms-hero-cta .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0.9rem 1.75rem;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+body.tool-page .btn-primary,
+body.tool-page .btn.btn-primary {
+  background: var(--brand-orange) !important;
+  color: var(--white) !important;
+  border-color: var(--brand-orange) !important;
+  box-shadow: var(--shadow-sm);
+}
+
+body.tool-page .btn-primary:hover,
+body.tool-page .btn.btn-primary:hover {
+  background: var(--brand-orange-dark) !important;
+  border-color: var(--brand-orange-dark) !important;
+  transform: translateY(-2px);
+}
+
+body.tool-page .btn-outline,
+body.tool-page .btn.btn-outline {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: var(--white) !important;
+  border-color: rgba(255, 255, 255, 0.55) !important;
+}
+
+body.tool-page .btn-outline:hover,
+body.tool-page .btn.btn-outline:hover {
+  background: var(--brand-orange) !important;
+  border-color: var(--brand-orange) !important;
+  color: var(--white) !important;
+}
+
+/* Quick access / feature chips */
+body.tool-page .ms-hero-quick-access {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+body.tool-page .ms-hero-quick-access h3 {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
+body.tool-page .quick-access-grid a,
+body.tool-page .ms-hero-quick-access a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+body.tool-page .quick-access-grid a:hover,
+body.tool-page .ms-hero-quick-access a:hover {
+  color: var(--brand-orange);
+}
+
+/* Main content */
+body.tool-page .main-content,
+body.tool-page .page-wrapper,
+body.tool-page main {
+  background: var(--white);
+}
+
+body.tool-page .container {
+  width: min(68rem, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+body.tool-page .card,
+body.tool-page .intro-content,
+body.tool-page .beta-warning-card,
+body.tool-page .feature-card,
+body.tool-page .problem-card,
+body.tool-page .solution-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+body.tool-page .card-header,
+body.tool-page .section-header h2 {
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.015em;
+}
+
+body.tool-page .page-header h1 {
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+body.tool-page a:not(.btn):not(.logo) {
+  color: var(--brand-orange);
+}
+
+body.tool-page a:not(.btn):not(.logo):hover {
+  color: var(--brand-orange-dark);
+}
+
+/* Forms & inputs */
+body.tool-page input,
+body.tool-page select,
+body.tool-page textarea {
+  font-family: var(--font-body);
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+
+body.tool-page input:focus,
+body.tool-page select:focus,
+body.tool-page textarea:focus {
+  outline: 2px solid var(--brand-orange);
+  outline-offset: 1px;
+  border-color: var(--brand-orange);
+}
+
+/* ROV page specifics */
+body.tool-page #loading-screen {
+  display: none !important;
+}
+
+body.tool-page .main-header {
+  display: none;
+}
+
+body.tool-page .section-header h2 {
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+}
+
+body.tool-page .problem-icon {
+  color: var(--brand-orange);
+}
+
+body.tool-page .solution-icon,
+body.tool-page .feature-icon {
+  color: var(--brand-orange);
+}
+
+/* BFMP generator */
+body.tool-page .intro-section {
+  background: var(--off-white);
+  padding: 3rem 0;
+}
+
+body.tool-page .progress-step.active .step-number {
+  background: var(--brand-orange);
+}
+
+body.tool-page .generator-content {
+  padding-bottom: 3rem;
+}
+
+/* Hull calculator */
+body.tool-page .currency-selector-container {
+  background: var(--off-white);
+  border-bottom: 1px solid var(--line);
+}
+
+body.tool-page .research-section {
+  background: var(--off-white);
+}
+
+/* Hide old chrome remnants */
+body.tool-page .skip-link {
+  position: absolute;
+  left: -999px;
+}
+
+body.tool-page .skip-link:focus {
+  left: 0.5rem;
+  top: calc(var(--header-h) + 0.5rem);
+  z-index: 300;
+  background: var(--brand-orange);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+}
+
+@media (max-width: 760px) {
+  body.tool-page .ms-hero {
+    padding-top: calc(var(--header-h) + 1.5rem);
+    padding-bottom: 2rem;
+  }
+
+  body.tool-page .ms-hero .container {
+    padding-inline: 1rem;
+  }
+}

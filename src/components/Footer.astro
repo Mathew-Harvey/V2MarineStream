@@ -1,4 +1,6 @@
 ---
+import { tools } from "../data/tools";
+
 const year = new Date().getFullYear();
 ---
 
@@ -19,11 +21,30 @@ const year = new Date().getFullYear();
     </div>
     <nav class="footer-nav" aria-label="Footer">
       <a href="/services">Services</a>
+      <a href="/sales">Sales</a>
       <a href="/blog">Blog</a>
       <a href="/about">About</a>
       <a href="/contact">Contact</a>
       <a href="/privacy">Privacy</a>
     </nav>
+    <div class="footer-tools">
+      <h2 class="footer-tools__title">Tools</h2>
+      <ul class="footer-tools__list">
+        {
+          tools.map((tool) => (
+            <li>
+              <a
+                href={tool.href}
+                target={tool.external ? "_blank" : undefined}
+                rel={tool.external ? "noopener noreferrer" : undefined}
+                >
+                  {tool.menuLabel ?? tool.label}
+                </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </div>
   <div class="container site-footer__bottom">
     <span>© {year} MarineStream</span>

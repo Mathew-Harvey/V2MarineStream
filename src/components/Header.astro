@@ -1,4 +1,7 @@
 ---
+import { tools } from "../data/tools";
+import { salesNav } from "../data/sales";
+
 const path = Astro.url.pathname.replace(/\/$/, "") || "/";
 
 const links = [
@@ -10,8 +13,26 @@ const links = [
 
 function isCurrent(href: string) {
   if (href === "/services") return path === "/services" || path.startsWith("/services/");
+  if (href === "/sales") return path === "/sales" || path.startsWith("/sales/");
   return path === href;
 }
+
+function isDropdownCurrent(items: readonly { href: string }[]) {
+  return items.some((item) => isNavItemCurrent(item.href));
+}
+
+function isNavItemCurrent(href: string) {
+  if (href.startsWith("http")) return false;
+  const normalizedHref = href.replace(/\/$/, "").replace(/\.html$/, "");
+  const normalizedPath = path.replace(/\.html$/, "");
+  if (normalizedPath === normalizedHref) return true;
+  if (normalizedHref.endsWith("/ims-species-guide") && normalizedPath.includes("/ims-species-guide")) return true;
+  if (normalizedHref === "/services/expertise" && normalizedPath === "/services/expertise") return true;
+  return normalizedPath.startsWith(normalizedHref + "/") || normalizedPath.endsWith(normalizedHref.split("/").pop()!);
+}
+
+const salesOpen = isDropdownCurrent(salesNav);
+const toolsOpen = isDropdownCurrent(tools);
 ---
 
 <header class="site-header">
@@ -31,12 +52,72 @@ function isCurrent(href: string) {
 
     <nav class="nav" id="site-nav" aria-label="Primary">
       {
-        links.map((link) => (
+        links.slice(0, 1).map((link) => (
           <a href={link.href} aria-current={isCurrent(link.href) ? "page" : undefined}>
             {link.label}
           </a>
         ))
       }
+
+      <div class:list={["nav-dropdown", { "is-open": salesOpen }]} data-nav-dropdown>
+        <button
+          class="nav-dropdown__toggle"
+          type="button"
+          aria-expanded={salesOpen ? "true" : "false"}
+          aria-controls="sales-menu"
+          aria-haspopup="true"
+        >
+          Sales
+        </button>
+        <ul class="nav-dropdown__menu" id="sales-menu" hidden={!salesOpen}>
+          {
+            salesNav.map((item) => (
+              <li class:list={[{ "nav-dropdown__divider-item": item.group === "ims" }]}>
+                {item.group === "ims" && <span class="nav-dropdown__label">Professional services</span>}
+                <a href={item.href} aria-current={isNavItemCurrent(item.href) ? "page" : undefined}>
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      {
+        links.slice(1).map((link) => (
+          <a href={link.href} aria-current={isCurrent(link.href) ? "page" : undefined}>
+            {link.label}
+          </a>
+        ))
+      }
+
+      <div class:list={["nav-dropdown", { "is-open": toolsOpen }]} data-nav-dropdown>
+        <button
+          class="nav-dropdown__toggle"
+          type="button"
+          aria-expanded={toolsOpen ? "true" : "false"}
+          aria-controls="tools-menu"
+          aria-haspopup="true"
+        >
+          Tools
+        </button>
+        <ul class="nav-dropdown__menu" id="tools-menu" hidden={!toolsOpen}>
+          {
+            tools.map((tool) => (
+              <li>
+                <a
+                  href={tool.href}
+                  target={tool.external ? "_blank" : undefined}
+                  rel={tool.external ? "noopener noreferrer" : undefined}
+                  aria-current={isNavItemCurrent(tool.href) ? "page" : undefined}
+                >
+                  {tool.menuLabel ?? tool.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </nav>
   </div>
 </header>
@@ -44,8 +125,71 @@ function isCurrent(href: string) {
 <script>
   const toggle = document.getElementById("nav-toggle");
   const nav = document.getElementById("site-nav");
+  const dropdowns = document.querySelectorAll("[data-nav-dropdown]");
+
   toggle?.addEventListener("click", () => {
     const open = nav?.classList.toggle("is-open");
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+
+  dropdowns.forEach((dropdown) => {
+    const menu = dropdown.querySelector(".nav-dropdown__menu");
+    const menuToggle = dropdown.querySelector(".nav-dropdown__toggle");
+    let hoverCloseTimer: ReturnType<typeof setTimeout> | undefined;
+
+    function openMenu() {
+      dropdown.classList.add("is-open");
+      menu?.removeAttribute("hidden");
+      menuToggle?.setAttribute("aria-expanded", "true");
+    }
+
+    function closeMenu() {
+      dropdown.classList.remove("is-open");
+      menu?.setAttribute("hidden", "");
+      menuToggle?.setAttribute("aria-expanded", "false");
+    }
+
+    menuToggle?.addEventListener("click", (event) => {
+      event.stopPropagation();
+      if (dropdown.classList.contains("is-open")) closeMenu();
+      else {
+        dropdowns.forEach((other) => {
+          if (other !== dropdown) {
+            other.classList.remove("is-open");
+            other.querySelector(".nav-dropdown__menu")?.setAttribute("hidden", "");
+            other.querySelector(".nav-dropdown__toggle")?.setAttribute("aria-expanded", "false");
+          }
+        });
+        openMenu();
+      }
+    });
+
+    dropdown.addEventListener("mouseenter", () => {
+      if (window.innerWidth <= 760) return;
+      if (hoverCloseTimer) clearTimeout(hoverCloseTimer);
+      dropdowns.forEach((other) => {
+        if (other !== dropdown) {
+          other.classList.remove("is-open");
+          other.querySelector(".nav-dropdown__menu")?.setAttribute("hidden", "");
+          other.querySelector(".nav-dropdown__toggle")?.setAttribute("aria-expanded", "false");
+        }
+      });
+      openMenu();
+    });
+
+    dropdown.addEventListener("mouseleave", () => {
+      if (window.innerWidth <= 760) return;
+      hoverCloseTimer = setTimeout(closeMenu, 120);
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!event.target) return;
+    dropdowns.forEach((dropdown) => {
+      if (event.target instanceof Node && dropdown.contains(event.target)) return;
+      dropdown.classList.remove("is-open");
+      dropdown.querySelector(".nav-dropdown__menu")?.setAttribute("hidden", "");
+      dropdown.querySelector(".nav-dropdown__toggle")?.setAttribute("aria-expanded", "false");
+    });
   });
 </script>
