@@ -36,8 +36,8 @@
   }
 
   function renderHeader() {
-    const open = servicesOpen();
-    const toolsAreOpen = toolsOpen();
+    const servicesActive = servicesOpen();
+    const toolsActive = toolsOpen();
     const serviceItems = serviceLinks
       .map((item) => {
         const cur = isCurrent(item.href) ? ' aria-current="page"' : "";
@@ -62,13 +62,13 @@
             <nav class="nav" id="ms-v2-site-nav" aria-label="Primary">
               <a href="/"${path === "/" ? ' aria-current="page"' : ""}>Home</a>
               <a href="/portfolio"${path.startsWith("/portfolio") || path.startsWith("/blog") ? ' aria-current="page"' : ""}>Portfolio</a>
-              <div class="nav-dropdown${open ? " is-open" : ""}" data-nav-dropdown>
-                <button class="nav-dropdown__toggle" type="button" aria-expanded="${open ? "true" : "false"}" aria-controls="ms-v2-services-menu" aria-haspopup="true">Services</button>
-                <ul class="nav-dropdown__menu" id="ms-v2-services-menu"${open ? "" : " hidden"}>${serviceItems}</ul>
+              <div class="nav-dropdown${servicesActive ? " is-active" : ""}" data-nav-dropdown>
+                <button class="nav-dropdown__toggle" type="button" aria-expanded="false" aria-controls="ms-v2-services-menu" aria-haspopup="true">Services</button>
+                <ul class="nav-dropdown__menu" id="ms-v2-services-menu" hidden>${serviceItems}</ul>
               </div>
-              <div class="nav-dropdown${toolsAreOpen ? " is-open" : ""}" data-nav-dropdown>
-                <button class="nav-dropdown__toggle" type="button" aria-expanded="${toolsAreOpen ? "true" : "false"}" aria-controls="ms-v2-tools-menu" aria-haspopup="true">Tools</button>
-                <ul class="nav-dropdown__menu" id="ms-v2-tools-menu"${toolsAreOpen ? "" : " hidden"}>${toolItems}</ul>
+              <div class="nav-dropdown${toolsActive ? " is-active" : ""}" data-nav-dropdown>
+                <button class="nav-dropdown__toggle" type="button" aria-expanded="false" aria-controls="ms-v2-tools-menu" aria-haspopup="true">Tools</button>
+                <ul class="nav-dropdown__menu" id="ms-v2-tools-menu" hidden>${toolItems}</ul>
               </div>
               <a href="/about"${path === "/about" ? ' aria-current="page"' : ""}>About</a>
               <a class="nav-cta" href="/contact">Contact us</a>
