@@ -1,14 +1,18 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import PageHero from "../../components/PageHero.astro";
+import ServiceCta from "../../components/ServiceCta.astro";
 import { Image } from "astro:assets";
 import bannerImage from "../../assets/photos/rov-inspection-lights.jpg";
-import bodyImage from "../../assets/photos/rov-controller-hands.jpg";
+import controllerImage from "../../assets/photos/rov-controller-hands.jpg";
+import chainImage from "../../assets/photos/rov-chain-shackle.jpg";
+import hudImage from "../../assets/photos/inspection-hud.jpg";
+import launchImage from "../../assets/photos/rov-launch-gunwale.jpg";
 ---
 
 <SiteLayout
   title="Inspection | MarineStream™"
-  description="High-definition ROV and diver surveys with live multi-stakeholder access."
+  description="High-definition ROV and diver surveys with live multi-stakeholder access and fouling ratings captured at the point of survey."
 >
   <PageHero
     eyebrow="Services"
@@ -21,27 +25,153 @@ import bodyImage from "../../assets/photos/rov-controller-hands.jpg";
 
   <section class="section">
     <div class="container narrow">
-      <Image
-        class="service-photo"
-        src={bodyImage}
-        alt="Operator's hands on an ROV controller showing a live underwater feed"
-        widths={[480, 900]}
-        sizes="(min-width: 800px) 42rem, 100vw"
-        loading="lazy"
-      />
-      <ul>
+      <span class="eyebrow">Overview</span>
+      <h2>See the condition before it becomes a problem</h2>
+      <hr class="accent-rule" />
+      <p>
+        An inspection is only as useful as the decisions it enables. MarineStream surveys rate
+        fouling at the point of survey, stream footage to every stakeholder who needs it, and land
+        the evidence in one auditable record, so a clean, a treatment, or a clearance can be
+        approved without a second visit.
+      </p>
+      <ul class="checklist checklist--cols">
         <li>4K imaging and HD recording</li>
         <li>Positioning and sonar for repeatable coverage</li>
+        <li>Fouling ratings captured at the point of survey</li>
         <li>Live multi-stakeholder access to footage</li>
+        <li>Hull, propeller, sea chest, and niche-area coverage</li>
         <li>Direct MarineStream™ platform integration</li>
       </ul>
-      <p>
-        Partners use these workflows to deliver consistent, auditable surveys without reinventing
-        reporting for every client and jurisdiction.
-      </p>
-      <div class="btn-row">
-        <a class="btn btn--navy" href="/contact">Enquire about inspection</a>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <div class="grid-2">
+        <div class="reveal">
+          <span class="eyebrow">What we survey</span>
+          <h2>Vessels, moorings, and infrastructure</h2>
+          <hr class="accent-rule" />
+          <p>
+            The same workflow covers ship hulls and the assets around them: mooring chains,
+            anchors, wharf structures, and submerged infrastructure. ROV surveys reach what divers
+            should not, and diver surveys carry the same rating and recording discipline where
+            hands-on access is needed.
+          </p>
+          <p>
+            Every frame is tagged to the asset and zone it belongs to, which is what makes the
+            record auditable rather than a folder of video files.
+          </p>
+        </div>
+        <figure class="figure reveal">
+          <Image
+            src={chainImage}
+            alt="Fouled mooring chains converging at a shackle with an inspection ROV on task"
+            widths={[480, 900]}
+            sizes="(min-width: 800px) 32rem, 100vw"
+            loading="lazy"
+          />
+          <figcaption>Mooring chain survey. The fouling is the finding, the ROV is the tool.</figcaption>
+        </figure>
       </div>
     </div>
   </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">How a survey runs</span>
+      <h2>Four steps, one record</h2>
+      <hr class="accent-rule" />
+      <ol class="steps">
+        <li>
+          <strong>Mobilise</strong>
+          <p>ROV or dive team deploys from wharf or vessel with the survey plan loaded.</p>
+        </li>
+        <li>
+          <strong>Survey</strong>
+          <p>Systematic coverage of hull, niches, or infrastructure with positioning logged.</p>
+        </li>
+        <li>
+          <strong>Rate</strong>
+          <p>Fouling rated in the field, on the spot, against the agreed scale.</p>
+        </li>
+        <li>
+          <strong>Report</strong>
+          <p>Evidence, ratings, and sign-offs land in the platform. Reports generate automatically.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <div class="grid-2">
+        <figure class="figure reveal" style="margin: 0;">
+          <Image
+            src={hudImage}
+            alt="Inspection system interface showing a fouled hull section with depth and zone telemetry"
+            widths={[480, 900]}
+            sizes="(min-width: 800px) 32rem, 100vw"
+            loading="lazy"
+          />
+          <figcaption>
+            Live inspection telemetry: depth, heading, and hull zone recorded with every frame.
+          </figcaption>
+        </figure>
+        <div class="reveal">
+          <span class="eyebrow">The evidence layer</span>
+          <h2>Stakeholders watch the same survey</h2>
+          <hr class="accent-rule" />
+          <p>
+            Owners, regulators, and class surveyors do not wait for an edited report. Live access
+            means questions are answered during the survey, and the record everyone saw is the
+            record that gets signed.
+          </p>
+          <p>
+            Partners use these workflows to deliver consistent, auditable surveys without
+            reinventing reporting for every client and jurisdiction.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <span class="eyebrow">In the field</span>
+      <h2>Equipment matched to the job</h2>
+      <hr class="accent-rule" />
+      <div class="photo-pair">
+        <Image
+          src={launchImage}
+          alt="Technician launching an ROV over a vessel gunwale"
+          widths={[480, 800]}
+          sizes="(min-width: 560px) 21rem, 100vw"
+          loading="lazy"
+        />
+        <Image
+          src={controllerImage}
+          alt="Operator's hands on an ROV controller showing a live underwater feed"
+          widths={[480, 800]}
+          sizes="(min-width: 560px) 21rem, 100vw"
+          loading="lazy"
+        />
+      </div>
+      <p>
+        Inspection-class ROVs handle the routine coverage. Divers take the niches that need hands
+        and judgement. Both feed the same record. If you want the equipment itself, see
+        <a href="/services/hardware">hardware</a>, and if you want your own teams surveying to this
+        standard, see <a href="/services/training">training</a>.
+      </p>
+    </div>
+  </section>
+
+  <ServiceCta
+    title="Book a survey, or build the capability"
+    lead="Tell us the vessel or asset and the standard you need to meet. We will scope the survey, or set your team up to run it."
+    primaryHref="/contact"
+    primaryLabel="Enquire about inspection"
+    secondaryHref="/services/cleaning"
+    secondaryLabel="Cleaning with capture"
+  />
 </SiteLayout>

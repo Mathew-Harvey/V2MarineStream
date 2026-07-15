@@ -14,6 +14,11 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await post.render();
 
+const morePosts = (await getCollection("blog", ({ data }) => !data.draft))
+  .filter((p) => p.slug !== post.slug)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 2);
+
 function formatDate(d: Date) {
   return d.toLocaleDateString("en-AU", { year: "numeric", month: "long", day: "numeric" });
 }
@@ -35,4 +40,25 @@ function formatDate(d: Date) {
       </p>
     </div>
   </section>
+
+  {
+    morePosts.length > 0 && (
+      <section class="section section--soft">
+        <div class="container narrow">
+          <span class="eyebrow">Keep reading</span>
+          <h2>More from the portfolio</h2>
+          <hr class="accent-rule" />
+          {morePosts.map((p) => (
+            <a class="blog-card" href={`/blog/${p.slug}`}>
+              <div class="blog-card__meta">
+                {formatDate(p.data.pubDate)} · {p.data.author}
+              </div>
+              <h3>{p.data.title}</h3>
+              <p>{p.data.description}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+    )
+  }
 </SiteLayout>

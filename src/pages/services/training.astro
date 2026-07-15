@@ -1,14 +1,17 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import PageHero from "../../components/PageHero.astro";
+import ServiceCta from "../../components/ServiceCta.astro";
 import { Image } from "astro:assets";
 import bannerImage from "../../assets/photos/training-demo.jpg";
-import bodyImage from "../../assets/photos/crew-crawler-workshop.jpg";
+import workshopImage from "../../assets/photos/crew-crawler-workshop.jpg";
+import classroomImage from "../../assets/photos/training-workshop.jpg";
+import docksideImage from "../../assets/photos/dockside-demo.jpg";
 ---
 
 <SiteLayout
   title="Training | Services | MarineStream™"
-  description="ROV, biofouling management, and platform training for operators and supervisors."
+  description="ROV, biofouling management, and platform training for operators and supervisors, delivered by people who run the operations."
 >
   <PageHero
     eyebrow="Services"
@@ -21,28 +24,101 @@ import bodyImage from "../../assets/photos/crew-crawler-workshop.jpg";
 
   <section class="section">
     <div class="container narrow">
-      <Image
-        class="service-photo"
-        src={bodyImage}
-        alt="Crew inspecting a hull crawler in a vessel workshop"
-        widths={[480, 900]}
-        sizes="(min-width: 800px) 42rem, 100vw"
-        loading="lazy"
-      />
-      <ul>
+      <span class="eyebrow">Overview</span>
+      <h2>Capability that stays after we leave</h2>
+      <hr class="accent-rule" />
+      <p>
+        The point of training is a crew that can run the job without us. Programs are built around
+        the same equipment, ratings, and workflows used on live operations, so what your team
+        practises is exactly what they will deliver.
+      </p>
+      <ul class="checklist checklist--cols">
         <li>ROV pilot and supervisor training</li>
         <li>Biofouling management and IMO-aligned inspection practice</li>
         <li>Platform and reporting workshops for field and office teams</li>
         <li>On-site, remote, and blended delivery</li>
+        <li>Training on the equipment your team will actually operate</li>
+        <li>Scoped to your fleet, jurisdiction, and equipment</li>
       </ul>
-      <p>
-        Training packages can be scoped to your fleet, jurisdiction, and equipment. Contact us for
-        a program outline.
-      </p>
-      <div class="btn-row">
-        <a class="btn btn--navy" href="/contact">Enquire about training</a>
-        <a class="btn btn--primary" href="/services/professional-services">Professional services</a>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <span class="eyebrow">Programs</span>
+      <h2>Three tracks, one standard</h2>
+      <hr class="accent-rule" />
+      <ol class="steps steps--three">
+        <li>
+          <strong>Operate</strong>
+          <p>ROV piloting and crawler operation, from first flight to survey discipline.</p>
+        </li>
+        <li>
+          <strong>Assess</strong>
+          <p>Fouling identification and rating, so field calls stand up to review.</p>
+        </li>
+        <li>
+          <strong>Record</strong>
+          <p>Platform workflows: capture, approvals, and reports that pass audit.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid-2">
+        <div class="reveal">
+          <span class="eyebrow">How it is delivered</span>
+          <h2>On the bench, at the dock, in the water</h2>
+          <hr class="accent-rule" />
+          <p>
+            Theory happens in the room, but competence happens at the waterline. Courses combine
+            classroom sessions with live equipment time, dockside demonstrations, and supervised
+            work on real assets where the site allows it.
+          </p>
+          <p>
+            Training pairs naturally with a <a href="/services/hardware">hardware</a> purchase or a
+            <a href="/services/software">platform subscription</a>, so crews learn on the systems
+            they will keep.
+          </p>
+        </div>
+        <figure class="figure reveal" style="margin: 0;">
+          <Image
+            src={workshopImage}
+            alt="Crew inspecting a hull crawler on a workbench in a vessel workshop"
+            widths={[480, 900]}
+            sizes="(min-width: 800px) 32rem, 100vw"
+            loading="lazy"
+          />
+          <figcaption>Hands on the machine: crawler familiarisation in a vessel workshop.</figcaption>
+        </figure>
+      </div>
+      <div class="photo-pair">
+        <Image
+          src={classroomImage}
+          alt="Trainees working through course material at a training workshop"
+          widths={[480, 800]}
+          sizes="(min-width: 560px) 32rem, 100vw"
+          loading="lazy"
+        />
+        <Image
+          src={docksideImage}
+          alt="Dockside demonstration of a tracked crawler beside a vessel in dry dock"
+          widths={[480, 800]}
+          sizes="(min-width: 560px) 32rem, 100vw"
+          loading="lazy"
+        />
       </div>
     </div>
   </section>
+
+  <ServiceCta
+    title="Scope a program for your team"
+    lead="Tell us your fleet, jurisdiction, and equipment, and we will send a program outline with duration and delivery options."
+    primaryHref="/contact"
+    primaryLabel="Enquire about training"
+    secondaryHref="/services/professional-services"
+    secondaryLabel="Professional services"
+  />
 </SiteLayout>

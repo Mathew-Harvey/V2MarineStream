@@ -1,10 +1,14 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import PageHero from "../../components/PageHero.astro";
+import ServiceCta from "../../components/ServiceCta.astro";
 import { Image } from "astro:assets";
 import bannerImage from "../../assets/photos/crawler-underwater.jpg";
-import bodyImage from "../../assets/photos/crawler-supervision.jpg";
-import captureImage from "../../assets/photos/filtration-discharge.jpg";
+import supervisionImage from "../../assets/photos/crawler-supervision.jpg";
+import filtrationImage from "../../assets/photos/filtration-detail.jpg";
+import dischargeImage from "../../assets/photos/filtration-discharge.jpg";
+import progressImage from "../../assets/photos/cleaning-progress-hud.jpg";
+import costGraph from "../../assets/photos/fouling-cost-graph.jpg";
 ---
 
 <SiteLayout
@@ -22,46 +26,167 @@ import captureImage from "../../assets/photos/filtration-discharge.jpg";
 
   <section class="section">
     <div class="container narrow">
-      <Image
-        class="service-photo"
-        src={bodyImage}
-        alt="Operator supervising a hull crawler working at a ship's waterline"
-        widths={[480, 900]}
-        sizes="(min-width: 800px) 42rem, 100vw"
-        loading="lazy"
-      />
-      <ul>
+      <span class="eyebrow">Overview</span>
+      <h2>Clean the hull, keep the fouling</h2>
+      <hr class="accent-rule" />
+      <p>
+        Open in-water cleaning spreads exactly the organisms a clean is meant to control, which is
+        why it is restricted in most Australian ports. Cleaning with capture removes fouling and
+        contains it: dislodged material is drawn to the surface, filtered to 10μ, treated with UV,
+        and disposed of properly, with nothing returned to the water untreated.
+      </p>
+      <ul class="checklist checklist--cols">
         <li>Capture and filtration to 10μ, with UV treatment</li>
         <li>Single 20′ container, deployable from wharf or support vessel</li>
         <li>Works with divers, hand tools, and ROV systems</li>
         <li>Niche areas: sea chests, shafts, rudders, thrusters</li>
+        <li>Every clean recorded against the survey that triggered it</li>
+        <li>Aligned to IMO guidance and Australian biosecurity requirements</li>
       </ul>
-      <p>
-        Capture matters where open cleaning is restricted. Dislodged biofouling is filtered and
-        treated so partners can operate compliantly, and every clean lands in the same digital
-        record as the inspection that triggered it.
-      </p>
-      <div class="grid-2" style="margin: var(--space-md) 0;">
-        <Image
-          src={captureImage}
-          alt="Filtration barge returning treated water to the harbour"
-          widths={[480, 800]}
-          sizes="(min-width: 800px) 21rem, 100vw"
-          loading="lazy"
-          style="border-radius: var(--radius); width: 100%; height: 12rem; object-fit: cover;"
-        />
-        <img
-          src="/images/photos/diver-cleaning-1.jpg"
-          alt="Diver niche-area cleaning with capture"
-          loading="lazy"
-          width="600"
-          height="400"
-          style="border-radius: var(--radius); width: 100%; height: 12rem; object-fit: cover;"
-        />
-      </div>
-      <div class="btn-row">
-        <a class="btn btn--navy" href="/contact">Enquire about cleaning with capture</a>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <div class="grid-2">
+        <div class="reveal">
+          <span class="eyebrow">Why it pays</span>
+          <h2>Fouling is a fuel bill and an emissions bill</h2>
+          <hr class="accent-rule" />
+          <p>
+            Even light fouling raises hull resistance, and the cost compounds with speed: more fuel
+            burned, more CO2 emitted, and a vessel that no longer meets its performance claims.
+            Cleaning restores the hull; capture makes the clean itself compliant.
+          </p>
+          <p>
+            Put your own numbers in with the
+            <a href="/interactive-tools/hullCalc.html">Fouling Cost Calculator</a>, built on the
+            same relationship shown here.
+          </p>
+        </div>
+        <figure class="figure reveal" style="margin: 0;">
+          <Image
+            src={costGraph}
+            alt="Chart of operating cost and additional CO2 emissions against speed for clean and fouled hulls"
+            widths={[480, 960]}
+            sizes="(min-width: 800px) 32rem, 100vw"
+            loading="lazy"
+            style="background: #fff;"
+          />
+          <figcaption>
+            Operating cost and additional CO2 for a fouled hull (FR1) against a clean hull (FR0).
+          </figcaption>
+        </figure>
       </div>
     </div>
   </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">How a clean runs</span>
+      <h2>Survey to sign-off</h2>
+      <hr class="accent-rule" />
+      <ol class="steps">
+        <li>
+          <strong>Survey</strong>
+          <p>Fouling is rated first, so the clean is justified and the baseline is recorded.</p>
+        </li>
+        <li>
+          <strong>Clean</strong>
+          <p>Crawler, diver, or hand tools work the hull and niches with capture running.</p>
+        </li>
+        <li>
+          <strong>Capture</strong>
+          <p>Dislodged material is filtered to 10μ and UV treated. No open discharge.</p>
+        </li>
+        <li>
+          <strong>Record</strong>
+          <p>Before and after evidence lands in the platform with the waste stream documented.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <div class="grid-2">
+        <figure class="figure reveal" style="margin: 0;">
+          <Image
+            src={progressImage}
+            alt="Live cleaning telemetry showing the boundary between fouled and cleaned hull"
+            widths={[480, 900]}
+            sizes="(min-width: 800px) 32rem, 100vw"
+            loading="lazy"
+          />
+          <figcaption>
+            Mid-clean telemetry: the boundary between fouled and cleaned plating, recorded live.
+          </figcaption>
+        </figure>
+        <div class="reveal">
+          <span class="eyebrow">Proof, not promises</span>
+          <h2>The clean documents itself</h2>
+          <hr class="accent-rule" />
+          <p>
+            Cleaning systems record as they work. Progress, coverage, and the fouled-to-clean
+            boundary are captured frame by frame, so the report is generated from evidence rather
+            than written after the fact.
+          </p>
+          <p>
+            Capture matters where open cleaning is restricted. Every clean lands in the same
+            digital record as the inspection that triggered it.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <span class="eyebrow">The capture system</span>
+      <h2>Containerised, mobile, self-contained</h2>
+      <hr class="accent-rule" />
+      <div class="photo-pair">
+        <Image
+          src={filtrationImage}
+          alt="Open containerised filtration plant with stainless vessel and pumps on a wharf"
+          widths={[480, 800]}
+          sizes="(min-width: 560px) 21rem, 100vw"
+          loading="lazy"
+        />
+        <Image
+          src={dischargeImage}
+          alt="Filtration barge returning treated water to the harbour beside a vessel"
+          widths={[480, 800]}
+          sizes="(min-width: 560px) 21rem, 100vw"
+          loading="lazy"
+        />
+      </div>
+      <p>
+        The filtration plant ships as a single 20′ container and runs from the wharf or a support
+        vessel alongside. Treated water returns to the harbour; captured biofouling leaves the site
+        as documented waste. The same unit supports
+        <a href="/services/inspection">inspection</a> and diver operations, and is available
+        through <a href="/services/hardware">hardware</a> for partners running their own cleans.
+      </p>
+      <div class="figure reveal">
+        <Image
+          src={supervisionImage}
+          alt="Operator supervising a hull crawler working at a ship's waterline"
+          widths={[480, 900]}
+          sizes="(min-width: 800px) 42rem, 100vw"
+          loading="lazy"
+          style="width: 100%; border-radius: var(--radius);"
+        />
+      </div>
+    </div>
+  </section>
+
+  <ServiceCta
+    title="Scope a compliant clean"
+    lead="Tell us the vessel, the fouling state if you know it, and the port. We will confirm the approach and what the record needs to show."
+    primaryHref="/contact"
+    primaryLabel="Enquire about cleaning"
+    secondaryHref="/services/inspection"
+    secondaryLabel="Start with a survey"
+  />
 </SiteLayout>

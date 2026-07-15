@@ -1,8 +1,12 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import PageHero from "../../components/PageHero.astro";
+import ServiceCta from "../../components/ServiceCta.astro";
+import { Image } from "astro:assets";
 import { imsExpertise } from "../../data/sales";
 import bannerImage from "../../assets/photos/mooring-buoy-crew.jpg";
+import mobilisationImage from "../../assets/photos/wharf-mobilisation.jpg";
+import buoyImage from "../../assets/photos/buoy-workers.jpg";
 ---
 
 <SiteLayout
@@ -20,19 +24,88 @@ import bannerImage from "../../assets/photos/mooring-buoy-crew.jpg";
 
   <section class="section">
     <div class="container narrow">
-      <ul>
+      <span class="eyebrow">Overview</span>
+      <h2>The advisory layer around the work</h2>
+      <hr class="accent-rule" />
+      <p>
+        Equipment and software only deliver compliance when the program around them is right.
+        Professional services cover that layer: how your teams work, what they record, and how
+        stakeholders sign off.
+      </p>
+      <ul class="checklist checklist--cols">
         <li>Compliance and biofouling program design</li>
         <li>Operational consulting for inspection and cleaning workflows</li>
         <li>Reporting setup aligned to biosecurity and defence requirements</li>
+        <li>Mobilisation planning for vessels, ports, and remote sites</li>
         <li>Ongoing advisory and review support</li>
+        <li>Independent review of existing programs and records</li>
       </ul>
-      <p>
-        Professional services cover the advisory layer: how your teams work, what they record, and
-        how stakeholders sign off.
-      </p>
-      <div class="btn-row">
-        <a class="btn btn--navy" href="/contact">Talk to our team</a>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <div class="grid-2">
+        <div class="reveal">
+          <span class="eyebrow">How engagements run</span>
+          <h2>Advice grounded in delivery</h2>
+          <hr class="accent-rule" />
+          <p>
+            The advice comes from the same people who mobilise crews, run surveys, and answer to
+            regulators on our own jobs. Engagements are scoped to a decision or a capability, not
+            an open-ended retainer: a program designed, a workflow fixed, a report format that
+            passes review the first time.
+          </p>
+          <p>
+            Where the answer involves crews or systems, it connects directly to
+            <a href="/services/training">training</a>,
+            <a href="/services/hardware">hardware</a>, and the
+            <a href="/services/platform">platform</a>.
+          </p>
+        </div>
+        <figure class="figure reveal" style="margin: 0;">
+          <Image
+            src={mobilisationImage}
+            alt="Technician preparing an ROV beside a service trailer on the wharf"
+            widths={[480, 900]}
+            sizes="(min-width: 800px) 32rem, 100vw"
+            loading="lazy"
+          />
+          <figcaption>Mobilisation is where programs succeed or fail. We plan from the wharf up.</figcaption>
+        </figure>
       </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Typical engagements</span>
+      <h2>Three ways partners use us</h2>
+      <hr class="accent-rule" />
+      <ol class="steps steps--three">
+        <li>
+          <strong>Design</strong>
+          <p>A biofouling management program built for your fleet and the rules it sails under.</p>
+        </li>
+        <li>
+          <strong>Uplift</strong>
+          <p>Existing operations reviewed and reworked so records satisfy auditors and clients.</p>
+        </li>
+        <li>
+          <strong>Sustain</strong>
+          <p>Ongoing advisory support as vessels, rules, and jurisdictions change.</p>
+        </li>
+      </ol>
+      <figure class="figure reveal">
+        <Image
+          src={buoyImage}
+          alt="Crew working mooring gear on deck with workers standing on a buoy alongside"
+          widths={[640, 1280]}
+          sizes="(min-width: 68rem) 68rem, 100vw"
+          loading="lazy"
+        />
+        <figcaption>Programs have to survive contact with real operations, like this one.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -42,12 +115,21 @@ import bannerImage from "../../assets/photos/mooring-buoy-crew.jpg";
       <h2>{imsExpertise.label}</h2>
       <hr class="accent-rule" />
       <p>{imsExpertise.description}</p>
-      <ul>
+      <ul class="checklist">
         {imsExpertise.features.map((feature) => <li>{feature}</li>)}
       </ul>
       <div class="btn-row">
-        <a class="btn btn--primary" href={imsExpertise.href}>IMS expertise</a>
+        <a class="btn btn--navy" href={imsExpertise.href}>IMS expertise</a>
       </div>
     </div>
   </section>
+
+  <ServiceCta
+    title="Bring us the problem"
+    lead="A short conversation about what you operate and what you must prove is enough to scope an engagement."
+    primaryHref="/contact"
+    primaryLabel="Talk to our team"
+    secondaryHref="/services/expertise"
+    secondaryLabel="IMS expertise"
+  />
 </SiteLayout>

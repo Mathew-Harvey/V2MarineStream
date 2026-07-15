@@ -1,14 +1,20 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import PageHero from "../../components/PageHero.astro";
+import ServiceCta from "../../components/ServiceCta.astro";
 import { Image } from "astro:assets";
 import bannerImage from "../../assets/photos/rov-product-dark.jpg";
-import bodyImage from "../../assets/photos/rov-pivot-front.jpg";
+import pivotImage from "../../assets/photos/rov-pivot-front.jpg";
+import whiteStudioImage from "../../assets/photos/rov-studio-white.jpg";
+import sideProfileImage from "../../assets/photos/rov-side-profile.jpg";
+import crawlerImage from "../../assets/photos/technician-crawler.jpg";
+import filtrationImage from "../../assets/photos/filtration-plant-quayside.jpg";
+import recoveryImage from "../../assets/photos/rov-recovery.jpg";
 ---
 
 <SiteLayout
   title="Hardware | Services | MarineStream™"
-  description="ROV systems, filtration units, and field equipment for inspection and cleaning with capture."
+  description="ROV systems, hull crawlers, filtration units, and field equipment for inspection and cleaning with capture."
 >
   <PageHero
     eyebrow="Services"
@@ -21,28 +27,139 @@ import bodyImage from "../../assets/photos/rov-pivot-front.jpg";
 
   <section class="section">
     <div class="container narrow">
-      <Image
-        class="service-photo"
-        src={bodyImage}
-        alt="Front view of an inspection-class ROV with sonar module"
-        widths={[480, 900]}
-        sizes="(min-width: 800px) 42rem, 100vw"
-        loading="lazy"
-      />
-      <ul>
-        <li>ROV inspection systems with 4K imaging, positioning, and live stakeholder access</li>
-        <li>Filtration and capture units with 10μ filtration and UV for in-water cleaning</li>
+      <span class="eyebrow">Overview</span>
+      <h2>We sell what we use</h2>
+      <hr class="accent-rule" />
+      <p>
+        Every system on this page earns its keep on our own jobs before it is offered to partners.
+        That means equipment backed by operational experience, honest advice about what a job
+        actually needs, and support from people who have run the same kit in the water.
+      </p>
+      <ul class="checklist checklist--cols">
+        <li>ROV inspection systems with 4K imaging and positioning</li>
+        <li>Magnetic hull crawlers for cleaning and inspection</li>
+        <li>Filtration and capture units, 10μ with UV treatment</li>
         <li>Diver and hand-tool kits for contained hull work</li>
+        <li>Live stakeholder access built into the imaging chain</li>
         <li>Deployment support, spares, and field commissioning</li>
       </ul>
-      <p>
-        We sell what we use. Partners get equipment backed by operational experience, not a catalogue
-        disconnected from the work.
-      </p>
-      <div class="btn-row">
-        <a class="btn btn--navy" href="/contact">Enquire about hardware</a>
-        <a class="btn btn--primary" href="/services/inspection">See inspection</a>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <span class="eyebrow">Inspection systems</span>
+      <h2>ROVs for survey and intervention</h2>
+      <hr class="accent-rule" />
+      <div class="case-strip">
+        <figure class="reveal">
+          <Image
+            src={pivotImage}
+            alt="Front view of an inspection-class ROV with sonar module"
+            widths={[480, 800]}
+            sizes="(max-width: 860px) 100vw, 33vw"
+            loading="lazy"
+          />
+          <figcaption>Inspection-class ROV with camera, LED arrays, and sonar.</figcaption>
+        </figure>
+        <figure class="reveal">
+          <Image
+            src={sideProfileImage}
+            alt="Side profile of an ROV chassis with manipulator arm"
+            widths={[480, 800]}
+            sizes="(max-width: 860px) 100vw, 33vw"
+            loading="lazy"
+          />
+          <figcaption>Manipulator-equipped chassis for recovery and intervention tasks.</figcaption>
+        </figure>
+        <figure class="reveal">
+          <Image
+            src={recoveryImage}
+            alt="ROV lifted on slings above harbour water during recovery"
+            widths={[480, 800]}
+            sizes="(max-width: 860px) 100vw, 33vw"
+            loading="lazy"
+          />
+          <figcaption>Launch and recovery from wharf or vessel, no crane required.</figcaption>
+        </figure>
       </div>
     </div>
   </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid-2">
+        <figure class="figure reveal" style="margin: 0;">
+          <Image
+            src={crawlerImage}
+            alt="Technician holding a magnetic hull crawler in a ship's deck doorway"
+            widths={[480, 900]}
+            sizes="(min-width: 800px) 32rem, 100vw"
+            loading="lazy"
+          />
+        </figure>
+        <div class="reveal">
+          <span class="eyebrow">Cleaning systems</span>
+          <h2>Hull crawlers and capture plant</h2>
+          <hr class="accent-rule" />
+          <p>
+            Magnetic crawlers work the hull above and below the waterline, recording as they clean.
+            The containerised filtration plant closes the loop: dislodged fouling is captured,
+            filtered to 10μ, and UV treated, so the clean itself stays compliant.
+          </p>
+          <p>
+            Both are the systems behind our own
+            <a href="/services/cleaning">cleaning with capture</a> service.
+          </p>
+        </div>
+      </div>
+      <figure class="figure reveal">
+        <Image
+          src={filtrationImage}
+          alt="Containerised filtration plant with bulk bags and hoses operating on a quay"
+          widths={[640, 1280]}
+          sizes="(min-width: 68rem) 68rem, 100vw"
+          loading="lazy"
+        />
+        <figcaption>The capture and filtration plant, a single 20′ container, working dockside.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <div class="grid-2">
+        <div class="reveal">
+          <span class="eyebrow">Supply and support</span>
+          <h2>Commissioned in the field, not shipped in a crate</h2>
+          <hr class="accent-rule" />
+          <p>
+            Hardware comes with deployment support, spares, and commissioning on your site. Crews
+            can be trained on the same equipment through our
+            <a href="/services/training">training programs</a>, and every system integrates with
+            the <a href="/services/platform">MarineStream platform</a> out of the box.
+          </p>
+        </div>
+        <figure class="figure reveal" style="margin: 0;">
+          <Image
+            src={whiteStudioImage}
+            alt="Inspection ROV photographed on a white studio background"
+            widths={[480, 900]}
+            sizes="(min-width: 800px) 32rem, 100vw"
+            loading="lazy"
+            style="background: #fff;"
+          />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <ServiceCta
+    title="Spec the right system"
+    lead="Tell us the vessels or assets you work on and we will recommend a configuration, with pricing and lead times."
+    primaryHref="/contact"
+    primaryLabel="Enquire about hardware"
+    secondaryHref="/services/inspection"
+    secondaryLabel="See it used on inspection"
+  />
 </SiteLayout>

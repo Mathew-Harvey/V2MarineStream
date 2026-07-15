@@ -1,9 +1,12 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import PageHero from "../../components/PageHero.astro";
+import ServiceCta from "../../components/ServiceCta.astro";
 import { Image } from "astro:assets";
 import bannerImage from "../../assets/photos/biofouling-macro.jpg";
-import bodyImage from "../../assets/photos/biosecurity-specimen.jpg";
+import specimenImage from "../../assets/photos/biosecurity-specimen.jpg";
+import musselsImage from "../../assets/photos/biofouling-mussels.jpg";
+import foulingHudImage from "../../assets/photos/fouling-field-hud.jpg";
 ---
 
 <SiteLayout
@@ -21,28 +24,107 @@ import bodyImage from "../../assets/photos/biosecurity-specimen.jpg";
 
   <section class="section">
     <div class="container narrow">
-      <Image
-        class="service-photo"
-        src={bodyImage}
-        alt="Biosecurity specimen documented with a forensic scale ruler"
-        widths={[480, 900]}
-        sizes="(min-width: 800px) 42rem, 100vw"
-        loading="lazy"
-      />
-      <ul>
+      <span class="eyebrow">Overview</span>
+      <h2>When the survey finds something unexpected</h2>
+      <hr class="accent-rule" />
+      <p>
+        Hardware and software alone do not close the compliance loop. When a survey finds something
+        unexpected, partners need expert judgement, and a place to record the decision. Our marine
+        scientists provide both: identification you can act on, and a documented call that stands
+        up to regulators.
+      </p>
+      <ul class="checklist checklist--cols">
         <li>Invasive marine species identification and verification</li>
         <li>Biosecurity risk assessment for vessels and worksites</li>
         <li>Treatment guidance aligned to regulatory frameworks</li>
         <li>Training and consultation for partner field teams</li>
+        <li>Specimen documentation to evidentiary standard</li>
+        <li>Findings recorded directly into the job record</li>
       </ul>
-      <p>
-        Hardware and software alone do not close the compliance loop. When a survey finds something
-        unexpected, partners need expert judgement, and a place to record the decision.
-      </p>
-      <div class="btn-row">
-        <a class="btn btn--navy" href="/contact">Talk to our science team</a>
-        <a class="btn btn--primary" href="/services">View all services</a>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <div class="grid-2">
+        <figure class="figure reveal" style="margin: 0;">
+          <Image
+            src={specimenImage}
+            alt="Biofouling specimen documented underwater with a forensic scale ruler and sample label"
+            widths={[480, 900]}
+            sizes="(min-width: 800px) 32rem, 100vw"
+            loading="lazy"
+          />
+          <figcaption>
+            Specimen documentation in situ: scale reference, sample identifier, and biosecurity labelling.
+          </figcaption>
+        </figure>
+        <div class="reveal">
+          <span class="eyebrow">Evidence discipline</span>
+          <h2>Identification that survives scrutiny</h2>
+          <hr class="accent-rule" />
+          <p>
+            A field call on a suspect organism can stop a vessel or clear it. That call needs a
+            specimen record, a scale reference, and a chain from photograph to identification to
+            decision. We document to that standard as a matter of course, because it is the record
+            regulators ask for when it matters.
+          </p>
+        </div>
       </div>
     </div>
   </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">How it works</span>
+      <h2>From frame to finding</h2>
+      <hr class="accent-rule" />
+      <ol class="steps steps--three">
+        <li>
+          <strong>Flag</strong>
+          <p>Field teams flag suspect growth during survey or clean, with location and scale.</p>
+        </li>
+        <li>
+          <strong>Identify</strong>
+          <p>Scientists verify the species and assess the biosecurity risk it carries.</p>
+        </li>
+        <li>
+          <strong>Guide</strong>
+          <p>Treatment or clearance guidance is issued and recorded with the evidence.</p>
+        </li>
+      </ol>
+      <div class="photo-pair">
+        <Image
+          src={musselsImage}
+          alt="Dense mussel and sponge growth on a submerged surface"
+          widths={[480, 800]}
+          sizes="(min-width: 560px) 32rem, 100vw"
+          loading="lazy"
+        />
+        <Image
+          src={foulingHudImage}
+          alt="Wide inspection view of a heavily fouled hull bottom with telemetry overlay"
+          widths={[480, 800]}
+          sizes="(min-width: 560px) 32rem, 100vw"
+          loading="lazy"
+        />
+      </div>
+      <div class="tool-callout reveal">
+        <div>
+          <strong>Identify species in the field</strong>
+          <p>The IMS Species Guide helps crews recognise invasive marine species on hulls and structures.</p>
+        </div>
+        <a class="btn btn--navy" href="/tools/ims-species-guide/">Open the IMS Species Guide</a>
+      </div>
+    </div>
+  </section>
+
+  <ServiceCta
+    title="Put a scientist on the job"
+    lead="Send us the survey footage or the finding, and we will tell you what it is and what to do about it."
+    primaryHref="/contact"
+    primaryLabel="Talk to our science team"
+    secondaryHref="/services"
+    secondaryLabel="View all services"
+  />
 </SiteLayout>

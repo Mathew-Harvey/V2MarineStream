@@ -1,11 +1,29 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import ServiceCta from "../components/ServiceCta.astro";
 import { Image } from "astro:assets";
 import bannerImage from "../assets/photos/crawler-supervision.jpg";
 import interviewImage from "../assets/photos/media-interview.jpg";
 import teamImage from "../assets/photos/team-portrait-hoses.jpg";
 import deckImage from "../assets/photos/deck-golden-hour.jpg";
+import operatorImage from "../assets/photos/dockside-operator.jpg";
+import commissioningImage from "../assets/photos/commissioning-team.jpg";
+import submarineImage from "../assets/photos/submarine-alongside.jpg";
+
+import absLogo from "../assets/logos/abs.jpg";
+import bvLogo from "../assets/logos/bv.jpg";
+import dnvLogo from "../assets/logos/dnv.jpg";
+import lrLogo from "../assets/logos/lr.jpg";
+import nkLogo from "../assets/logos/nk.jpg";
+
+const classLogos = [
+  { src: absLogo, alt: "American Bureau of Shipping" },
+  { src: bvLogo, alt: "Bureau Veritas" },
+  { src: dnvLogo, alt: "DNV" },
+  { src: lrLogo, alt: "Lloyd's Register" },
+  { src: nkLogo, alt: "ClassNK" },
+];
 ---
 
 <SiteLayout
@@ -15,56 +33,163 @@ import deckImage from "../assets/photos/deck-golden-hour.jpg";
   <PageHero
     eyebrow="A division of Franmarine"
     title="About"
-    lead="A division of Franmarine. Built to uplift partners delivering compliant biofouling work."
+    lead="Built by people who run underwater sustainment, for partners who deliver compliant biofouling work."
     image={bannerImage}
     imageAlt="Operator supervising a hull crawler working at a ship's waterline"
   />
 
   <section class="section">
-    <div class="container narrow">
-      <Image
-        class="service-photo"
-        src={interviewImage}
-        alt="MarineStream spokesperson beside an inspection ROV"
-        widths={[480, 900]}
-        sizes="(min-width: 800px) 42rem, 100vw"
-        loading="lazy"
-      />
-      <p>
-        Franmarine has delivered underwater sustainment and biofouling management for decades.
-        MarineStream™ is the platform and capability stack that makes that work transparent,
-        standardised, and auditable, now available to diving contractors, hull cleaners, and ROV
-        operators.
-      </p>
-      <p>
-        The people behind it run the operations themselves: commercial diving, ROV inspection,
-        in-water cleaning with capture, and marine science. That experience shapes everything from
-        the hardware we supply to the way the platform structures a job record.
-      </p>
-      <p>
-        <a href="https://www.franmarine.com.au/" rel="noopener noreferrer">Visit Franmarine →</a>
-      </p>
-      <div class="grid-2" style="margin: var(--space-md) 0;">
-        <Image
-          src={teamImage}
-          alt="Team member in front of racked dive umbilicals"
-          widths={[480, 800]}
-          sizes="(min-width: 800px) 21rem, 100vw"
-          loading="lazy"
-          style="border-radius: var(--radius); width: 100%; height: 16rem; object-fit: cover;"
-        />
-        <Image
-          src={deckImage}
-          alt="Crew member on a workboat deck at golden hour"
-          widths={[480, 800]}
-          sizes="(min-width: 800px) 21rem, 100vw"
-          loading="lazy"
-          style="border-radius: var(--radius); width: 100%; height: 16rem; object-fit: cover;"
-        />
-      </div>
-      <div class="btn-row">
-        <a class="btn btn--navy" href="/contact">Get in touch</a>
+    <div class="container">
+      <div class="grid-2">
+        <div class="reveal">
+          <span class="eyebrow">The story</span>
+          <h2>Operational systems, not shelfware</h2>
+          <hr class="accent-rule" />
+          <p>
+            Franmarine has delivered underwater sustainment and biofouling management for decades,
+            from Henderson, Western Australia. MarineStream™ is the platform and capability stack
+            that makes that work transparent, standardised, and auditable, now available to diving
+            contractors, hull cleaners, and ROV operators.
+          </p>
+          <p>
+            The people behind it run the operations themselves: commercial diving, ROV inspection,
+            in-water cleaning with capture, and marine science. That experience shapes everything
+            from the hardware we supply to the way the platform structures a job record.
+          </p>
+          <p>
+            <a href="https://www.franmarine.com.au/" rel="noopener noreferrer">Visit Franmarine →</a>
+          </p>
+        </div>
+        <figure class="figure reveal" style="margin: 0;">
+          <Image
+            src={interviewImage}
+            alt="MarineStream spokesperson beside an inspection ROV"
+            widths={[480, 900]}
+            sizes="(min-width: 800px) 32rem, 100vw"
+            loading="lazy"
+          />
+          <figcaption>Clean. Survey. Maintain. Repair. Sustain. The words behind the work.</figcaption>
+        </figure>
       </div>
     </div>
   </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <span class="eyebrow">How we work</span>
+      <h2>Four commitments</h2>
+      <hr class="accent-rule" />
+      <div class="pillar-grid">
+        <div class="reveal">
+          <h3>IMO aligned</h3>
+          <p>Inspection, cleaning with capture, and records mapped to biofouling guidelines.</p>
+        </div>
+        <div class="reveal">
+          <h3>Field proven</h3>
+          <p>Equipment and workflows proven on Navy and commercial vessel operations.</p>
+        </div>
+        <div class="reveal">
+          <h3>Audit ready</h3>
+          <p>One digital trail: ratings, evidence, approvals, and reports in one place.</p>
+        </div>
+        <div class="reveal">
+          <h3>Partner first</h3>
+          <p>We uplift contractors and ROV teams rather than competing for every diver day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container tech-band__grid">
+      <div class="reveal">
+        <span class="eyebrow">Proven where it counts</span>
+        <h2>Defence-grade discipline, commercial pace</h2>
+        <hr class="accent-rule" />
+        <p>
+          MarineStream systems and crews work on Royal Australian Navy vessels and across
+          commercial fleets, with more than 120 vessels inspected and cleaned to standard. The same
+          record-keeping that satisfies defence customers is what makes commercial audits fast.
+        </p>
+      </div>
+      <div class="tech-band__media reveal">
+        <Image
+          src={submarineImage}
+          alt="Submarine alongside a wharf in clear turquoise water"
+          widths={[480, 900]}
+          sizes="(max-width: 860px) 100vw, 50vw"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">The team</span>
+      <h2>People who own the outcome</h2>
+      <hr class="accent-rule" />
+      <div class="case-strip" style="margin-top: var(--space-md);">
+        <figure class="reveal">
+          <Image
+            src={teamImage}
+            alt="Team member in front of racked dive umbilicals"
+            widths={[480, 800]}
+            sizes="(max-width: 860px) 100vw, 33vw"
+            loading="lazy"
+          />
+          <figcaption style="color: var(--muted);">Dive operations, run in-house.</figcaption>
+        </figure>
+        <figure class="reveal">
+          <Image
+            src={operatorImage}
+            alt="Operator using a handheld control unit dockside"
+            widths={[480, 800]}
+            sizes="(max-width: 860px) 100vw, 33vw"
+            loading="lazy"
+          />
+          <figcaption style="color: var(--muted);">ROV pilots who also train partner crews.</figcaption>
+        </figure>
+        <figure class="reveal">
+          <Image
+            src={deckImage}
+            alt="Crew member on a workboat deck at golden hour"
+            widths={[480, 800]}
+            sizes="(max-width: 860px) 100vw, 33vw"
+            loading="lazy"
+          />
+          <figcaption style="color: var(--muted);">On the water at whatever hour the job needs.</figcaption>
+        </figure>
+      </div>
+      <figure class="figure reveal">
+        <Image
+          src={commissioningImage}
+          alt="Project team in front of a containerised treatment unit on commissioning day"
+          widths={[640, 1280]}
+          sizes="(min-width: 68rem) 68rem, 100vw"
+          loading="lazy"
+        />
+        <figcaption>Commissioning day for a containerised treatment unit, team and client together.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="trust-bar" aria-label="Certifications and standards">
+    <div class="container">
+      <p class="trust-bar__label">Working to classification society and ISO standards</p>
+      <div class="trust-bar__logos">
+        {classLogos.map((logo) => <Image src={logo.src} alt={logo.alt} loading="lazy" />)}
+      </div>
+      <p class="trust-bar__certs">Certified ISO 9001, ISO 14001, and ISO 45001</p>
+    </div>
+  </section>
+
+  <ServiceCta
+    title="Work with us"
+    lead="Whether you need the work delivered or your own capability uplifted, it starts with a conversation."
+    primaryHref="/contact"
+    primaryLabel="Get in touch"
+    secondaryHref="/services"
+    secondaryLabel="Our services"
+  />
 </SiteLayout>

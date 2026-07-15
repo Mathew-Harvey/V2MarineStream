@@ -1,8 +1,76 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import PageHero from "../../components/PageHero.astro";
-import ServiceGrid from "../../components/ServiceGrid.astro";
+import ServiceCta from "../../components/ServiceCta.astro";
+import { Image } from "astro:assets";
 import bannerImage from "../../assets/photos/offshore-mooring-ops.jpg";
+import inspectImage from "../../assets/photos/rov-mooring-inspection.jpg";
+import cleanImage from "../../assets/photos/hull-crawler-cleaning.jpg";
+import platformImage from "../../assets/photos/dive-control-room.jpg";
+import hardwareImage from "../../assets/photos/rov-pivot-front.jpg";
+import softwareImage from "../../assets/photos/control-room-live-feeds.jpg";
+import trainingImage from "../../assets/photos/training-demo.jpg";
+import advisoryImage from "../../assets/photos/mooring-buoy-crew.jpg";
+import imsImage from "../../assets/photos/biofouling-macro.jpg";
+
+const services = [
+  {
+    href: "/services/inspection",
+    label: "Inspection",
+    description: "ROV and diver surveys with live access and fouling ratings.",
+    image: inspectImage,
+    alt: "Inspection ROV beside a fouled mooring chain",
+  },
+  {
+    href: "/services/cleaning",
+    label: "Cleaning with capture",
+    description: "In-water cleaning with 10μ filtration and UV treatment.",
+    image: cleanImage,
+    alt: "Hull crawler cleaning the side of a grey vessel",
+  },
+  {
+    href: "/services/platform",
+    label: "Platform",
+    description: "Field capture, parallel approvals, automated reports.",
+    image: platformImage,
+    alt: "Dive supervision control room with live monitoring screens",
+  },
+  {
+    href: "/services/hardware",
+    label: "Hardware",
+    description: "ROV systems, hull crawlers, filtration units, and field equipment.",
+    image: hardwareImage,
+    alt: "Front view of an inspection-class ROV",
+  },
+  {
+    href: "/services/software",
+    label: "Software",
+    description: "Platform subscriptions, onboarding, and integration.",
+    image: softwareImage,
+    alt: "Operator monitoring live underwater feeds",
+  },
+  {
+    href: "/services/training",
+    label: "Training",
+    description: "ROV, biofouling management, and platform programs.",
+    image: trainingImage,
+    alt: "Group training demonstration at a shipyard",
+  },
+  {
+    href: "/services/professional-services",
+    label: "Professional services",
+    description: "Consulting, program design, and operational support.",
+    image: advisoryImage,
+    alt: "Crew working around a mooring buoy on a vessel deck",
+  },
+  {
+    href: "/services/expertise",
+    label: "IMS expertise",
+    description: "Marine science for identification, risk, and treatment.",
+    image: imsImage,
+    alt: "Dense marine biofouling growth on a submerged structure",
+  },
+];
 ---
 
 <SiteLayout
@@ -19,7 +87,64 @@ import bannerImage from "../../assets/photos/offshore-mooring-ops.jpg";
 
   <section class="section">
     <div class="container narrow">
-      <ServiceGrid />
+      <p>
+        Everything here is one system. Surveys justify cleans, cleans are captured and filtered,
+        and both land in a single auditable record. Take the full stack as a service, or take the
+        pieces that uplift your own crews: equipment, software, training, and the science to back
+        difficult calls.
+      </p>
+    </div>
+    <div class="container container--wide">
+      <div class="photo-card-grid photo-card-grid--four">
+        {
+          services.map((s) => (
+            <a class="photo-card reveal" href={s.href}>
+              <Image
+                src={s.image}
+                alt={s.alt}
+                widths={[400, 800]}
+                sizes="(max-width: 860px) 100vw, 25vw"
+                loading="lazy"
+              />
+              <div class="photo-card__body">
+                <strong>{s.label}</strong>
+                <span>{s.description}</span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
     </div>
   </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <span class="eyebrow">How it fits together</span>
+      <h2>Deliver, or be enabled to deliver</h2>
+      <hr class="accent-rule" />
+      <ol class="steps steps--three">
+        <li>
+          <strong>We do the work</strong>
+          <p>Inspection and cleaning with capture, delivered by our crews with the record included.</p>
+        </li>
+        <li>
+          <strong>You do the work</strong>
+          <p>Hardware, software, and training put the same capability inside your own team.</p>
+        </li>
+        <li>
+          <strong>We back the calls</strong>
+          <p>Professional services and IMS expertise cover the decisions around the work.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <ServiceCta
+    title="Not sure which service fits?"
+    lead="Describe the vessel or asset and the outcome you need. We will point you at the right combination, honestly."
+    primaryHref="/contact"
+    primaryLabel="Contact us"
+    secondaryHref="/portfolio"
+    secondaryLabel="See the work"
+  />
 </SiteLayout>

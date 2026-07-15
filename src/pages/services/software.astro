@@ -1,7 +1,10 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import PageHero from "../../components/PageHero.astro";
+import ServiceCta from "../../components/ServiceCta.astro";
+import { Image } from "astro:assets";
 import bannerImage from "../../assets/photos/control-room-live-feeds.jpg";
+import controllerImage from "../../assets/photos/rov-controller-hands.jpg";
 ---
 
 <SiteLayout
@@ -19,28 +22,84 @@ import bannerImage from "../../assets/photos/control-room-live-feeds.jpg";
 
   <section class="section">
     <div class="container narrow">
-      <img
-        class="service-photo"
-        src="/images/photos/platform-mock.png"
-        alt="MarineStream platform"
-        loading="lazy"
-        width="900"
-        height="560"
-      />
-      <ul>
+      <span class="eyebrow">Overview</span>
+      <h2>The platform, as a subscription</h2>
+      <hr class="accent-rule" />
+      <p>
+        Software is sold as part of a working system, with inspection, cleaning, and reporting
+        connected in one record. A subscription gives your teams the same capture, workflow, and
+        reporting tools we run our own operations on, scoped to your fleet and jurisdiction.
+      </p>
+      <ul class="checklist checklist--cols">
         <li>Platform subscriptions for field teams and fleet operators</li>
         <li>Mobile capture: photo, video, ROV/CCTV ingest, and fouling ratings</li>
         <li>Parallel approval workflows and automated compliance reports</li>
+        <li>BFMPs, logs, and reports to IMO, biosecurity, and defence frameworks</li>
         <li>Onboarding, integration, and ongoing support</li>
+        <li>One auditable history per vessel</li>
       </ul>
-      <p>
-        Software is sold as part of a working system, with inspection, cleaning, and reporting connected
-        in one record.
-      </p>
-      <div class="btn-row">
-        <a class="btn btn--navy" href="/contact">Request platform access</a>
-        <a class="btn btn--primary" href="/services/platform">Platform overview</a>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <span class="eyebrow">Getting started</span>
+      <h2>Onboarding in three moves</h2>
+      <hr class="accent-rule" />
+      <ol class="steps steps--three">
+        <li>
+          <strong>Scope</strong>
+          <p>We map your vessels, roles, and the standards your reports answer to.</p>
+        </li>
+        <li>
+          <strong>Onboard</strong>
+          <p>Teams are set up and trained on capture, review, and sign-off workflows.</p>
+        </li>
+        <li>
+          <strong>Run</strong>
+          <p>First jobs run with our support alongside, then the record carries itself.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid-2">
+        <figure class="figure reveal" style="margin: 0;">
+          <Image
+            src={controllerImage}
+            alt="Operator's hands on an ROV controller showing a live underwater feed"
+            widths={[480, 900]}
+            sizes="(min-width: 800px) 32rem, 100vw"
+            loading="lazy"
+          />
+          <figcaption>Field capture feeds the record directly, from ROV, camera, or phone.</figcaption>
+        </figure>
+        <div class="reveal">
+          <span class="eyebrow">Why subscribe</span>
+          <h2>Reporting stops being a second job</h2>
+          <hr class="accent-rule" />
+          <p>
+            Partners using the platform cut reporting time by around 80 percent, because evidence
+            is captured once in the field and every report draws from the same record. Clients see
+            work as it happens, and audits stop being an archaeology exercise.
+          </p>
+          <p>
+            For the full capability picture, see the
+            <a href="/services/platform">platform overview</a>.
+          </p>
+        </div>
       </div>
     </div>
   </section>
+
+  <ServiceCta
+    title="Get your teams on the platform"
+    lead="Tell us your fleet size and the frameworks you report to, and we will propose a subscription and onboarding plan."
+    primaryHref="/contact"
+    primaryLabel="Request platform access"
+    secondaryHref="/services/platform"
+    secondaryLabel="Platform overview"
+  />
 </SiteLayout>
