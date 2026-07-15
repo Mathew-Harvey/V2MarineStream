@@ -19,7 +19,7 @@ Audited 2026-07-15 on branch `claude/portfolio-website-redesign-2rkvqx`.
 - `src/layouts/BaseLayout.astro`, head, SEO/OG tags, fonts, Netlify Identity script.
 - `src/layouts/SiteLayout.astro`, BaseLayout + Header + Footer.
 - Components: `Header.astro` (logo, dropdown nav with hover and click handling), `Footer.astro`, `PageHero.astro` (dark band + wave divider, used on every inner page), `ServiceGrid.astro`.
-- Pages: home, about, portfolio (blog listing), blog/[slug], contact, contact-success, privacy, 9 service pages under `/services/*`, and 5 legacy `/sales/*` pages that duplicate services content (Astro redirects plus Netlify redirects already map sales → services).
+- Pages: home, about, news (blog listing), blog/[slug], contact, contact-success, privacy, 9 service pages under `/services/*`, and 5 legacy `/sales/*` pages that duplicate services content (Astro redirects plus Netlify redirects already map sales → services).
 - Data: `src/data/navigation.ts` is the single source for the services nav and the tools menu. `sales.ts` appears vestigial. `tools.ts` is a one-line stub.
 - Static islands in `public/` that are linked from the nav and must keep working:
   - `/tools/ims-species-guide/` (15 MB self-contained app)

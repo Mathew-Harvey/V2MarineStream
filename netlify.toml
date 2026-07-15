@@ -12,17 +12,27 @@
 
 [[redirects]]
   from = "/core-pages/blog.html"
-  to = "/portfolio"
+  to = "/news"
   status = 301
 
 [[redirects]]
   from = "/blog"
-  to = "/portfolio"
+  to = "/news"
   status = 301
 
 [[redirects]]
   from = "/blog/"
-  to = "/portfolio"
+  to = "/news"
+  status = 301
+
+[[redirects]]
+  from = "/portfolio"
+  to = "/news"
+  status = 301
+
+[[redirects]]
+  from = "/portfolio/"
+  to = "/news"
   status = 301
 
 [[redirects]]

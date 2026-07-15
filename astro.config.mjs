@@ -7,7 +7,8 @@ export default defineConfig({
     format: 'file',
   },
   redirects: {
-    '/blog': '/portfolio',
+    '/blog': '/news',
+    '/portfolio': '/news',
     '/sales': '/services',
     '/sales/hardware': '/services/hardware',
     '/sales/software': '/services/software',

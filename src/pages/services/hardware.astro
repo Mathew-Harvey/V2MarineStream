@@ -4,9 +4,6 @@ import PageHero from "../../components/PageHero.astro";
 import ServiceCta from "../../components/ServiceCta.astro";
 import { Image } from "astro:assets";
 import bannerImage from "../../assets/photos/rov-product-dark.jpg";
-import pivotImage from "../../assets/photos/rov-pivot-front.jpg";
-import whiteStudioImage from "../../assets/photos/rov-studio-white.jpg";
-import sideProfileImage from "../../assets/photos/rov-side-profile.jpg";
 import crawlerImage from "../../assets/photos/technician-crawler.jpg";
 import filtrationImage from "../../assets/photos/filtration-plant-quayside.jpg";
 import recoveryImage from "../../assets/photos/rov-recovery.jpg";
@@ -51,38 +48,96 @@ import recoveryImage from "../../assets/photos/rov-recovery.jpg";
       <span class="eyebrow">Inspection systems</span>
       <h2>ROVs for survey and intervention</h2>
       <hr class="accent-rule" />
-      <div class="case-strip">
-        <figure class="reveal">
-          <Image
-            src={pivotImage}
-            alt="Front view of an inspection-class ROV with sonar module"
-            widths={[480, 800]}
-            sizes="(max-width: 860px) 100vw, 33vw"
+      <p class="rov-showcase__lead">
+        Explore the chassis in 3D. Orbit, zoom, and (on Revolution) pull the manipulator arm
+        free of the body to see how the system is put together.
+      </p>
+
+      <div class="rov-showcase" data-rov-showcase>
+        <div class="rov-showcase__tabs" role="tablist" aria-label="ROV models">
+          <button
+            type="button"
+            class="rov-showcase__tab is-active"
+            role="tab"
+            aria-selected="true"
+            data-rov-tab="pivot"
+            id="tab-pivot"
+          >
+            Pivot
+          </button>
+          <button
+            type="button"
+            class="rov-showcase__tab"
+            role="tab"
+            aria-selected="false"
+            data-rov-tab="revolution"
+            id="tab-revolution"
+          >
+            Revolution
+          </button>
+        </div>
+
+        <div class="rov-showcase__stage">
+          <iframe
+            class="rov-showcase__frame"
+            title="Pivot inspection ROV 3D model"
+            data-rov-frame
+            data-src-pivot="/models/viewers/pivot.html"
+            data-src-revolution="/models/viewers/revolution.html"
             loading="lazy"
-          />
-          <figcaption>Inspection-class ROV with camera, LED arrays, and sonar.</figcaption>
-        </figure>
-        <figure class="reveal">
-          <Image
-            src={sideProfileImage}
-            alt="Side profile of an ROV chassis with manipulator arm"
-            widths={[480, 800]}
-            sizes="(max-width: 860px) 100vw, 33vw"
-            loading="lazy"
-          />
-          <figcaption>Manipulator-equipped chassis for recovery and intervention tasks.</figcaption>
-        </figure>
-        <figure class="reveal">
-          <Image
-            src={recoveryImage}
-            alt="ROV lifted on slings above harbour water during recovery"
-            widths={[480, 800]}
-            sizes="(max-width: 860px) 100vw, 33vw"
-            loading="lazy"
-          />
-          <figcaption>Launch and recovery from wharf or vessel, no crane required.</figcaption>
-        </figure>
+            allow="fullscreen"
+          ></iframe>
+          <noscript>
+            <p class="rov-showcase__noscript">
+              Enable JavaScript to explore the 3D models, or open
+              <a href="/models/viewers/pivot.html">Pivot</a>
+              /
+              <a href="/models/viewers/revolution.html">Revolution</a>
+              directly.
+            </p>
+          </noscript>
+        </div>
+
+        <div class="rov-showcase__panels">
+          <div class="rov-showcase__panel is-active" data-rov-panel="pivot" role="tabpanel" aria-labelledby="tab-pivot">
+            <h3>Pivot</h3>
+            <p>
+              Inspection-class chassis with camera, LED arrays, and sonar. Coloured by material:
+              dark polymer bodywork, structural metal, and gold-tone fixings.
+            </p>
+            <ul class="checklist checklist--compact">
+              <li>Survey and intervention ready</li>
+              <li>4K imaging and positioning</li>
+              <li>Drag to orbit · scroll to zoom</li>
+            </ul>
+            <a class="text-link" href="/models/viewers/pivot.html" target="_blank" rel="noopener">Open full-screen viewer</a>
+          </div>
+          <div class="rov-showcase__panel" data-rov-panel="revolution" role="tabpanel" aria-labelledby="tab-revolution" hidden>
+            <h3>Revolution</h3>
+            <p>
+              7200-DC-4K customer configuration. Pull the glowing manipulator arm forward, or
+              drag any part outward to explode the assembly.
+            </p>
+            <ul class="checklist checklist--compact">
+              <li>Interactive pull-apart chassis</li>
+              <li>Manipulator arm at the nose</li>
+              <li>True as-built materials</li>
+            </ul>
+            <a class="text-link" href="/models/viewers/revolution.html" target="_blank" rel="noopener">Open full-screen viewer</a>
+          </div>
+        </div>
       </div>
+
+      <figure class="figure rov-showcase__field reveal">
+        <Image
+          src={recoveryImage}
+          alt="ROV lifted on slings above harbour water during recovery"
+          widths={[640, 1280]}
+          sizes="(min-width: 68rem) 68rem, 100vw"
+          loading="lazy"
+        />
+        <figcaption>Launch and recovery from wharf or vessel — the same systems you just explored in 3D.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -127,29 +182,17 @@ import recoveryImage from "../../assets/photos/rov-recovery.jpg";
   </section>
 
   <section class="section section--soft">
-    <div class="container">
-      <div class="grid-2">
-        <div class="reveal">
-          <span class="eyebrow">Supply and support</span>
-          <h2>Commissioned in the field, not shipped in a crate</h2>
-          <hr class="accent-rule" />
-          <p>
-            Hardware comes with deployment support, spares, and commissioning on your site. Crews
-            can be trained on the same equipment through our
-            <a href="/services/training">training programs</a>, and every system integrates with
-            the <a href="/services/platform">MarineStream platform</a> out of the box.
-          </p>
-        </div>
-        <figure class="figure reveal" style="margin: 0;">
-          <Image
-            src={whiteStudioImage}
-            alt="Inspection ROV photographed on a white studio background"
-            widths={[480, 900]}
-            sizes="(min-width: 800px) 32rem, 100vw"
-            loading="lazy"
-            style="background: #fff;"
-          />
-        </figure>
+    <div class="container narrow">
+      <div class="reveal">
+        <span class="eyebrow">Supply and support</span>
+        <h2>Commissioned in the field, not shipped in a crate</h2>
+        <hr class="accent-rule" />
+        <p>
+          Hardware comes with deployment support, spares, and commissioning on your site. Crews
+          can be trained on the same equipment through our
+          <a href="/services/training">training programs</a>, and every system integrates with
+          the <a href="/services/platform">MarineStream platform</a> out of the box.
+        </p>
       </div>
     </div>
   </section>
@@ -163,3 +206,59 @@ import recoveryImage from "../../assets/photos/rov-recovery.jpg";
     secondaryLabel="See it used on inspection"
   />
 </SiteLayout>
+
+<script>
+  function initRovShowcase(root) {
+    const frame = root.querySelector("[data-rov-frame]");
+    if (!frame) return;
+
+    const tabs = Array.from(root.querySelectorAll("[data-rov-tab]"));
+    const panels = Array.from(root.querySelectorAll("[data-rov-panel]"));
+    let active = "pivot";
+
+    function srcFor(id) {
+      return id === "revolution" ? frame.dataset.srcRevolution : frame.dataset.srcPivot;
+    }
+
+    function show(id) {
+      active = id;
+      const src = srcFor(id);
+      if (src && frame.getAttribute("src") !== src) {
+        frame.setAttribute("src", src);
+      }
+      frame.title =
+        id === "revolution" ? "Revolution ROV 3D model" : "Pivot inspection ROV 3D model";
+
+      tabs.forEach((tab) => {
+        const on = tab.dataset.rovTab === id;
+        tab.classList.toggle("is-active", on);
+        tab.setAttribute("aria-selected", on ? "true" : "false");
+      });
+      panels.forEach((panel) => {
+        const on = panel.dataset.rovPanel === id;
+        panel.classList.toggle("is-active", on);
+        panel.toggleAttribute("hidden", !on);
+      });
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const id = tab.dataset.rovTab;
+        if (id && id !== active) show(id);
+      });
+    });
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          show(active);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "120px" }
+    );
+    io.observe(frame);
+  }
+
+  document.querySelectorAll("[data-rov-showcase]").forEach(initRovShowcase);
+</script>

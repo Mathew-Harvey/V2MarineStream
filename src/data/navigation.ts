@@ -1,4 +1,4 @@
-/** Primary site IA — Home · Portfolio · Services · Tools · About · Contact */
+/** Primary site IA — Home · News · Services · Tools · About · Contact */
 
 export const serviceNav = [
   {

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Revolution · MarineStream</title>
+<style>
+  :root {
+    --panel: rgba(10, 23, 33, 0.78);
+    --panel-border: rgba(255, 255, 255, 0.1);
+    --text: #eef2f4;
+    --muted: #a7b3bc;
+    --accent: #ff6600;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; }
+  body {
+    font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+    color: var(--text);
+    background: radial-gradient(ellipse at 50% 28%, #163548 0%, #0a1721 58%, #061018 100%);
+  }
+  #app { position: absolute; inset: 0; }
+  canvas { display: block; width: 100%; height: 100%; }
+  .hud {
+    position: absolute; z-index: 2;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  #hint {
+    left: 12px; bottom: 12px;
+    padding: 8px 12px;
+    font-size: 11.5px;
+    color: var(--muted);
+    max-width: 320px;
+    line-height: 1.5;
+  }
+  #hint b { color: var(--accent); font-weight: 600; }
+  #controls {
+    top: 12px; right: 12px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 148px;
+  }
+  .btn {
+    appearance: none;
+    border: 1px solid var(--panel-border);
+    color: inherit;
+    background: rgba(255,255,255,0.04);
+    padding: 7px 9px;
+    border-radius: 7px;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .btn:hover { background: rgba(255, 102, 0, 0.16); border-color: rgba(255, 102, 0, 0.45); }
+  .btn .state { font-size: 10.5px; color: var(--muted); }
+  .btn.active { border-color: var(--accent); background: rgba(255, 102, 0, 0.18); }
+  .btn.active .state { color: var(--accent); }
+  .btn.primary { border-color: rgba(255, 102, 0, 0.5); background: rgba(255, 102, 0, 0.14); font-weight: 600; }
+  #pick {
+    display: none;
+    top: 14px; left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 12px;
+    font-size: 12px;
+    color: var(--accent);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  #loader {
+    position: absolute; inset: 0; z-index: 10;
+    display: flex; flex-direction: column; gap: 14px;
+    align-items: center; justify-content: center;
+    background: rgba(6, 16, 24, 0.72);
+    transition: opacity .4s;
+  }
+  .spinner {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.12);
+    border-top-color: var(--accent);
+    animation: spin .9s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  #loader .lbl { font-size: 13px; color: var(--muted); }
+  #err { color: #ff8080; font-size: 13px; max-width: 420px; text-align: center; padding: 0 16px; }
+  @media (max-width: 640px) {
+    #controls { width: auto; flex-direction: row; flex-wrap: wrap; max-width: calc(100% - 24px); }
+    #controls .btn .state { display: none; }
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&display=swap" />
+</head>
+<body>
+  <div id="app"></div>
+  <div id="controls" class="hud">
+    <button class="btn primary" id="btnParts" type="button">Reset parts</button>
+    <button class="btn" id="btnReset" type="button">Reset view</button>
+    <button class="btn" id="btnRotate" type="button">Auto-rotate <span class="state">off</span></button>
+  </div>
+  <div id="pick" class="hud"></div>
+  <div id="hint" class="hud"><b>Pull the glowing arm</b> at the nose, or drag any part to explode the chassis. Orbit empty space · scroll to zoom.</div>
+  <div id="loader">
+    <div class="spinner"></div>
+    <div class="lbl" id="loaderLbl">Loading Revolution…</div>
+    <div id="err"></div>
+  </div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+    const app = document.getElementById('app');
+    const loaderEl = document.getElementById('loader');
+    const loaderLbl = document.getElementById('loaderLbl');
+    const errEl = document.getElementById('err');
+    const pickEl = document.getElementById('pick');
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.08;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    app.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(42, 1, 0.01, 100);
+    camera.position.set(1, 0.8, 1.4);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.07;
+    controls.autoRotateSpeed = 1.1;
+
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x2a3a45, 0.55));
+    const key = new THREE.DirectionalLight(0xffffff, 2.1);
+    key.castShadow = true;
+    key.shadow.mapSize.set(2048, 2048);
+    key.shadow.bias = -0.0004;
+    scene.add(key);
+    const fill = new THREE.DirectionalLight(0xb8d4e8, 0.55);
+    scene.add(fill);
+    const rim = new THREE.DirectionalLight(0xff8533, 0.3);
+    rim.position.set(-2, 1.2, -1);
+    scene.add(rim);
+
+    const ground = new THREE.Mesh(new THREE.PlaneGeometry(60, 60), new THREE.ShadowMaterial({ opacity: 0.32 }));
+    ground.rotation.x = -Math.PI / 2;
+    ground.receiveShadow = true;
+    scene.add(ground);
+
+    const assembly = new THREE.Group();
+    scene.add(assembly);
+
+    const home = new THREE.Vector3();
+    const parts = [];
+    const groups = [];
+    let armGroup = null;
+    let interacted = false;
+    const assemblyCenter = new THREE.Vector3();
+
+    function sizeTo() {
+      const w = app.clientWidth || window.innerWidth;
+      const h = app.clientHeight || window.innerHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h, false);
+    }
+
+    function snapAxis(v) {
+      const ax = Math.abs(v.x), ay = Math.abs(v.y), az = Math.abs(v.z);
+      if (ax >= ay && ax >= az) return new THREE.Vector3(Math.sign(v.x) || 1, 0, 0);
+      if (ay >= az) return new THREE.Vector3(0, Math.sign(v.y) || 1, 0);
+      return new THREE.Vector3(0, 0, Math.sign(v.z) || 1);
+    }
+
+    function closestParam(P, u, ray) {
+      const w0 = new THREE.Vector3().subVectors(P, ray.origin);
+      const b = u.dot(ray.direction), d = u.dot(w0), e = ray.direction.dot(w0);
+      const denom = 1 - b * b;
+      if (Math.abs(denom) < 1e-6) return d;
+      return (b * e - d) / denom;
+    }
+
+    function tuneMaterial(mat) {
+      // Keep author colours; lift metal response so chassis reads correctly
+      const c = mat.color;
+      const lum = 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b;
+      if (lum > 0.55 && Math.abs(c.r - c.g) < 0.08 && Math.abs(c.g - c.b) < 0.08) {
+        mat.metalness = Math.max(mat.metalness ?? 0, 0.85);
+        mat.roughness = Math.min(mat.roughness ?? 1, 0.35);
+      } else if (lum < 0.2) {
+        mat.metalness = Math.min(mat.metalness ?? 0, 0.15);
+        mat.roughness = Math.max(mat.roughness ?? 0.5, 0.65);
+      } else if (c.r > 0.7 && c.g > 0.55 && c.b < 0.7) {
+        // warm / brass accents
+        mat.metalness = 0.7;
+        mat.roughness = 0.4;
+      }
+      mat.side = THREE.DoubleSide;
+      mat.envMapIntensity = 0.95;
+    }
+
+    function buildGroups() {
+      const box = new THREE.Box3().setFromObject(assembly);
+      box.getCenter(assemblyCenter);
+      const armMeshes = parts.filter((m) => m.name.startsWith('ARM__'));
+      const others = parts.filter((m) => !m.name.startsWith('ARM__'));
+
+      if (armMeshes.length) {
+        const c = new THREE.Vector3();
+        const b = new THREE.Box3();
+        armMeshes.forEach((m) => b.expandByObject(m));
+        b.getCenter(c);
+        const axis = snapAxis(new THREE.Vector3().subVectors(c, assemblyCenter));
+        armGroup = {
+          meshes: armMeshes,
+          homes: armMeshes.map((m) => m.position.clone()),
+          axis, linePoint: c.clone(),
+          pullMin: -0.03, pullMax: 0.34, delta: 0, target: null, isArm: true,
+          label: 'Manipulator arm'
+        };
+        groups.push(armGroup);
+        armMeshes.forEach((m) => { m.userData.group = armGroup; });
+      }
+
+      others.forEach((m) => {
+        const gb = m.geometry.boundingBox || (m.geometry.computeBoundingBox(), m.geometry.boundingBox);
+        const size = new THREE.Vector3().subVectors(gb.max, gb.min);
+        let localAxis = new THREE.Vector3(1, 0, 0);
+        if (size.y >= size.x && size.y >= size.z) localAxis.set(0, 1, 0);
+        else if (size.z >= size.x && size.z >= size.y) localAxis.set(0, 0, 1);
+        const worldAxis = localAxis.applyQuaternion(m.quaternion);
+        const c = new THREE.Vector3();
+        new THREE.Box3().setFromObject(m).getCenter(c);
+        let axis = snapAxis(worldAxis);
+        if (axis.dot(new THREE.Vector3().subVectors(c, assemblyCenter)) < 0) axis.multiplyScalar(-1);
+        const label = m.name.replace(/_Detailed$/i, '').replace(/^Part\d+\^/, '');
+        const g = {
+          meshes: [m], homes: [m.position.clone()], axis, linePoint: c.clone(),
+          pullMin: -0.02, pullMax: 0.20, delta: 0, target: null, isArm: false, label
+        };
+        groups.push(g);
+        m.userData.group = g;
+      });
+    }
+
+    function applyGroup(g) {
+      for (let i = 0; i < g.meshes.length; i++) {
+        g.meshes[i].position.copy(g.homes[i]).addScaledVector(g.axis, g.delta);
+      }
+    }
+
+    function frameModel() {
+      const box = new THREE.Box3().setFromObject(assembly);
+      const size = box.getSize(new THREE.Vector3());
+      const center = box.getCenter(new THREE.Vector3());
+      const maxDim = Math.max(size.x, size.y, size.z);
+      ground.position.y = box.min.y;
+      key.position.set(center.x + maxDim, center.y + maxDim * 1.5, center.z + maxDim * 0.85);
+      key.target.position.copy(center);
+      scene.add(key.target);
+      const sc = key.shadow.camera, r = maxDim * 1.3;
+      sc.left = -r; sc.right = r; sc.top = r; sc.bottom = -r;
+      sc.near = 0.01; sc.far = maxDim * 6; sc.updateProjectionMatrix();
+      fill.position.set(center.x - maxDim, center.y + maxDim * 0.4, center.z - maxDim);
+      const fov = camera.fov * Math.PI / 180;
+      let dist = (maxDim / 2) / Math.tan(fov / 2);
+      dist *= 1.55;
+      camera.near = dist / 100;
+      camera.far = dist * 100;
+      camera.updateProjectionMatrix();
+      controls.target.copy(center);
+      home.copy(center).add(new THREE.Vector3(-0.85, 0.48, 0.95).normalize().multiplyScalar(dist));
+      camera.position.copy(home);
+      controls.update();
+    }
+
+    function fail(msg) {
+      document.querySelector('#loader .spinner').style.display = 'none';
+      loaderLbl.style.display = 'none';
+      errEl.textContent = msg;
+    }
+
+    const gltfLoader = new GLTFLoader();
+    gltfLoader.load(
+      '../revolution.glb',
+      (gltf) => {
+        const model = gltf.scene;
+        scene.add(model);
+        scene.updateMatrixWorld(true);
+        const collected = [];
+        model.traverse((o) => { if (o.isMesh) collected.push(o); });
+        collected.forEach((m) => {
+          assembly.attach(m);
+          if (m.material) {
+            m.material = m.material.clone();
+            tuneMaterial(m.material);
+            m.userData.baseEmissive = m.material.emissive ? m.material.emissive.getHex() : 0x000000;
+          }
+          m.castShadow = true;
+          m.receiveShadow = true;
+          parts.push(m);
+        });
+        scene.remove(model);
+        buildGroups();
+        sizeTo();
+        frameModel();
+        loaderEl.style.opacity = '0';
+        setTimeout(() => loaderEl.remove(), 450);
+        animate();
+      },
+      (ev) => {
+        if (ev.total) loaderLbl.textContent = `Loading Revolution… ${Math.round((ev.loaded / ev.total) * 100)}%`;
+      },
+      (e) => fail('Could not load Revolution model. ' + (e?.message || e))
+    );
+
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+    let hoverGroup = null, drag = null;
+
+    function setPointer(e) {
+      const r = renderer.domElement.getBoundingClientRect();
+      pointer.x = ((e.clientX - r.left) / r.width) * 2 - 1;
+      pointer.y = -((e.clientY - r.top) / r.height) * 2 + 1;
+    }
+    function pick() {
+      raycaster.setFromCamera(pointer, camera);
+      const h = raycaster.intersectObjects(parts, false);
+      return h.length ? h[0] : null;
+    }
+    function setEmissive(g, hex, intensity) {
+      g.meshes.forEach((m) => {
+        if (m.material) {
+          m.material.emissive.setHex(hex);
+          m.material.emissiveIntensity = intensity;
+        }
+      });
+    }
+    function clearEmissive(g) {
+      g.meshes.forEach((m) => {
+        if (m.material) {
+          m.material.emissive.setHex(m.userData.baseEmissive || 0);
+          m.material.emissiveIntensity = 1;
+        }
+      });
+    }
+
+    renderer.domElement.addEventListener('pointerdown', (e) => {
+      setPointer(e);
+      const hit = pick();
+      if (hit) {
+        interacted = true;
+        controls.enabled = false;
+        const g = hit.object.userData.group;
+        raycaster.setFromCamera(pointer, camera);
+        drag = { g, tGrab: closestParam(g.linePoint, g.axis, raycaster.ray), deltaStart: g.delta };
+        renderer.domElement.style.cursor = 'grabbing';
+      }
+    }, true);
+
+    window.addEventListener('pointermove', (e) => {
+      if (drag) {
+        setPointer(e);
+        raycaster.setFromCamera(pointer, camera);
+        const t = closestParam(drag.g.linePoint, drag.g.axis, raycaster.ray);
+        drag.g.delta = Math.min(drag.g.pullMax, Math.max(drag.g.pullMin, drag.deltaStart + (t - drag.tGrab)));
+        drag.g.target = null;
+        applyGroup(drag.g);
+        return;
+      }
+      setPointer(e);
+      const hit = pick();
+      const g = hit ? hit.object.userData.group : null;
+      if (g !== hoverGroup) {
+        if (hoverGroup && hoverGroup !== armGroup) clearEmissive(hoverGroup);
+        else if (hoverGroup === armGroup) setEmissive(armGroup, 0x4a2800, 1);
+        hoverGroup = g;
+        if (g) {
+          setEmissive(g, 0xff6600, 0.85);
+          pickEl.style.display = 'block';
+          pickEl.textContent = g.label;
+        } else {
+          pickEl.style.display = 'none';
+        }
+      }
+      renderer.domElement.style.cursor = g ? 'grab' : 'auto';
+    });
+
+    window.addEventListener('pointerup', () => {
+      if (drag) {
+        drag = null;
+        controls.enabled = true;
+        renderer.domElement.style.cursor = hoverGroup ? 'grab' : 'auto';
+      }
+    });
+
+    document.getElementById('btnReset').onclick = () => {
+      if (!parts.length) return;
+      camera.position.copy(home);
+      controls.target.copy(assemblyCenter);
+      controls.update();
+    };
+    document.getElementById('btnParts').onclick = () => {
+      groups.forEach((g) => { g.target = 0; });
+      interacted = true;
+    };
+    document.getElementById('btnRotate').onclick = (ev) => {
+      controls.autoRotate = !controls.autoRotate;
+      ev.currentTarget.classList.toggle('active', controls.autoRotate);
+      ev.currentTarget.querySelector('.state').textContent = controls.autoRotate ? 'on' : 'off';
+    };
+
+    const clock = new THREE.Clock();
+    function animate() {
+      requestAnimationFrame(animate);
+      const t = clock.getElapsedTime();
+      if (armGroup && hoverGroup !== armGroup && !drag) {
+        if (!interacted) {
+          const p = 0.5 + 0.5 * Math.sin(t * 2.2);
+          setEmissive(armGroup, 0xff6600, 0.35 + 0.65 * p);
+        } else {
+          setEmissive(armGroup, 0x3a1c00, 1);
+        }
+      }
+      groups.forEach((g) => {
+        if (g.target !== null) {
+          g.delta += (g.target - g.delta) * 0.18;
+          if (Math.abs(g.target - g.delta) < 1e-4) { g.delta = g.target; g.target = null; }
+          applyGroup(g);
+        }
+      });
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    window.addEventListener('resize', sizeTo);
+    sizeTo();
+  </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+---
+import { getCollection } from "astro:content";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import ServiceCta from "../components/ServiceCta.astro";
+import bannerImage from "../assets/photos/dusk-aerial.jpg";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString("en-AU", { year: "numeric", month: "long", day: "numeric" });
+}
+
+/* Card thumbnails for existing posts; posts without an entry render as text cards.
+   New posts can set the `image` frontmatter field instead. */
+const postThumbs: Record<string, string> = {
+  "beyond-the-surface": "/images/blog/beyond-the-surface/IMG_5414.jpg",
+  "clean-hulls-clear-waters": "/images/blog/clean-hulls-clear-waters/digitalPlatform.jpg",
+  "from-rov-to-remote": "/images/blog/from-rov-to-remote/1.jpg",
+  "the-hull-truth": "/images/blog/the-hull-truth/aquamars.png",
+  "preventative-advantage": "/images/blog/preventative-advantage/Image 2 (1).png",
+  "revolutionising-underwater-inspections":
+    "/images/blog/revolutionising-underwater-inspections/shipDryDock.png",
+};
+
+function thumbFor(post: (typeof posts)[number]) {
+  return post.data.image ?? postThumbs[post.slug];
+}
+---
+
+<SiteLayout
+  title="News | MarineStream™"
+  description="Case studies and insight on biofouling inspection, cleaning with capture, and maritime compliance."
+>
+  <PageHero
+    eyebrow="Work & insight"
+    title="News"
+    lead="Projects, pilots, and practical writing from MarineStream operations."
+    image={bannerImage}
+    imageAlt="Aerial view of a port facility at dusk"
+  />
+
+  <section class="section">
+    <div class="container container--wide">
+      <div class="post-grid">
+        {
+          posts.map((post) => (
+            <a class="post-card reveal" href={`/blog/${post.slug}`}>
+              {thumbFor(post) && (
+                <img src={thumbFor(post)} alt="" loading="lazy" width="800" height="450" />
+              )}
+              <div class="post-card__body">
+                <div class="post-card__meta">
+                  {formatDate(post.data.pubDate)} · {post.data.author}
+                </div>
+                <h3>{post.data.title}</h3>
+                <p>{post.data.description}</p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <ServiceCta
+    eyebrow="Work with us"
+    title="Your vessel could be the next case study"
+    lead="Talk to us about inspections, cleaning with capture, or putting the capability inside your own team."
+    primaryHref="/contact"
+    primaryLabel="Contact us"
+    secondaryHref="/services"
+    secondaryLabel="Our services"
+  />
+</SiteLayout>

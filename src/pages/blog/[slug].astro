@@ -26,17 +26,17 @@ function formatDate(d: Date) {
 
 <SiteLayout title={`${post.data.title} | MarineStream™`} description={post.data.description}>
   <PageHero
-    eyebrow="Portfolio"
+    eyebrow="News"
     title={post.data.title}
     lead={`${formatDate(post.data.pubDate)} · ${post.data.author}`}
-    parent={{ href: "/portfolio", label: "Portfolio" }}
+    parent={{ href: "/news", label: "News" }}
   />
 
   <section class="section">
     <div class="container prose">
       <Content />
       <p style="margin-top: var(--space-lg);">
-        <a href="/portfolio">← Portfolio</a>
+        <a href="/news">← News</a>
       </p>
     </div>
   </section>
@@ -46,7 +46,7 @@ function formatDate(d: Date) {
       <section class="section section--soft">
         <div class="container narrow">
           <span class="eyebrow">Keep reading</span>
-          <h2>More from the portfolio</h2>
+          <h2>More from the news</h2>
           <hr class="accent-rule" />
           {morePosts.map((p) => (
             <a class="blog-card" href={`/blog/${p.slug}`}>

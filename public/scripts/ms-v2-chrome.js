@@ -61,7 +61,7 @@
             <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="ms-v2-site-nav" id="ms-v2-nav-toggle">Menu</button>
             <nav class="nav" id="ms-v2-site-nav" aria-label="Primary">
               <a href="/"${path === "/" ? ' aria-current="page"' : ""}>Home</a>
-              <a href="/portfolio"${path.startsWith("/portfolio") || path.startsWith("/blog") ? ' aria-current="page"' : ""}>Portfolio</a>
+              <a href="/news"${path.startsWith("/news") || path.startsWith("/blog") ? ' aria-current="page"' : ""}>News</a>
               <div class="nav-dropdown${servicesActive ? " is-active" : ""}" data-nav-dropdown>
                 <button class="nav-dropdown__toggle" type="button" aria-expanded="false" aria-controls="ms-v2-services-menu" aria-haspopup="true">Services</button>
                 <ul class="nav-dropdown__menu" id="ms-v2-services-menu" hidden>${serviceItems}</ul>
@@ -93,7 +93,7 @@
             </div>
             <nav class="footer-nav" aria-label="Footer">
               <a href="/">Home</a>
-              <a href="/portfolio">Portfolio</a>
+              <a href="/news">News</a>
               <a href="/services">Services</a>
               <a href="/about">About</a>
               <a href="/contact">Contact</a>

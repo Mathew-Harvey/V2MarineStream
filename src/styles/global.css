@@ -1544,7 +1544,7 @@ ul {
   border-radius: var(--radius);
 }
 
-/* Portfolio post cards */
+/* News post cards */
 .post-grid {
   display: grid;
   gap: var(--space-md);
@@ -1638,6 +1638,131 @@ ul {
   color: var(--muted);
   font-size: 0.92rem;
   max-width: 30rem;
+}
+
+/* Interactive ROV showcase (hardware) */
+.rov-showcase__lead {
+  max-width: 40rem;
+  margin-bottom: var(--space-md);
+}
+
+.rov-showcase {
+  margin-top: var(--space-md);
+}
+
+.rov-showcase__tabs {
+  display: flex;
+  gap: 0.35rem;
+  margin-bottom: var(--space-sm);
+}
+
+.rov-showcase__tab {
+  appearance: none;
+  border: 1px solid var(--line-dark);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.72);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.55rem 1.15rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.rov-showcase__tab:hover {
+  color: #fff;
+  border-color: rgba(255, 102, 0, 0.45);
+}
+
+.rov-showcase__tab.is-active {
+  background: rgba(255, 102, 0, 0.18);
+  border-color: var(--brand-orange);
+  color: #fff;
+}
+
+.rov-showcase__stage {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 30%, #163548 0%, #0a1721 70%);
+  border: 1px solid var(--line-dark);
+  aspect-ratio: 16 / 10;
+  min-height: 22rem;
+}
+
+.rov-showcase__frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: transparent;
+}
+
+.rov-showcase__noscript {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--space-md);
+  margin: 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.rov-showcase__panels {
+  margin-top: var(--space-md);
+  max-width: 40rem;
+}
+
+.rov-showcase__panel h3 {
+  color: #fff;
+  margin-bottom: 0.4rem;
+}
+
+.rov-showcase__panel p {
+  margin-top: 0;
+}
+
+.checklist--compact {
+  margin: var(--space-sm) 0 var(--space-md);
+  gap: 0.4rem;
+}
+
+.section--dark .checklist li {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.section--dark .checklist li::before {
+  color: var(--brand-orange);
+}
+
+.text-link {
+  color: var(--cyan);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(60, 180, 224, 0.35);
+}
+
+.text-link:hover {
+  color: #fff;
+  border-bottom-color: var(--brand-orange);
+}
+
+.rov-showcase__field {
+  margin-top: var(--space-xl);
+}
+
+.rov-showcase__field figcaption {
+  color: var(--steel-300);
+}
+
+@media (max-width: 640px) {
+  .rov-showcase__stage {
+    aspect-ratio: 4 / 5;
+    min-height: 20rem;
+  }
 }
 
 /* Scroll reveal (hidden state only applies once JS tags the root) */

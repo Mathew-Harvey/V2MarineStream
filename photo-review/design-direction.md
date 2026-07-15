@@ -43,13 +43,13 @@ Rules: orange is exclusively for actions and the accent rule; cyan/teal never us
 3. **What we do.** Three photo cards: Inspect (GOPR3144), Clean (IMG_1543), Capture (462579733). Each links to its service page.
 4. **How it works.** Measure, Clean, Record flow retained from the current site, now with small authentic HUD evidence thumbnails (SAIPEM#U00a0 5 progress frame).
 5. **Technology (dark band).** JCD01182 black-on-black ROV floats on `--ocean-ink`; copy on hardware plus platform. Secondary tile: _DN14990 recovery shot.
-6. **Field proof (dark continues).** Case-study strip: Colins Class Clean 1, DJI_0233, DJI_0248 with short captions; links to portfolio.
+6. **Field proof (dark continues).** Case-study strip: Colins Class Clean 1, DJI_0233, DJI_0248 with short captions; links to news.
 7. **People.** Two-up: d5bc1e5a portrait and a short "division of Franmarine" story; link to About.
 8. **Gallery.** Lazy-loaded responsive grid of the 20-strong shortlist with lightbox-free simple focus states (no JS gallery library).
 9. **Closing CTA.** image000005 golden-hour band, dark scrim, single orange CTA.
 10. **Footer** on `--ocean-ink`.
 
-Inner pages: `PageHero` gains an optional photographic background (per-section image from the shortlist) with the same ink gradient; services pages each get their mapped banner image and one supporting photo. Blog/portfolio, tools, admin untouched structurally.
+Inner pages: `PageHero` gains an optional photographic background (per-section image from the shortlist) with the same ink gradient; services pages each get their mapped banner image and one supporting photo. Blog/news, tools, admin untouched structurally.
 
 ## 6. Imagery handling
 

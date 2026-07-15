@@ -35,8 +35,8 @@ const toolsActive = tools.some((tool) => isPathMatch(tool.href));
 
     <nav class="nav" id="site-nav" aria-label="Primary">
       <a href="/" aria-current={path === "/" ? "page" : undefined}>Home</a>
-      <a href="/portfolio" aria-current={isPathMatch("/portfolio") || isPathMatch("/blog") ? "page" : undefined}>
-        Portfolio
+      <a href="/news" aria-current={isPathMatch("/news") || isPathMatch("/blog") ? "page" : undefined}>
+        News
       </a>
 
       <div class:list={["nav-dropdown", { "is-active": servicesActive }]} data-nav-dropdown>
