@@ -35,7 +35,7 @@ import galleryControlRoom from "../assets/photos/dive-control-room.jpg";
 import galleryOperator from "../assets/photos/dockside-operator.jpg";
 import galleryDrillship from "../assets/photos/drillship.jpg";
 import galleryRecovery from "../assets/photos/rov-recovery.jpg";
-import galleryBiofouling from "../assets/photos/biofouling-macro.jpg";
+import galleryBowCrawler from "../assets/photos/crawler-bow-harbour.jpg";
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -62,7 +62,7 @@ const gallery = [
   { src: galleryOperator, alt: "Operator using a handheld control unit dockside" },
   { src: galleryGoldenDeck, alt: "Crew member on a workboat deck at golden hour" },
   { src: galleryRecovery, alt: "ROV lifted on slings above harbour water during recovery" },
-  { src: galleryBiofouling, alt: "Dense marine biofouling growth on a submerged structure" },
+  { src: galleryBowCrawler, alt: "Hull crawler with lights on working the bow of a ship above the waterline", pos: "72% 50%" },
   { src: galleryDrillship, alt: "Drillship at anchor on open water" },
 ];
 ---
@@ -364,6 +364,7 @@ const gallery = [
                 widths={[400, 800]}
                 sizes={item.wide ? "(max-width: 640px) 100vw, 50vw" : "(max-width: 640px) 50vw, 25vw"}
                 loading="lazy"
+                style={item.pos ? `object-position: ${item.pos}` : undefined}
               />
             </div>
           ))
