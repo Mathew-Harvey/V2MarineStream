@@ -56,11 +56,28 @@
 }
 
 .ms-v2-chrome .nav a:hover,
-.ms-v2-chrome .nav a[aria-current="page"],
-.ms-v2-chrome .nav-dropdown__toggle:hover,
-.ms-v2-chrome .nav-dropdown__toggle[aria-expanded="true"],
-.ms-v2-chrome .nav-dropdown.is-open .nav-dropdown__toggle {
+.ms-v2-chrome .nav a[aria-current="page"] {
   color: var(--brand-orange);
+}
+
+.ms-v2-chrome .nav-cta {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.45rem 1rem !important;
+  background: var(--brand-orange);
+  color: #fff !important;
+  border-radius: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+  text-decoration: none !important;
+}
+
+.ms-v2-chrome .nav-cta:hover {
+  background: var(--brand-orange-dark);
+  color: #fff !important;
 }
 
 .ms-v2-chrome .nav-dropdown {

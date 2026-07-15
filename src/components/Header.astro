@@ -1,38 +1,16 @@
 ---
-import { tools } from "../data/tools";
-import { salesNav } from "../data/sales";
+import { serviceNav } from "../data/navigation";
 
 const path = Astro.url.pathname.replace(/\/$/, "") || "/";
 
-const links = [
-  { href: "/services", label: "Services" },
-  { href: "/blog", label: "Blog" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-];
-
-function isCurrent(href: string) {
-  if (href === "/services") return path === "/services" || path.startsWith("/services/");
-  if (href === "/sales") return path === "/sales" || path.startsWith("/sales/");
-  return path === href;
+function isPathMatch(href: string) {
+  const normalizedHref = href.replace(/\/$/, "");
+  if (path === normalizedHref) return true;
+  return path.startsWith(normalizedHref + "/");
 }
 
-function isDropdownCurrent(items: readonly { href: string }[]) {
-  return items.some((item) => isNavItemCurrent(item.href));
-}
-
-function isNavItemCurrent(href: string) {
-  if (href.startsWith("http")) return false;
-  const normalizedHref = href.replace(/\/$/, "").replace(/\.html$/, "");
-  const normalizedPath = path.replace(/\.html$/, "");
-  if (normalizedPath === normalizedHref) return true;
-  if (normalizedHref.endsWith("/ims-species-guide") && normalizedPath.includes("/ims-species-guide")) return true;
-  if (normalizedHref === "/services/expertise" && normalizedPath === "/services/expertise") return true;
-  return normalizedPath.startsWith(normalizedHref + "/") || normalizedPath.endsWith(normalizedHref.split("/").pop()!);
-}
-
-const salesOpen = isDropdownCurrent(salesNav);
-const toolsOpen = isDropdownCurrent(tools);
+const servicesOpen =
+  path === "/services" || path.startsWith("/services/") || path.startsWith("/sales/");
 ---
 
 <header class="site-header">
@@ -51,30 +29,26 @@ const toolsOpen = isDropdownCurrent(tools);
     </button>
 
     <nav class="nav" id="site-nav" aria-label="Primary">
-      {
-        links.slice(0, 1).map((link) => (
-          <a href={link.href} aria-current={isCurrent(link.href) ? "page" : undefined}>
-            {link.label}
-          </a>
-        ))
-      }
+      <a href="/" aria-current={path === "/" ? "page" : undefined}>Home</a>
+      <a href="/portfolio" aria-current={isPathMatch("/portfolio") || isPathMatch("/blog") ? "page" : undefined}>
+        Portfolio
+      </a>
 
-      <div class:list={["nav-dropdown", { "is-open": salesOpen }]} data-nav-dropdown>
+      <div class:list={["nav-dropdown", { "is-open": servicesOpen }]} data-nav-dropdown>
         <button
           class="nav-dropdown__toggle"
           type="button"
-          aria-expanded={salesOpen ? "true" : "false"}
-          aria-controls="sales-menu"
+          aria-expanded={servicesOpen ? "true" : "false"}
+          aria-controls="services-menu"
           aria-haspopup="true"
         >
-          Sales
+          Services
         </button>
-        <ul class="nav-dropdown__menu" id="sales-menu" hidden={!salesOpen}>
+        <ul class="nav-dropdown__menu" id="services-menu" hidden={!servicesOpen}>
           {
-            salesNav.map((item) => (
-              <li class:list={[{ "nav-dropdown__divider-item": item.group === "ims" }]}>
-                {item.group === "ims" && <span class="nav-dropdown__label">Professional services</span>}
-                <a href={item.href} aria-current={isNavItemCurrent(item.href) ? "page" : undefined}>
+            serviceNav.map((item) => (
+              <li>
+                <a href={item.href} aria-current={isPathMatch(item.href) ? "page" : undefined}>
                   {item.label}
                 </a>
               </li>
@@ -83,41 +57,8 @@ const toolsOpen = isDropdownCurrent(tools);
         </ul>
       </div>
 
-      {
-        links.slice(1).map((link) => (
-          <a href={link.href} aria-current={isCurrent(link.href) ? "page" : undefined}>
-            {link.label}
-          </a>
-        ))
-      }
-
-      <div class:list={["nav-dropdown", { "is-open": toolsOpen }]} data-nav-dropdown>
-        <button
-          class="nav-dropdown__toggle"
-          type="button"
-          aria-expanded={toolsOpen ? "true" : "false"}
-          aria-controls="tools-menu"
-          aria-haspopup="true"
-        >
-          Tools
-        </button>
-        <ul class="nav-dropdown__menu" id="tools-menu" hidden={!toolsOpen}>
-          {
-            tools.map((tool) => (
-              <li>
-                <a
-                  href={tool.href}
-                  target={tool.external ? "_blank" : undefined}
-                  rel={tool.external ? "noopener noreferrer" : undefined}
-                  aria-current={isNavItemCurrent(tool.href) ? "page" : undefined}
-                >
-                  {tool.menuLabel ?? tool.label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+      <a href="/about" aria-current={isPathMatch("/about") ? "page" : undefined}>About</a>
+      <a class="nav-cta" href="/contact">Contact us</a>
     </nav>
   </div>
 </header>

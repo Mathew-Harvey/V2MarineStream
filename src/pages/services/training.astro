@@ -1,0 +1,43 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+---
+
+<SiteLayout
+  title="Training | Services | MarineStream™"
+  description="ROV, biofouling management, and platform training for operators and supervisors."
+>
+  <PageHero
+    eyebrow="Services"
+    title="Training"
+    lead="Programs delivered by people who run the operations — not classroom theory alone."
+    parent={{ href: "/services", label: "Services" }}
+  />
+
+  <section class="section">
+    <div class="container narrow">
+      <img
+        class="service-photo"
+        src="/images/photos/biofouling-ops.png"
+        alt="Biofouling operations training"
+        loading="lazy"
+        width="900"
+        height="560"
+      />
+      <ul>
+        <li>ROV pilot and supervisor training</li>
+        <li>Biofouling management and IMO-aligned inspection practice</li>
+        <li>Platform and reporting workshops for field and office teams</li>
+        <li>On-site, remote, and blended delivery</li>
+      </ul>
+      <p>
+        Training packages can be scoped to your fleet, jurisdiction, and equipment — contact us for
+        a program outline.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn--navy" href="/contact">Enquire about training</a>
+        <a class="btn btn--primary" href="/services/professional-services">Professional services</a>
+      </div>
+    </div>
+  </section>
+</SiteLayout>

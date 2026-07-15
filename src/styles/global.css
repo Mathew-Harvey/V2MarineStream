@@ -334,6 +334,26 @@ ul {
   color: var(--brand-orange);
 }
 
+.nav-cta {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.45rem 1rem !important;
+  background: var(--brand-orange);
+  color: var(--white) !important;
+  border-radius: var(--radius);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+  text-decoration: none !important;
+}
+
+.nav-cta:hover {
+  background: var(--brand-orange-dark);
+  color: var(--white) !important;
+}
+
 .nav-dropdown {
   position: relative;
 }
@@ -919,6 +939,114 @@ ul {
   flex-wrap: wrap;
   gap: 0.5rem 1.25rem;
   justify-content: space-between;
+}
+
+/* Homepage structure (UAVISUALS-aligned) */
+.home-centered {
+  text-align: center;
+}
+
+.home-centered .accent-rule--center,
+.accent-rule--center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+}
+
+@media (max-width: 900px) {
+  .pillar-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .pillar-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pillar-grid h3 {
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.pillar-grid p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.dual-cta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+.dual-cta h2 {
+  color: var(--white);
+}
+
+.dual-cta p {
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: var(--space-md);
+}
+
+@media (max-width: 760px) {
+  .dual-cta {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-cta {
+    width: 100%;
+  }
+}
+
+.service-tile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  margin-top: var(--space-md);
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+
+.service-tile {
+  display: grid;
+  gap: 0.4rem;
+  padding: 1.35rem 1.25rem;
+  background: var(--white);
+  color: inherit;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.service-tile:hover {
+  background: var(--off-white);
+  color: inherit;
+}
+
+.service-tile strong {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.service-tile span {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 560px) {
+  .service-tile-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,53 +1,19 @@
-export const salesCategories = [
-  {
-    href: "/sales/hardware",
-    label: "Hardware",
-    menuLabel: "Hardware",
-    description: "ROV systems, filtration units, and field equipment for inspection and cleaning with capture.",
-    features: [
-      "ROV inspection systems",
-      "Filtration and capture units",
-      "Diver and hand-tool kits",
-      "Deployment and support",
-    ],
-  },
-  {
-    href: "/sales/software",
-    label: "Software",
-    menuLabel: "Software",
-    description: "MarineStream platform access — field capture, workflows, and compliance reporting.",
-    features: [
-      "Platform subscriptions",
-      "Multi-party workflows",
-      "Automated BFMP and audit reports",
-      "Integration and onboarding",
-    ],
-  },
-  {
-    href: "/sales/training",
-    label: "Training",
-    menuLabel: "Training",
-    description: "Operator and supervisor programs for ROV, biofouling management, and platform use.",
-    features: [
-      "ROV pilot and supervisor courses",
-      "Biofouling management training",
-      "Platform and reporting workshops",
-      "On-site or remote delivery",
-    ],
-  },
-  {
-    href: "/sales/professional-services",
-    label: "Professional services",
-    menuLabel: "Professional services",
-    description: "Consulting, program design, and operational support for partners and fleet operators.",
-    features: [
-      "Compliance program design",
-      "Operational consulting",
-      "Workflow and reporting setup",
-      "Ongoing advisory support",
-    ],
-  },
-] as const;
+import { serviceNav } from "./navigation";
+
+/** @deprecated Use serviceNav — sales items now live under /services */
+export const salesCategories = serviceNav
+  .filter((s) =>
+    ["/services/hardware", "/services/software", "/services/training", "/services/professional-services"].includes(
+      s.href,
+    ),
+  )
+  .map((s) => ({
+    href: s.href,
+    label: s.label,
+    menuLabel: s.label,
+    description: s.description,
+    features: [] as string[],
+  }));
 
 export const imsExpertise = {
   href: "/services/expertise",
@@ -63,15 +29,8 @@ export const imsExpertise = {
   ],
 } as const;
 
-export const salesNav = [
-  ...salesCategories.map((item) => ({
-    href: item.href,
-    label: item.menuLabel,
-    group: "sales" as const,
-  })),
-  {
-    href: imsExpertise.href,
-    label: imsExpertise.menuLabel,
-    group: "ims" as const,
-  },
-] as const;
+export const salesNav = serviceNav.map((item) => ({
+  href: item.href,
+  label: item.label,
+  group: item.href === "/services/expertise" ? ("ims" as const) : ("sales" as const),
+}));

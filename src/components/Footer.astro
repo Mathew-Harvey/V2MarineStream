@@ -20,9 +20,9 @@ const year = new Date().getFullYear();
       </p>
     </div>
     <nav class="footer-nav" aria-label="Footer">
+      <a href="/">Home</a>
+      <a href="/portfolio">Portfolio</a>
       <a href="/services">Services</a>
-      <a href="/sales">Sales</a>
-      <a href="/blog">Blog</a>
       <a href="/about">About</a>
       <a href="/contact">Contact</a>
       <a href="/privacy">Privacy</a>
@@ -33,13 +33,7 @@ const year = new Date().getFullYear();
         {
           tools.map((tool) => (
             <li>
-              <a
-                href={tool.href}
-                target={tool.external ? "_blank" : undefined}
-                rel={tool.external ? "noopener noreferrer" : undefined}
-                >
-                  {tool.menuLabel ?? tool.label}
-                </a>
+              <a href={tool.href}>{tool.menuLabel ?? tool.label}</a>
             </li>
           ))
         }

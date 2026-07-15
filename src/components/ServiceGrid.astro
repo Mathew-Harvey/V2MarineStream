@@ -1,35 +1,14 @@
 ---
-const services = [
-  {
-    href: "/services/inspection",
-    title: "Inspection",
-    body: "ROV and diver surveys with live access and fouling ratings on the spot.",
-  },
-  {
-    href: "/services/cleaning",
-    title: "Cleaning with capture",
-    body: "In-water cleaning with 10μ filtration and UV — IMO and Australian standards.",
-  },
-  {
-    href: "/services/platform",
-    title: "Platform",
-    body: "Field capture, parallel approvals, automated reports, blockchain audit.",
-  },
-  {
-    href: "/services/expertise",
-    title: "IMS expertise",
-    body: "Marine scientists for identification, risk, and treatment guidance.",
-  },
-];
+import { serviceNav } from "../data/navigation";
 ---
 
 <ol class="offer-list">
   {
-    services.map((s) => (
+    serviceNav.map((s) => (
       <li>
         <a href={s.href}>
-          <strong>{s.title}</strong>
-          <span>{s.body}</span>
+          <strong>{s.label}</strong>
+          <span>{s.description}</span>
         </a>
       </li>
     ))

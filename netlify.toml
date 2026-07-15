@@ -12,27 +12,67 @@
 
 [[redirects]]
   from = "/core-pages/blog.html"
-  to = "/blog"
+  to = "/portfolio"
+  status = 301
+
+[[redirects]]
+  from = "/blog"
+  to = "/portfolio"
+  status = 301
+
+[[redirects]]
+  from = "/blog/"
+  to = "/portfolio"
   status = 301
 
 [[redirects]]
   from = "/core-pages/sales.html"
-  to = "/sales"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/sales"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/sales/"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/sales/hardware"
+  to = "/services/hardware"
+  status = 301
+
+[[redirects]]
+  from = "/sales/software"
+  to = "/services/software"
+  status = 301
+
+[[redirects]]
+  from = "/sales/training"
+  to = "/services/training"
+  status = 301
+
+[[redirects]]
+  from = "/sales/professional-services"
+  to = "/services/professional-services"
   status = 301
 
 [[redirects]]
   from = "/core-pages/equipment-products.html"
-  to = "/sales/hardware"
+  to = "/services/hardware"
   status = 301
 
 [[redirects]]
   from = "/core-pages/consultation-training.html"
-  to = "/sales/training"
+  to = "/services/training"
   status = 301
 
 [[redirects]]
   from = "/core-pages/software-platform.html"
-  to = "/sales/software"
+  to = "/services/software"
   status = 301
 
 [[redirects]]

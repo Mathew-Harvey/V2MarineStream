@@ -1,19 +1,15 @@
 (function () {
   "use strict";
 
-  const navLinks = [
-    { href: "/services", label: "Services", match: (p) => p === "/services" || p.startsWith("/services/") },
-    { href: "/blog", label: "Blog", match: (p) => p === "/blog" || p.startsWith("/blog/") },
-    { href: "/about", label: "About", match: (p) => p === "/about" },
-    { href: "/contact", label: "Contact", match: (p) => p === "/contact" },
-  ];
-
-  const salesLinks = [
-    { href: "/sales/hardware", label: "Hardware", group: "sales" },
-    { href: "/sales/software", label: "Software", group: "sales" },
-    { href: "/sales/training", label: "Training", group: "sales" },
-    { href: "/sales/professional-services", label: "Professional services", group: "sales" },
-    { href: "/services/expertise", label: "IMS expertise", group: "ims" },
+  const serviceLinks = [
+    { href: "/services/inspection", label: "Inspection" },
+    { href: "/services/cleaning", label: "Cleaning with capture" },
+    { href: "/services/platform", label: "Platform" },
+    { href: "/services/hardware", label: "Hardware" },
+    { href: "/services/software", label: "Software" },
+    { href: "/services/training", label: "Training" },
+    { href: "/services/professional-services", label: "Professional services" },
+    { href: "/services/expertise", label: "IMS expertise" },
   ];
 
   const toolLinks = [
@@ -25,55 +21,24 @@
 
   const path = window.location.pathname.replace(/\/$/, "") || "/";
 
-  function isNavItemCurrent(href) {
-    if (href.startsWith("http")) return false;
-    const normalizedHref = href.replace(/\/$/, "").replace(/\.html$/, "");
-    const normalizedPath = path.replace(/\.html$/, "");
-    if (normalizedPath === normalizedHref) return true;
-    if (normalizedHref.endsWith("/ims-species-guide") && normalizedPath.includes("/ims-species-guide")) return true;
-    return normalizedPath.startsWith(normalizedHref + "/");
+  function isCurrent(href) {
+    const n = href.replace(/\/$/, "").replace(/\.html$/, "");
+    const p = path.replace(/\.html$/, "");
+    return p === n || p.startsWith(n + "/") || (n.includes("ims-species-guide") && p.includes("ims-species-guide"));
   }
 
-  function isSalesCurrent() {
-    return path === "/sales" || path.startsWith("/sales/") || path === "/services/expertise";
-  }
-
-  function isToolsCurrent() {
-    return toolLinks.some((tool) => isNavItemCurrent(tool.href));
-  }
-
-  function renderSalesMenu() {
-    return salesLinks
-      .map((item) => {
-        const current = isNavItemCurrent(item.href) ? ' aria-current="page"' : "";
-        if (item.group === "ims") {
-          return `<li class="nav-dropdown__divider-item"><span class="nav-dropdown__label">Professional services</span><a href="${item.href}"${current}>${item.label}</a></li>`;
-        }
-        return `<li><a href="${item.href}"${current}>${item.label}</a></li>`;
-      })
-      .join("");
+  function servicesOpen() {
+    return path === "/services" || path.startsWith("/services/") || path.startsWith("/sales/");
   }
 
   function renderHeader() {
-    const servicesLink = navLinks[0];
-    const servicesCurrent = servicesLink.match(path) ? ' aria-current="page"' : "";
-    const otherNav = navLinks
-      .slice(1)
-      .map((link) => {
-        const current = link.match(path) ? ' aria-current="page"' : "";
-        return `<a href="${link.href}"${current}>${link.label}</a>`;
+    const open = servicesOpen();
+    const serviceItems = serviceLinks
+      .map((item) => {
+        const cur = isCurrent(item.href) ? ' aria-current="page"' : "";
+        return `<li><a href="${item.href}"${cur}>${item.label}</a></li>`;
       })
       .join("");
-
-    const toolItems = toolLinks
-      .map((tool) => {
-        const current = isNavItemCurrent(tool.href) ? ' aria-current="page"' : "";
-        return `<li><a href="${tool.href}"${current}>${tool.label}</a></li>`;
-      })
-      .join("");
-
-    const salesOpen = isSalesCurrent();
-    const toolsOpen = isToolsCurrent();
 
     return `
       <div class="ms-v2-chrome">
@@ -84,16 +49,14 @@
             </a>
             <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="ms-v2-site-nav" id="ms-v2-nav-toggle">Menu</button>
             <nav class="nav" id="ms-v2-site-nav" aria-label="Primary">
-              <a href="${servicesLink.href}"${servicesCurrent}>${servicesLink.label}</a>
-              <div class="nav-dropdown${salesOpen ? " is-open" : ""}" data-nav-dropdown>
-                <button class="nav-dropdown__toggle" type="button" aria-expanded="${salesOpen ? "true" : "false"}" aria-controls="ms-v2-sales-menu" aria-haspopup="true">Sales</button>
-                <ul class="nav-dropdown__menu" id="ms-v2-sales-menu"${salesOpen ? "" : " hidden"}>${renderSalesMenu()}</ul>
+              <a href="/"${path === "/" ? ' aria-current="page"' : ""}>Home</a>
+              <a href="/portfolio"${path.startsWith("/portfolio") || path.startsWith("/blog") ? ' aria-current="page"' : ""}>Portfolio</a>
+              <div class="nav-dropdown${open ? " is-open" : ""}" data-nav-dropdown>
+                <button class="nav-dropdown__toggle" type="button" aria-expanded="${open ? "true" : "false"}" aria-controls="ms-v2-services-menu" aria-haspopup="true">Services</button>
+                <ul class="nav-dropdown__menu" id="ms-v2-services-menu"${open ? "" : " hidden"}>${serviceItems}</ul>
               </div>
-              ${otherNav}
-              <div class="nav-dropdown${toolsOpen ? " is-open" : ""}" data-nav-dropdown>
-                <button class="nav-dropdown__toggle" type="button" aria-expanded="${toolsOpen ? "true" : "false"}" aria-controls="ms-v2-tools-menu" aria-haspopup="true">Tools</button>
-                <ul class="nav-dropdown__menu" id="ms-v2-tools-menu"${toolsOpen ? "" : " hidden"}>${toolItems}</ul>
-              </div>
+              <a href="/about"${path === "/about" ? ' aria-current="page"' : ""}>About</a>
+              <a class="nav-cta" href="/contact">Contact us</a>
             </nav>
           </div>
         </header>
@@ -103,14 +66,7 @@
 
   function renderFooter() {
     const year = new Date().getFullYear();
-    const footerNav = [
-      `<a href="/services">Services</a>`,
-      `<a href="/sales">Sales</a>`,
-      ...navLinks.slice(1).map((link) => `<a href="${link.href}">${link.label}</a>`),
-      `<a href="/privacy">Privacy</a>`,
-    ].join("");
-    const footerTools = toolLinks.map((tool) => `<li><a href="${tool.href}">${tool.label}</a></li>`).join("");
-
+    const tools = toolLinks.map((t) => `<li><a href="${t.href}">${t.label}</a></li>`).join("");
     return `
       <div class="ms-v2-chrome">
         <footer class="site-footer">
@@ -120,10 +76,17 @@
               <p class="footer-tag">Enabling IMO-compliant biofouling inspections and cleans.</p>
               <p><a href="https://www.franmarine.com.au/" rel="noopener noreferrer">A division of Franmarine</a></p>
             </div>
-            <nav class="footer-nav" aria-label="Footer">${footerNav}</nav>
+            <nav class="footer-nav" aria-label="Footer">
+              <a href="/">Home</a>
+              <a href="/portfolio">Portfolio</a>
+              <a href="/services">Services</a>
+              <a href="/about">About</a>
+              <a href="/contact">Contact</a>
+              <a href="/privacy">Privacy</a>
+            </nav>
             <div class="footer-tools">
               <h2 class="footer-tools__title">Tools</h2>
-              <ul class="footer-tools__list">${footerTools}</ul>
+              <ul class="footer-tools__list">${tools}</ul>
             </div>
           </div>
           <div class="container site-footer__bottom">
@@ -138,16 +101,12 @@
   function mountChrome() {
     const navMount = document.getElementById("nav-placeholder");
     const footerMount = document.getElementById("footer-placeholder");
-
     if (navMount) navMount.outerHTML = renderHeader();
     if (footerMount) footerMount.outerHTML = renderFooter();
-
     const rovHeader = document.querySelector(".main-header");
     if (rovHeader) rovHeader.outerHTML = renderHeader();
-
     const rovFooter = document.getElementById("main-footer");
     if (rovFooter) rovFooter.outerHTML = renderFooter();
-
     initNav();
   }
 
@@ -196,13 +155,6 @@
       dropdown.addEventListener("mouseenter", () => {
         if (window.innerWidth <= 760) return;
         clearTimeout(hoverCloseTimer);
-        dropdowns.forEach((other) => {
-          if (other !== dropdown) {
-            other.classList.remove("is-open");
-            other.querySelector(".nav-dropdown__menu")?.setAttribute("hidden", "");
-            other.querySelector(".nav-dropdown__toggle")?.setAttribute("aria-expanded", "false");
-          }
-        });
         openMenu();
       });
 
