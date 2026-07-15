@@ -29,7 +29,7 @@ function initHullFoulingCalculator() {
             }
             const script = document.createElement('script');
             script.id = 'chartjs-local-loader';
-            script.src = './assets/chart.min.js';
+            script.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js';
             script.onload = () => resolve(true);
             script.onerror = () => resolve(false);
             document.head.appendChild(script);

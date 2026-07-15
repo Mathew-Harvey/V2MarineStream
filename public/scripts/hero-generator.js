@@ -242,7 +242,7 @@ function renderHero(config, target = null) {
             src: 'heroVid01.mp4',
             id: null
         },
-        fallbackImage: 'heroBackGround.JPG',
+        fallbackImage: '/images/photos/hero-background.jpg',
         classes: ['ms-hero', 'ms-hero--video'],
         id: null,
         role: 'banner',

@@ -293,7 +293,7 @@ class MarineStreamHero {
         heroElement.classList.add('ms-hero--image');
         
         // Set fallback background image
-        const fallbackImage = heroConfig.element.dataset.fallbackImage || '/assets/heroBackGround.JPG';
+        const fallbackImage = heroConfig.element.dataset.fallbackImage || '/images/photos/hero-background.jpg';
         heroElement.style.backgroundImage = `url(${this.resolveVideoPath(fallbackImage)})`;
         
         console.log('MarineStream Hero: Switched to fallback image due to video error');
