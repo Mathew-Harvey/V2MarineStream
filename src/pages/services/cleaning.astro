@@ -1,47 +1,53 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import PageHero from "../../components/PageHero.astro";
+import { Image } from "astro:assets";
+import bannerImage from "../../assets/photos/crawler-underwater.jpg";
+import bodyImage from "../../assets/photos/crawler-supervision.jpg";
+import captureImage from "../../assets/photos/filtration-discharge.jpg";
 ---
 
 <SiteLayout
   title="Cleaning with Capture | MarineStream™"
-  description="In-water hull and niche-area cleaning with capture — 10μ filtration and UV treatment aligned to IMO and Australian standards."
+  description="In-water hull and niche-area cleaning with capture, 10μ filtration and UV treatment aligned to IMO and Australian standards."
 >
   <PageHero
     eyebrow="Services"
     title="Cleaning with capture"
-    lead="In-water cleaning with capture — aligned to IMO and Australian biosecurity requirements."
+    lead="In-water cleaning with capture, aligned to IMO and Australian biosecurity requirements."
     parent={{ href: "/services", label: "Services" }}
+    image={bannerImage}
+    imageAlt="Hull cleaning unit working on a ship's underwater hull"
   />
 
   <section class="section">
     <div class="container narrow">
-      <img
+      <Image
         class="service-photo"
-        src="/images/photos/filtration-unit.jpg"
-        alt="MarineStream 10μ filtration and water treatment unit"
+        src={bodyImage}
+        alt="Operator supervising a hull crawler working at a ship's waterline"
+        widths={[480, 900]}
+        sizes="(min-width: 800px) 42rem, 100vw"
         loading="lazy"
-        width="900"
-        height="560"
       />
       <ul>
         <li>Capture and filtration to 10μ, with UV treatment</li>
-        <li>Single 20′ container — deployable from wharf or support vessel</li>
+        <li>Single 20′ container, deployable from wharf or support vessel</li>
         <li>Works with divers, hand tools, and ROV systems</li>
         <li>Niche areas: sea chests, shafts, rudders, thrusters</li>
       </ul>
       <p>
         Capture matters where open cleaning is restricted. Dislodged biofouling is filtered and
-        treated so partners can operate compliantly — and every clean lands in the same digital
+        treated so partners can operate compliantly, and every clean lands in the same digital
         record as the inspection that triggered it.
       </p>
       <div class="grid-2" style="margin: var(--space-md) 0;">
-        <img
-          src="/images/photos/biofouling-ops.png"
-          alt="In-water cleaning with capture operations"
+        <Image
+          src={captureImage}
+          alt="Filtration barge returning treated water to the harbour"
+          widths={[480, 800]}
+          sizes="(min-width: 800px) 21rem, 100vw"
           loading="lazy"
-          width="600"
-          height="400"
           style="border-radius: var(--radius); width: 100%; height: 12rem; object-fit: cover;"
         />
         <img

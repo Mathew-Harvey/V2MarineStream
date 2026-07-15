@@ -1,6 +1,9 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import PageHero from "../../components/PageHero.astro";
+import { Image } from "astro:assets";
+import bannerImage from "../../assets/photos/rov-product-dark.jpg";
+import bodyImage from "../../assets/photos/rov-pivot-front.jpg";
 ---
 
 <SiteLayout
@@ -10,28 +13,30 @@ import PageHero from "../../components/PageHero.astro";
   <PageHero
     eyebrow="Services"
     title="Hardware"
-    lead="Systems we deploy and supply — proven on Navy and commercial operations."
+    lead="Systems we deploy and supply, proven on Navy and commercial operations."
     parent={{ href: "/services", label: "Services" }}
+    image={bannerImage}
+    imageAlt="Inspection-class ROV photographed against a black background"
   />
 
   <section class="section">
     <div class="container narrow">
-      <img
+      <Image
         class="service-photo"
-        src="/images/photos/rov-inspection.png"
-        alt="ROV inspection hardware"
+        src={bodyImage}
+        alt="Front view of an inspection-class ROV with sonar module"
+        widths={[480, 900]}
+        sizes="(min-width: 800px) 42rem, 100vw"
         loading="lazy"
-        width="900"
-        height="560"
       />
       <ul>
-        <li>ROV inspection systems — 4K imaging, positioning, and live stakeholder access</li>
-        <li>Filtration and capture units — 10μ filtration and UV for in-water cleaning</li>
+        <li>ROV inspection systems with 4K imaging, positioning, and live stakeholder access</li>
+        <li>Filtration and capture units with 10μ filtration and UV for in-water cleaning</li>
         <li>Diver and hand-tool kits for contained hull work</li>
         <li>Deployment support, spares, and field commissioning</li>
       </ul>
       <p>
-        We sell what we use. Partners get equipment backed by operational experience — not a catalogue
+        We sell what we use. Partners get equipment backed by operational experience, not a catalogue
         disconnected from the work.
       </p>
       <div class="btn-row">

@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import SiteLayout from "../layouts/SiteLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import bannerImage from "../assets/photos/dusk-aerial.jpg";
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -20,6 +21,8 @@ function formatDate(d: Date) {
     eyebrow="Work & insight"
     title="Portfolio"
     lead="Projects, pilots, and practical writing from MarineStream operations."
+    image={bannerImage}
+    imageAlt="Aerial view of a port facility at dusk"
   />
 
   <section class="section">

@@ -12,10 +12,10 @@ function isPathMatch(href: string) {
   return normalizedPath.startsWith(normalizedHref + "/");
 }
 
-const servicesOpen =
+const servicesActive =
   path === "/services" || path.startsWith("/services/") || path.startsWith("/sales/");
 
-const toolsOpen = tools.some((tool) => isPathMatch(tool.href));
+const toolsActive = tools.some((tool) => isPathMatch(tool.href));
 ---
 
 <header class="site-header">
@@ -39,17 +39,17 @@ const toolsOpen = tools.some((tool) => isPathMatch(tool.href));
         Portfolio
       </a>
 
-      <div class:list={["nav-dropdown", { "is-open": servicesOpen }]} data-nav-dropdown>
+      <div class:list={["nav-dropdown", { "is-active": servicesActive }]} data-nav-dropdown>
         <button
           class="nav-dropdown__toggle"
           type="button"
-          aria-expanded={servicesOpen ? "true" : "false"}
+          aria-expanded="false"
           aria-controls="services-menu"
           aria-haspopup="true"
         >
           Services
         </button>
-        <ul class="nav-dropdown__menu" id="services-menu" hidden={!servicesOpen}>
+        <ul class="nav-dropdown__menu" id="services-menu" hidden>
           {
             serviceNav.map((item) => (
               <li>
@@ -62,17 +62,17 @@ const toolsOpen = tools.some((tool) => isPathMatch(tool.href));
         </ul>
       </div>
 
-      <div class:list={["nav-dropdown", { "is-open": toolsOpen }]} data-nav-dropdown>
+      <div class:list={["nav-dropdown", { "is-active": toolsActive }]} data-nav-dropdown>
         <button
           class="nav-dropdown__toggle"
           type="button"
-          aria-expanded={toolsOpen ? "true" : "false"}
+          aria-expanded="false"
           aria-controls="tools-menu"
           aria-haspopup="true"
         >
           Tools
         </button>
-        <ul class="nav-dropdown__menu" id="tools-menu" hidden={!toolsOpen}>
+        <ul class="nav-dropdown__menu" id="tools-menu" hidden>
           {
             tools.map((tool) => (
               <li>

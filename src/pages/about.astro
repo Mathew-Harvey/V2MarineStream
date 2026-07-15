@@ -1,37 +1,67 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { Image } from "astro:assets";
+import bannerImage from "../assets/photos/crawler-supervision.jpg";
+import interviewImage from "../assets/photos/media-interview.jpg";
+import teamImage from "../assets/photos/team-portrait-hoses.jpg";
+import deckImage from "../assets/photos/deck-golden-hour.jpg";
 ---
 
 <SiteLayout
   title="About | MarineStream™"
-  description="MarineStream is a division of Franmarine — enabling partners to deliver IMO-compliant biofouling work."
+  description="MarineStream is a division of Franmarine, enabling partners to deliver IMO-compliant biofouling work."
 >
   <PageHero
     eyebrow="A division of Franmarine"
     title="About"
     lead="A division of Franmarine. Built to uplift partners delivering compliant biofouling work."
+    image={bannerImage}
+    imageAlt="Operator supervising a hull crawler working at a ship's waterline"
   />
 
   <section class="section">
     <div class="container narrow">
-      <img
+      <Image
         class="service-photo"
-        src="/images/photos/dashboard.png"
-        alt="MarineStream operations dashboard"
+        src={interviewImage}
+        alt="MarineStream spokesperson beside an inspection ROV"
+        widths={[480, 900]}
+        sizes="(min-width: 800px) 42rem, 100vw"
         loading="lazy"
-        width="900"
-        height="560"
       />
       <p>
         Franmarine has delivered underwater sustainment and biofouling management for decades.
         MarineStream™ is the platform and capability stack that makes that work transparent,
-        standardised, and auditable — now available to diving contractors, hull cleaners, and ROV
+        standardised, and auditable, now available to diving contractors, hull cleaners, and ROV
         operators.
+      </p>
+      <p>
+        The people behind it run the operations themselves: commercial diving, ROV inspection,
+        in-water cleaning with capture, and marine science. That experience shapes everything from
+        the hardware we supply to the way the platform structures a job record.
       </p>
       <p>
         <a href="https://www.franmarine.com.au/" rel="noopener noreferrer">Visit Franmarine →</a>
       </p>
+      <div class="grid-2" style="margin: var(--space-md) 0;">
+        <Image
+          src={teamImage}
+          alt="Team member in front of racked dive umbilicals"
+          widths={[480, 800]}
+          sizes="(min-width: 800px) 21rem, 100vw"
+          loading="lazy"
+          style="border-radius: var(--radius); width: 100%; height: 16rem; object-fit: cover;"
+        />
+        <Image
+          src={deckImage}
+          alt="Crew member on a workboat deck at golden hour"
+          widths={[480, 800]}
+          sizes="(min-width: 800px) 21rem, 100vw"
+          loading="lazy"
+          style="border-radius: var(--radius); width: 100%; height: 16rem; object-fit: cover;"
+        />
+      </div>
       <div class="btn-row">
         <a class="btn btn--navy" href="/contact">Get in touch</a>
       </div>

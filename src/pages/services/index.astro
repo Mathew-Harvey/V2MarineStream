@@ -2,6 +2,7 @@
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import PageHero from "../../components/PageHero.astro";
 import ServiceGrid from "../../components/ServiceGrid.astro";
+import bannerImage from "../../assets/photos/offshore-mooring-ops.jpg";
 ---
 
 <SiteLayout
@@ -12,6 +13,8 @@ import ServiceGrid from "../../components/ServiceGrid.astro";
     eyebrow="What we do"
     title="Services"
     lead="Capability for partners who deliver IMO-compliant biofouling inspections and cleans."
+    image={bannerImage}
+    imageAlt="Offshore support vessel during mooring operations"
   />
 
   <section class="section">

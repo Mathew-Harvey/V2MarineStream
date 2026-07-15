@@ -1,6 +1,9 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import PageHero from "../../components/PageHero.astro";
+import { Image } from "astro:assets";
+import bannerImage from "../../assets/photos/training-demo.jpg";
+import bodyImage from "../../assets/photos/crew-crawler-workshop.jpg";
 ---
 
 <SiteLayout
@@ -10,19 +13,21 @@ import PageHero from "../../components/PageHero.astro";
   <PageHero
     eyebrow="Services"
     title="Training"
-    lead="Programs delivered by people who run the operations — not classroom theory alone."
+    lead="Programs delivered by people who run the operations, not classroom theory alone."
     parent={{ href: "/services", label: "Services" }}
+    image={bannerImage}
+    imageAlt="Group training demonstration at a shipyard"
   />
 
   <section class="section">
     <div class="container narrow">
-      <img
+      <Image
         class="service-photo"
-        src="/images/photos/biofouling-ops.png"
-        alt="Biofouling operations training"
+        src={bodyImage}
+        alt="Crew inspecting a hull crawler in a vessel workshop"
+        widths={[480, 900]}
+        sizes="(min-width: 800px) 42rem, 100vw"
         loading="lazy"
-        width="900"
-        height="560"
       />
       <ul>
         <li>ROV pilot and supervisor training</li>
@@ -31,7 +36,7 @@ import PageHero from "../../components/PageHero.astro";
         <li>On-site, remote, and blended delivery</li>
       </ul>
       <p>
-        Training packages can be scoped to your fleet, jurisdiction, and equipment — contact us for
+        Training packages can be scoped to your fleet, jurisdiction, and equipment. Contact us for
         a program outline.
       </p>
       <div class="btn-row">

@@ -2,6 +2,7 @@
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import PageHero from "../../components/PageHero.astro";
 import { imsExpertise } from "../../data/sales";
+import bannerImage from "../../assets/photos/mooring-buoy-crew.jpg";
 ---
 
 <SiteLayout
@@ -13,6 +14,8 @@ import { imsExpertise } from "../../data/sales";
     title="Professional services"
     lead="Consulting and advisory support for partners building or scaling IMO-compliant capability."
     parent={{ href: "/services", label: "Services" }}
+    image={bannerImage}
+    imageAlt="Crew working around a mooring buoy on a vessel deck"
   />
 
   <section class="section">
@@ -24,7 +27,7 @@ import { imsExpertise } from "../../data/sales";
         <li>Ongoing advisory and review support</li>
       </ul>
       <p>
-        Professional services cover the advisory layer — how your teams work, what they record, and
+        Professional services cover the advisory layer: how your teams work, what they record, and
         how stakeholders sign off.
       </p>
       <div class="btn-row">

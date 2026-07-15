@@ -1,13 +1,20 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import bannerImage from "../assets/photos/harbour-sunrise.jpg";
 ---
 
 <SiteLayout
   title="Contact | MarineStream™"
   description="Contact MarineStream about platform access, cleaning with capture, and IMS expertise."
 >
-  <PageHero eyebrow="Get in touch" title="Contact" lead="Tell us what you’re trying to deliver." />
+  <PageHero
+    eyebrow="Get in touch"
+    title="Contact"
+    lead="Tell us what you’re trying to deliver."
+    image={bannerImage}
+    imageAlt="Sunrise over a calm harbour with a work vessel alongside the wharf"
+  />
 
   <section class="section">
     <div class="container grid-2">

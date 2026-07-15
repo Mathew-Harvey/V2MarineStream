@@ -1,6 +1,9 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import PageHero from "../../components/PageHero.astro";
+import { Image } from "astro:assets";
+import bannerImage from "../../assets/photos/rov-inspection-lights.jpg";
+import bodyImage from "../../assets/photos/rov-controller-hands.jpg";
 ---
 
 <SiteLayout
@@ -12,17 +15,19 @@ import PageHero from "../../components/PageHero.astro";
     title="Inspection"
     lead="Hull, propeller, and niche-area surveys with fouling ratings captured at the point of survey."
     parent={{ href: "/services", label: "Services" }}
+    image={bannerImage}
+    imageAlt="Inspection ROV with lights on approaching a fouled mooring chain"
   />
 
   <section class="section">
     <div class="container narrow">
-      <img
+      <Image
         class="service-photo"
-        src="/images/photos/rov-inspection.png"
-        alt="MarineStream ROV inspection"
+        src={bodyImage}
+        alt="Operator's hands on an ROV controller showing a live underwater feed"
+        widths={[480, 900]}
+        sizes="(min-width: 800px) 42rem, 100vw"
         loading="lazy"
-        width="900"
-        height="560"
       />
       <ul>
         <li>4K imaging and HD recording</li>
@@ -31,7 +36,7 @@ import PageHero from "../../components/PageHero.astro";
         <li>Direct MarineStream™ platform integration</li>
       </ul>
       <p>
-        Partners use these workflows to deliver consistent, auditable surveys — without reinventing
+        Partners use these workflows to deliver consistent, auditable surveys without reinventing
         reporting for every client and jurisdiction.
       </p>
       <div class="btn-row">

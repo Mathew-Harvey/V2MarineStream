@@ -1,131 +1,309 @@
 ---
 import { getCollection } from "astro:content";
+import { Picture, Image } from "astro:assets";
 import SiteLayout from "../layouts/SiteLayout.astro";
 import { serviceNav } from "../data/navigation";
 
+import heroImage from "../assets/photos/rov-chain-inspection.jpg";
+import inspectCard from "../assets/photos/rov-mooring-inspection.jpg";
+import cleanCard from "../assets/photos/hull-crawler-cleaning.jpg";
+import captureCard from "../assets/photos/filtration-unit-wharf.jpg";
+import cleaningHud from "../assets/photos/cleaning-progress-hud.jpg";
+import rovStudio from "../assets/photos/rov-studio-dark.jpg";
+import submarine from "../assets/photos/submarine-alongside.jpg";
+import offshoreAerial from "../assets/photos/offshore-vessel-aerial.jpg";
+import offshoreStern from "../assets/photos/offshore-vessel-stern.jpg";
+import technician from "../assets/photos/technician-crawler.jpg";
+import ctaImage from "../assets/photos/harbour-dawn.jpg";
+
+import absLogo from "../assets/logos/abs.jpg";
+import bvLogo from "../assets/logos/bv.jpg";
+import dnvLogo from "../assets/logos/dnv.jpg";
+import lrLogo from "../assets/logos/lr.jpg";
+import nkLogo from "../assets/logos/nk.jpg";
+
+import galleryRovApproach from "../assets/photos/rov-chain-approach.jpg";
+import galleryRovOpenWater from "../assets/photos/rov-open-water.jpg";
+import galleryBuoyCrew from "../assets/photos/mooring-buoy-crew.jpg";
+import galleryChainDeck from "../assets/photos/chain-deck-topdown.jpg";
+import gallerySupervision from "../assets/photos/crawler-supervision.jpg";
+import galleryGoldenDeck from "../assets/photos/deck-golden-hour.jpg";
+import galleryRovLaunch from "../assets/photos/rov-launch-gunwale.jpg";
+import galleryFiltration from "../assets/photos/filtration-plant-quayside.jpg";
+import galleryDischarge from "../assets/photos/filtration-discharge.jpg";
+import galleryControlRoom from "../assets/photos/dive-control-room.jpg";
+import galleryOperator from "../assets/photos/dockside-operator.jpg";
+import galleryDrillship from "../assets/photos/drillship.jpg";
+import galleryRecovery from "../assets/photos/rov-recovery.jpg";
+import galleryBiofouling from "../assets/photos/biofouling-macro.jpg";
+
 const posts = (await getCollection("blog", ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 6);
+  .slice(0, 3);
+
+const classLogos = [
+  { src: absLogo, alt: "American Bureau of Shipping" },
+  { src: bvLogo, alt: "Bureau Veritas" },
+  { src: dnvLogo, alt: "DNV" },
+  { src: lrLogo, alt: "Lloyd's Register" },
+  { src: nkLogo, alt: "ClassNK" },
+];
+
+const gallery = [
+  { src: galleryRovApproach, alt: "Inspection ROV approaching a fouled mooring chain underwater", wide: true },
+  { src: galleryRovOpenWater, alt: "ROV suspended in deep blue open water" },
+  { src: gallerySupervision, alt: "Operator supervising a hull crawler working at a ship's waterline" },
+  { src: galleryBuoyCrew, alt: "Crew working around a mooring buoy on a vessel deck" },
+  { src: galleryChainDeck, alt: "Aerial view of mooring chains running from a work deck to a buoy" },
+  { src: galleryFiltration, alt: "Containerised filtration plant operating on a quayside", wide: true },
+  { src: galleryDischarge, alt: "Filtration barge returning treated water to the harbour" },
+  { src: galleryControlRoom, alt: "Dive supervision control room with live monitoring screens" },
+  { src: galleryRovLaunch, alt: "Technician launching an ROV over a vessel gunwale" },
+  { src: galleryOperator, alt: "Operator using a handheld control unit dockside" },
+  { src: galleryGoldenDeck, alt: "Crew member on a workboat deck at golden hour" },
+  { src: galleryRecovery, alt: "ROV lifted on slings above harbour water during recovery" },
+  { src: galleryBiofouling, alt: "Dense marine biofouling growth on a submerged structure" },
+  { src: galleryDrillship, alt: "Drillship at anchor on open water" },
+];
 ---
 
 <SiteLayout
   title="MarineStream™ — IMO-Compliant Biofouling Inspections & Cleans"
-  description="Enable your teams to deliver IMO-compliant biofouling inspections and cleans — powered by MarineStream."
+  description="Enable your teams to deliver IMO-compliant biofouling inspections and cleans, powered by MarineStream."
   ogImage="/images/brand/socialmedialogo.png"
 >
   <!-- 1. Hero -->
   <section class="hero">
-    <div class="hero__media" aria-hidden="true"></div>
+    <div class="hero__media" aria-hidden="true">
+      <Picture
+        src={heroImage}
+        alt=""
+        widths={[768, 1280, 1920]}
+        sizes="100vw"
+        formats={["avif", "webp"]}
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
     <div class="container hero__inner">
       <span class="eyebrow">Biofouling &amp; underwater asset management</span>
       <h1>IMO-compliant biofouling inspections and cleans</h1>
       <hr class="accent-rule" />
       <p class="hero__lead">
-        Enabling diving contractors, hull cleaners, and ROV operators to deliver compliant work —
+        Enabling diving contractors, hull cleaners, and ROV operators to deliver compliant work,
         with platform, capture systems, and marine science expertise.
       </p>
       <div class="btn-row">
-        <a class="btn btn--primary" href="/portfolio">Portfolio</a>
+        <a class="btn btn--primary" href="/contact">Contact us</a>
+        <a class="btn btn--ghost" href="/services">Our services</a>
       </div>
     </div>
   </section>
 
-  <svg class="wave-divider" viewBox="0 0 1440 44" preserveAspectRatio="none" aria-hidden="true">
-    <path fill="#ffffff" d="M0,22 C240,44 480,0 720,14 C960,28 1200,44 1440,18 L1440,44 L0,44 Z"></path>
-  </svg>
-
-  <!-- 2. Trust intro -->
-  <section class="section">
-    <div class="container narrow home-centered">
-      <h2>Built for partners who deliver the work</h2>
-      <hr class="accent-rule accent-rule--center" />
-      <p>
-        MarineStream™ is a division of Franmarine. We supply the hardware, software, training, and
-        IMS expertise that uplift diving contractors, hull cleaners, and ROV operators — so they can
-        run IMO-aligned inspections and cleans with one auditable record.
-      </p>
-    </div>
-  </section>
-
-  <!-- 3. Proof / partners -->
-  <section class="section section--soft">
-    <div class="container narrow home-centered">
-      <span class="eyebrow">Proven in the field</span>
-      <p class="proof-line">
-        Royal Australian Navy operations · 80% less reporting time · 120+ vessels · A division of
-        Franmarine
-      </p>
-    </div>
-  </section>
-
-  <!-- 4. About snippet -->
-  <section class="section">
-    <div class="container narrow">
-      <span class="eyebrow">About us</span>
-      <h2>Operational systems, not shelfware</h2>
-      <hr class="accent-rule" />
-      <p>
-        Franmarine has delivered underwater sustainment for decades. MarineStream packages that
-        capability — filtration units, platform workflows, and marine scientists — for partners who
-        need the same standard without building it alone.
-      </p>
-      <div class="btn-row">
-        <a class="btn btn--navy" href="/about">More about us</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. Trust pillars -->
-  <section class="section section--soft">
-    <div class="container">
-      <div class="pillar-grid">
-        <div>
-          <h3>IMO aligned</h3>
-          <p>Inspection, cleaning with capture, and records mapped to biofouling guidelines.</p>
-        </div>
-        <div>
-          <h3>Field proven</h3>
-          <p>Equipment and workflows proven on Navy and commercial vessel operations.</p>
-        </div>
-        <div>
-          <h3>Audit ready</h3>
-          <p>One digital trail — rates, evidence, approvals, and reports in one place.</p>
-        </div>
-        <div>
-          <h3>Partner first</h3>
-          <p>We uplift contractors and ROV teams rather than competing for every diver day.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. Dual capability CTAs -->
-  <section class="section section--dark">
-    <div class="container dual-cta">
+  <div class="hero-stats">
+    <div class="container hero-stats__inner">
       <div>
-        <span class="eyebrow">Field systems</span>
-        <h2>Inspection &amp; cleaning</h2>
-        <p>Hardware and capture systems partners use to survey and clean to standard.</p>
-        <a class="btn btn--primary" href="/services/inspection">Discover services</a>
+        <div class="stat__value">Royal Australian Navy</div>
+        <div class="stat__label">Proven on defence operations</div>
       </div>
       <div>
-        <span class="eyebrow">Professional services</span>
-        <h2>Platform &amp; expertise</h2>
-        <p>Software, training, consulting, and IMS science when identification matters.</p>
-        <a class="btn btn--ghost" href="/services/expertise">Discover services</a>
+        <div class="stat__value">120+ vessels</div>
+        <div class="stat__label">Inspected and cleaned to standard</div>
       </div>
+      <div>
+        <div class="stat__value">80% less</div>
+        <div class="stat__label">Reporting time with one auditable record</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Trust bar -->
+  <section class="trust-bar" aria-label="Recognised by classification societies">
+    <div class="container">
+      <p class="trust-bar__label">Working to classification society and ISO standards</p>
+      <div class="trust-bar__logos">
+        {classLogos.map((logo) => <Image src={logo.src} alt={logo.alt} loading="lazy" />)}
+      </div>
+      <p class="trust-bar__certs">Certified ISO 9001, ISO 14001, and ISO 45001</p>
     </div>
   </section>
 
-  <!-- 7. What we do -->
-  <section class="section section--topo">
-    <div class="container">
-      <div class="home-centered">
+  <!-- 3. What we do -->
+  <section class="section">
+    <div class="container container--wide">
+      <div class="home-centered reveal">
         <span class="eyebrow">What we do</span>
-        <h2>Services</h2>
+        <h2>Inspect. Clean. Capture.</h2>
         <hr class="accent-rule accent-rule--center" />
       </div>
-      <div class="service-tile-grid">
+      <div class="photo-card-grid">
+        <a class="photo-card reveal" href="/services/inspection">
+          <Image
+            src={inspectCard}
+            alt="Inspection ROV beside a fouled mooring chain"
+            widths={[480, 800]}
+            sizes="(max-width: 860px) 100vw, 33vw"
+            loading="lazy"
+          />
+          <div class="photo-card__body">
+            <strong>Inspection</strong>
+            <span>ROV and diver surveys with live access and fouling ratings.</span>
+          </div>
+        </a>
+        <a class="photo-card reveal" href="/services/cleaning">
+          <Image
+            src={cleanCard}
+            alt="Hull crawler cleaning the side of a grey vessel"
+            widths={[480, 800]}
+            sizes="(max-width: 860px) 100vw, 33vw"
+            loading="lazy"
+          />
+          <div class="photo-card__body">
+            <strong>Cleaning with capture</strong>
+            <span>In-water cleaning with 10μ filtration and UV treatment.</span>
+          </div>
+        </a>
+        <a class="photo-card reveal" href="/services/platform">
+          <Image
+            src={captureCard}
+            alt="Containerised filtration unit operating on a wharf"
+            widths={[480, 800]}
+            sizes="(max-width: 860px) 100vw, 33vw"
+            loading="lazy"
+          />
+          <div class="photo-card__body">
+            <strong>Capture &amp; platform</strong>
+            <span>Closed-loop filtration and one auditable digital record.</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. How it works -->
+  <section class="section section--soft">
+    <div class="container">
+      <div class="grid-2">
+        <div class="reveal">
+          <span class="eyebrow">Our expertise</span>
+          <h2>Measure. Clean. Record.</h2>
+          <hr class="accent-rule" />
+          <div class="flow">
+            <div>
+              <strong>Measure</strong>
+              <p>Survey and rate fouling. Stakeholders see the same live evidence.</p>
+            </div>
+            <div>
+              <strong>Clean</strong>
+              <p>In-water cleaning with capture. No open discharge.</p>
+            </div>
+            <div>
+              <strong>Record</strong>
+              <p>One digital record. Automated reports. Audit-ready by default.</p>
+            </div>
+          </div>
+        </div>
+        <figure class="reveal" style="margin: 0;">
+          <Image
+            src={cleaningHud}
+            alt="Live cleaning telemetry showing the fouled and cleaned hull boundary"
+            widths={[480, 900]}
+            sizes="(max-width: 800px) 100vw, 50vw"
+            loading="lazy"
+            class="service-photo"
+            style="margin-bottom: 0.5rem;"
+          />
+          <figcaption style="font-size: 0.85rem; color: var(--muted);">
+            Live telemetry from an in-water clean, captured directly into the platform.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Technology (dark band) -->
+  <section class="section section--dark">
+    <div class="container tech-band__grid">
+      <div class="reveal">
+        <span class="eyebrow">Field systems</span>
+        <h2>Technology built for the work</h2>
+        <hr class="accent-rule" />
+        <p>
+          Inspection-class ROVs, magnetic hull crawlers, and containerised capture systems, matched
+          with the MarineStream platform for field capture, parallel approvals, and automated
+          reports.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="/services/hardware">Hardware</a>
+          <a class="btn btn--ghost" href="/services/software">Platform</a>
+        </div>
+      </div>
+      <div class="tech-band__media reveal">
+        <Image
+          src={rovStudio}
+          alt="Inspection-class ROV photographed against a black background"
+          widths={[480, 900]}
+          sizes="(max-width: 860px) 100vw, 50vw"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Field proof (dark continues) -->
+  <section class="section section--dark" style="padding-top: 0;">
+    <div class="container container--wide">
+      <div class="reveal">
+        <span class="eyebrow">Proven in the field</span>
+        <h2>From defence to offshore energy</h2>
+      </div>
+      <div class="case-strip">
+        <figure class="reveal">
+          <Image
+            src={submarine}
+            alt="Submarine alongside a wharf in clear turquoise water"
+            widths={[480, 800]}
+            sizes="(max-width: 860px) 100vw, 33vw"
+            loading="lazy"
+          />
+          <figcaption>In-water hull cleaning on Royal Australian Navy vessels.</figcaption>
+        </figure>
+        <figure class="reveal">
+          <Image
+            src={offshoreAerial}
+            alt="Offshore support vessel at anchor beside a reef edge"
+            widths={[480, 800]}
+            sizes="(max-width: 860px) 100vw, 33vw"
+            loading="lazy"
+          />
+          <figcaption>Offshore support vessels inspected at remote sites.</figcaption>
+        </figure>
+        <figure class="reveal">
+          <Image
+            src={offshoreStern}
+            alt="Stern of an offshore vessel with crew and a mooring buoy"
+            widths={[480, 800]}
+            sizes="(max-width: 860px) 100vw, 33vw"
+            loading="lazy"
+          />
+          <figcaption>Mooring and marine infrastructure operations.</figcaption>
+        </figure>
+      </div>
+      <div class="btn-row reveal">
+        <a class="btn btn--ghost" href="/portfolio">View portfolio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Services -->
+  <section class="section">
+    <div class="container">
+      <div class="home-centered reveal">
+        <span class="eyebrow">Services</span>
+        <h2>Capability for partners who deliver</h2>
+        <hr class="accent-rule accent-rule--center" />
+      </div>
+      <div class="service-tile-grid reveal">
         {
           serviceNav.map((s) => (
             <a class="service-tile" href={s.href}>
@@ -138,47 +316,64 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft))
     </div>
   </section>
 
-  <!-- 8. Expertise -->
-  <section class="section">
-    <div class="container narrow">
-      <span class="eyebrow">Our expertise</span>
-      <h2>Measure. Clean. Record.</h2>
-      <hr class="accent-rule" />
-      <div class="flow">
-        <div>
-          <strong>Measure</strong>
-          <p>Survey and rate fouling. Stakeholders see the same live evidence.</p>
-        </div>
-        <div>
-          <strong>Clean</strong>
-          <p>In-water cleaning with capture — no open discharge.</p>
-        </div>
-        <div>
-          <strong>Record</strong>
-          <p>One digital record. Automated reports. Audit-ready by default.</p>
+  <!-- 8. People -->
+  <section class="section section--soft">
+    <div class="container grid-2">
+      <div class="reveal">
+        <Image
+          src={technician}
+          alt="Technician holding a hull crawler in a ship's deck doorway"
+          widths={[480, 900]}
+          sizes="(max-width: 800px) 100vw, 50vw"
+          loading="lazy"
+          class="service-photo"
+        />
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">The team</span>
+        <h2>A division of Franmarine</h2>
+        <hr class="accent-rule" />
+        <p>
+          Built by people who run underwater sustainment, ROV inspection, and biofouling management,
+          not a software team guessing what the field needs. Franmarine has delivered underwater
+          sustainment for decades. MarineStream packages that capability for partners who need the
+          same standard without building it alone.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn--navy" href="/about">More about us</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 9. Team / about -->
-  <section class="section section--soft">
-    <div class="container narrow home-centered">
-      <span class="eyebrow">The team</span>
-      <h2>A division of Franmarine</h2>
-      <hr class="accent-rule accent-rule--center" />
-      <p>
-        Built by people who run underwater sustainment, ROV inspection, and biofouling management —
-        not a software team guessing what the field needs.
-      </p>
-      <div class="btn-row" style="justify-content: center;">
-        <a class="btn btn--navy" href="/about">More about us</a>
+  <!-- 9. Gallery -->
+  <section class="section">
+    <div class="container container--wide">
+      <div class="home-centered reveal">
+        <span class="eyebrow">In the field</span>
+        <h2>The work, up close</h2>
+        <hr class="accent-rule accent-rule--center" />
+      </div>
+      <div class="gallery-grid">
+        {
+          gallery.map((item) => (
+            <div class:list={["reveal", { "gallery-wide": item.wide }]}>
+              <Image
+                src={item.src}
+                alt={item.alt}
+                widths={[400, 800]}
+                sizes={item.wide ? "(max-width: 640px) 100vw, 50vw" : "(max-width: 640px) 50vw, 25vw"}
+                loading="lazy"
+              />
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
 
   <!-- 10. Latest portfolio -->
-  <section class="section">
+  <section class="section section--soft">
     <div class="container narrow">
       <span class="eyebrow">Latest projects</span>
       <h2>Portfolio</h2>
@@ -199,11 +394,23 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft))
   </section>
 
   <!-- 11. Final CTA -->
-  <section class="section section--dark section--cta">
-    <div class="container narrow">
+  <section class="cta-band">
+    <div class="cta-band__media" aria-hidden="true">
+      <Picture
+        src={ctaImage}
+        alt=""
+        widths={[768, 1280, 1920]}
+        sizes="100vw"
+        formats={["avif", "webp"]}
+        loading="lazy"
+      />
+    </div>
+    <div class="container narrow cta-band__inner">
       <span class="eyebrow">Next step</span>
       <h2>Ready to uplift your capability?</h2>
-      <p>Hardware, platform access, training, and IMS expertise for your teams.</p>
+      <p style="color: rgba(255,255,255,0.82); max-width: 34rem;">
+        Hardware, platform access, training, and IMS expertise for your teams.
+      </p>
       <a class="btn btn--primary" href="/contact">Contact us</a>
     </div>
   </section>

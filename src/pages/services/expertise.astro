@@ -1,21 +1,34 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import PageHero from "../../components/PageHero.astro";
+import { Image } from "astro:assets";
+import bannerImage from "../../assets/photos/biofouling-macro.jpg";
+import bodyImage from "../../assets/photos/biosecurity-specimen.jpg";
 ---
 
 <SiteLayout
   title="IMS Expertise | MarineStream™"
-  description="Invasive marine species expertise — identification, risk assessment, and treatment guidance."
+  description="Invasive marine species expertise: identification, risk assessment, and treatment guidance."
 >
   <PageHero
     eyebrow="Services"
     title="IMS expertise"
     lead="Marine scientists who help partners identify risk, interpret fouling, and guide treatment."
     parent={{ href: "/services", label: "Services" }}
+    image={bannerImage}
+    imageAlt="Close view of dense marine biofouling growth on a submerged structure"
   />
 
   <section class="section">
     <div class="container narrow">
+      <Image
+        class="service-photo"
+        src={bodyImage}
+        alt="Biosecurity specimen documented with a forensic scale ruler"
+        widths={[480, 900]}
+        sizes="(min-width: 800px) 42rem, 100vw"
+        loading="lazy"
+      />
       <ul>
         <li>Invasive marine species identification and verification</li>
         <li>Biosecurity risk assessment for vessels and worksites</li>
@@ -24,7 +37,7 @@ import PageHero from "../../components/PageHero.astro";
       </ul>
       <p>
         Hardware and software alone do not close the compliance loop. When a survey finds something
-        unexpected, partners need expert judgement — and a place to record the decision.
+        unexpected, partners need expert judgement, and a place to record the decision.
       </p>
       <div class="btn-row">
         <a class="btn btn--navy" href="/contact">Talk to our science team</a>

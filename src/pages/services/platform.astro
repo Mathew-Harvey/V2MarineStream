@@ -1,17 +1,20 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import PageHero from "../../components/PageHero.astro";
+import bannerImage from "../../assets/photos/dive-control-room.jpg";
 ---
 
 <SiteLayout
   title="Platform | MarineStream™"
-  description="Cloud-native biofouling and underwater asset management — field capture, parallel workflows, automated reporting."
+  description="Cloud-native biofouling and underwater asset management: field capture, parallel workflows, automated reporting."
 >
   <PageHero
     eyebrow="Services"
     title="Platform"
-    lead="Field capture once. Parallel review. Audit-ready reports — automatically."
+    lead="Field capture once. Parallel review. Audit-ready reports, automatically."
     parent={{ href: "/services", label: "Services" }}
+    image={bannerImage}
+    imageAlt="Dive supervision control room with live monitoring screens"
   />
 
   <section class="section">
@@ -51,7 +54,7 @@ import PageHero from "../../components/PageHero.astro";
         </div>
         <div class="feature-block">
           <h3>Multi-party workflows</h3>
-          <p>Parallel approvals — no sequential email chains.</p>
+          <p>Parallel approvals, no sequential email chains.</p>
         </div>
         <div class="feature-block">
           <h3>Compliance reporting</h3>
