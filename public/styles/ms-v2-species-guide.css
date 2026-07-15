@@ -50,15 +50,28 @@ body.tool-species-guide .region-dropdown-trigger:hover {
 body.tool-species-guide .hero,
 body.tool-species-guide .hero-section {
   background:
-    linear-gradient(105deg, rgba(10, 10, 10, 0.96) 0%, rgba(10, 10, 10, 0.88) 45%, rgba(10, 10, 10, 0.62) 100%),
-    url("/images/photos/hero-background.jpg") center / cover no-repeat !important;
+    linear-gradient(100deg, rgba(10, 23, 33, 0.92) 0%, rgba(10, 23, 33, 0.72) 50%, rgba(10, 23, 33, 0.4) 100%),
+    url("/images/photos/biofouling-hero.jpg") center / cover no-repeat !important;
 }
 
 body.tool-species-guide .hero h1,
 body.tool-species-guide .hero-section h1 {
-  font-family: "Inter", sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.015em;
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  letter-spacing: -0.01em;
+  color: #ffffff !important;
+}
+
+body.tool-species-guide nav a:not(.nav-cta) {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+body.tool-species-guide nav a:not(.nav-cta):hover {
+  color: #3cb4e0 !important;
+}
+
+body.tool-species-guide .print-btn,
+body.tool-species-guide .print-btn * {
+  color: #ffffff !important;
 }
 
 body.tool-species-guide .hero .subtitle,
@@ -86,8 +99,9 @@ body.tool-species-guide .print-btn:hover {
 }
 
 body.tool-species-guide .section-title {
-  color: #111111;
+  color: #0b1520;
   border-bottom-color: #ff6600;
+  font-family: "Space Grotesk", "Inter", sans-serif;
 }
 
 body.tool-species-guide .species-card::before {
@@ -95,9 +109,8 @@ body.tool-species-guide .species-card::before {
 }
 
 body.tool-species-guide .region-modal-header h2 {
-  color: #111111;
-  font-family: "Inter", sans-serif;
-  text-transform: uppercase;
+  color: #0b1520;
+  font-family: "Space Grotesk", "Inter", sans-serif;
   letter-spacing: 0.02em;
 }
 
