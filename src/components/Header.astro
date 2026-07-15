@@ -1,16 +1,21 @@
 ---
-import { serviceNav } from "../data/navigation";
+import { serviceNav, tools } from "../data/navigation";
 
 const path = Astro.url.pathname.replace(/\/$/, "") || "/";
 
 function isPathMatch(href: string) {
-  const normalizedHref = href.replace(/\/$/, "");
-  if (path === normalizedHref) return true;
-  return path.startsWith(normalizedHref + "/");
+  if (href.startsWith("http")) return false;
+  const normalizedHref = href.replace(/\/$/, "").replace(/\.html$/, "");
+  const normalizedPath = path.replace(/\.html$/, "");
+  if (normalizedPath === normalizedHref) return true;
+  if (normalizedHref.includes("ims-species-guide") && normalizedPath.includes("ims-species-guide")) return true;
+  return normalizedPath.startsWith(normalizedHref + "/");
 }
 
 const servicesOpen =
   path === "/services" || path.startsWith("/services/") || path.startsWith("/sales/");
+
+const toolsOpen = tools.some((tool) => isPathMatch(tool.href));
 ---
 
 <header class="site-header">
@@ -50,6 +55,29 @@ const servicesOpen =
               <li>
                 <a href={item.href} aria-current={isPathMatch(item.href) ? "page" : undefined}>
                   {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class:list={["nav-dropdown", { "is-open": toolsOpen }]} data-nav-dropdown>
+        <button
+          class="nav-dropdown__toggle"
+          type="button"
+          aria-expanded={toolsOpen ? "true" : "false"}
+          aria-controls="tools-menu"
+          aria-haspopup="true"
+        >
+          Tools
+        </button>
+        <ul class="nav-dropdown__menu" id="tools-menu" hidden={!toolsOpen}>
+          {
+            tools.map((tool) => (
+              <li>
+                <a href={tool.href} aria-current={isPathMatch(tool.href) ? "page" : undefined}>
+                  {tool.menuLabel ?? tool.label}
                 </a>
               </li>
             ))

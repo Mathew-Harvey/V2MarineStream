@@ -1,4 +1,4 @@
-/** Primary site IA — aligned to UAVISUALS: Home · Portfolio · Services · About · Contact */
+/** Primary site IA — Home · Portfolio · Services · Tools · About · Contact */
 
 export const serviceNav = [
   {

@@ -31,12 +31,23 @@
     return path === "/services" || path.startsWith("/services/") || path.startsWith("/sales/");
   }
 
+  function toolsOpen() {
+    return toolLinks.some((tool) => isCurrent(tool.href));
+  }
+
   function renderHeader() {
     const open = servicesOpen();
+    const toolsAreOpen = toolsOpen();
     const serviceItems = serviceLinks
       .map((item) => {
         const cur = isCurrent(item.href) ? ' aria-current="page"' : "";
         return `<li><a href="${item.href}"${cur}>${item.label}</a></li>`;
+      })
+      .join("");
+    const toolItems = toolLinks
+      .map((tool) => {
+        const cur = isCurrent(tool.href) ? ' aria-current="page"' : "";
+        return `<li><a href="${tool.href}"${cur}>${tool.label}</a></li>`;
       })
       .join("");
 
@@ -54,6 +65,10 @@
               <div class="nav-dropdown${open ? " is-open" : ""}" data-nav-dropdown>
                 <button class="nav-dropdown__toggle" type="button" aria-expanded="${open ? "true" : "false"}" aria-controls="ms-v2-services-menu" aria-haspopup="true">Services</button>
                 <ul class="nav-dropdown__menu" id="ms-v2-services-menu"${open ? "" : " hidden"}>${serviceItems}</ul>
+              </div>
+              <div class="nav-dropdown${toolsAreOpen ? " is-open" : ""}" data-nav-dropdown>
+                <button class="nav-dropdown__toggle" type="button" aria-expanded="${toolsAreOpen ? "true" : "false"}" aria-controls="ms-v2-tools-menu" aria-haspopup="true">Tools</button>
+                <ul class="nav-dropdown__menu" id="ms-v2-tools-menu"${toolsAreOpen ? "" : " hidden"}>${toolItems}</ul>
               </div>
               <a href="/about"${path === "/about" ? ' aria-current="page"' : ""}>About</a>
               <a class="nav-cta" href="/contact">Contact us</a>
