@@ -22,3 +22,7 @@ Thumbs.db
 
 # Netlify
 .netlify/
+
+# Bundled design-export HTML mocks (large, OneDrive-locked)
+MarineStream *.html
+_*.html
