@@ -1640,7 +1640,7 @@ ul {
   max-width: 30rem;
 }
 
-/* Interactive ROV showcase (hardware) */
+/* Interactive 3D showcase (hardware — ROVs + crawler) */
 .rov-showcase__lead {
   max-width: 40rem;
   margin-bottom: var(--space-md);
@@ -1756,6 +1756,18 @@ ul {
 
 .rov-showcase__field figcaption {
   color: var(--steel-300);
+}
+
+.rov-showcase__field figcaption a {
+  color: var(--cyan);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(60, 180, 224, 0.35);
+}
+
+.rov-showcase__field figcaption a:hover {
+  color: #fff;
+  border-bottom-color: var(--brand-orange);
 }
 
 @media (max-width: 640px) {

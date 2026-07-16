@@ -143,35 +143,68 @@ import containerImage from "../../assets/photos/filtration-container.jpg";
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--dark">
     <div class="container">
-      <div class="grid-2">
-        <figure class="figure reveal" style="margin: 0;">
-          <Image
-            src={crawlerImage}
-            alt="Magnetic hull crawler with cavitation cleaning head and dual capture ports"
-            widths={[480, 900]}
-            sizes="(min-width: 800px) 32rem, 100vw"
+      <span class="eyebrow">Cleaning systems</span>
+      <h2>Hull crawlers and capture tooling</h2>
+      <hr class="accent-rule" />
+      <p class="rov-showcase__lead">
+        The CLIIN magnetic crawler in 3D — orbit the chassis, toggle the foam floats, and see how
+        the tracks and cleaning head sit together.
+      </p>
+
+      <div class="rov-showcase" data-crawler-showcase>
+        <div class="rov-showcase__stage">
+          <iframe
+            class="rov-showcase__frame"
+            title="CLIIN hull crawler 3D model"
+            data-crawler-frame
+            data-src="/models/viewers/cliin-crawler.html"
             loading="lazy"
-          />
-        </figure>
-        <div class="reveal">
-          <span class="eyebrow">Cleaning systems</span>
-          <h2>Hull crawlers and capture tooling</h2>
-          <hr class="accent-rule" />
-          <p>
-            Magnetic crawlers work the hull above and below the waterline on permanent-magnet
-            tracks, cleaning with a fresh-water cavitation head and recovering the debris through a
-            capture shroud — around 1,200 L/min straight to filtration. Diver hand tools and
-            penetration cups cover the niches the crawler cannot reach.
-          </p>
-          <p>
-            Every head — robotic, handheld or penetration — returns its effluent through the same
-            uplift line into the four-stage plant below. See them in operation on
-            <a href="/services/cleaning">cleaning with capture</a>.
-          </p>
+            allow="fullscreen"
+          ></iframe>
+          <noscript>
+            <p class="rov-showcase__noscript">
+              Enable JavaScript to explore the 3D model, or open
+              <a href="/models/viewers/cliin-crawler.html">the CLIIN crawler viewer</a>
+              directly.
+            </p>
+          </noscript>
+        </div>
+
+        <div class="rov-showcase__panels">
+          <div class="rov-showcase__panel is-active">
+            <h3>CLIIN crawler</h3>
+            <p>
+              Magnetic crawlers work the hull above and below the waterline on permanent-magnet
+              tracks, cleaning with a fresh-water cavitation head and recovering debris through a
+              capture shroud — around 1,200 L/min straight to filtration. Diver hand tools and
+              penetration cups cover the niches the crawler cannot reach.
+            </p>
+            <ul class="checklist checklist--compact">
+              <li>Permanent-magnet track drive</li>
+              <li>Cavitation head with capture shroud</li>
+              <li>Toggle floats · drag to orbit · scroll to zoom</li>
+            </ul>
+            <a class="text-link" href="/models/viewers/cliin-crawler.html" target="_blank" rel="noopener">Open full-screen viewer</a>
+          </div>
         </div>
       </div>
+
+      <figure class="figure rov-showcase__field reveal">
+        <Image
+          src={crawlerImage}
+          alt="Magnetic hull crawler with cavitation cleaning head and dual capture ports"
+          widths={[640, 1280]}
+          sizes="(min-width: 68rem) 68rem, 100vw"
+          loading="lazy"
+        />
+        <figcaption>
+          In the field — every head returns effluent through the same uplift line into the
+          filtration plant below. See them working on
+          <a href="/services/cleaning">cleaning with capture</a>.
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -452,4 +485,22 @@ import containerImage from "../../assets/photos/filtration-container.jpg";
   }
 
   document.querySelectorAll("[data-rov-showcase]").forEach(initRovShowcase);
+
+  function initCrawlerShowcase(root) {
+    const frame = root.querySelector("[data-crawler-frame]");
+    if (!frame || !frame.dataset.src) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          frame.setAttribute("src", frame.dataset.src);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "120px" }
+    );
+    io.observe(frame);
+  }
+
+  document.querySelectorAll("[data-crawler-showcase]").forEach(initCrawlerShowcase);
 </script>
