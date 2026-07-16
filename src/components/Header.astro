@@ -29,8 +29,20 @@ const toolsActive = tools.some((tool) => isPathMatch(tool.href));
       />
     </a>
 
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" id="nav-toggle">
-      Menu
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="site-nav"
+      id="nav-toggle"
+      aria-label="Open menu"
+    >
+      <span class="nav-toggle__bars" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      <span class="nav-toggle__label">Menu</span>
     </button>
 
     <nav class="nav" id="site-nav" aria-label="Primary">
@@ -89,16 +101,73 @@ const toolsActive = tools.some((tool) => isPathMatch(tool.href));
       <a class="nav-cta" href="/contact">Contact us</a>
     </nav>
   </div>
+  <div class="nav-backdrop" id="nav-backdrop" hidden></div>
 </header>
 
 <script>
+  const MOBILE_MQ = "(max-width: 960px)";
   const toggle = document.getElementById("nav-toggle");
   const nav = document.getElementById("site-nav");
+  const backdrop = document.getElementById("nav-backdrop");
   const dropdowns = document.querySelectorAll("[data-nav-dropdown]");
 
+  function isMobileNav() {
+    return window.matchMedia(MOBILE_MQ).matches;
+  }
+
+  function setNavOpen(open: boolean) {
+    nav?.classList.toggle("is-open", open);
+    document.body.classList.toggle("nav-open", open);
+    toggle?.setAttribute("aria-expanded", open ? "true" : "false");
+    toggle?.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    if (backdrop) {
+      if (open) backdrop.removeAttribute("hidden");
+      else backdrop.setAttribute("hidden", "");
+    }
+  }
+
+  function closeNav() {
+    setNavOpen(false);
+  }
+
+  function closeAllDropdowns() {
+    dropdowns.forEach((dropdown) => {
+      dropdown.classList.remove("is-open");
+      dropdown.querySelector(".nav-dropdown__menu")?.setAttribute("hidden", "");
+      dropdown.querySelector(".nav-dropdown__toggle")?.setAttribute("aria-expanded", "false");
+    });
+  }
+
   toggle?.addEventListener("click", () => {
-    const open = nav?.classList.toggle("is-open");
-    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    const open = !nav?.classList.contains("is-open");
+    setNavOpen(!!open);
+    if (!open) closeAllDropdowns();
+  });
+
+  backdrop?.addEventListener("click", () => {
+    closeNav();
+    closeAllDropdowns();
+  });
+
+  nav?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (isMobileNav()) {
+        closeNav();
+        closeAllDropdowns();
+      }
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    closeNav();
+    closeAllDropdowns();
+  });
+
+  window.addEventListener("resize", () => {
+    if (!isMobileNav()) {
+      closeNav();
+    }
   });
 
   dropdowns.forEach((dropdown) => {
@@ -134,7 +203,7 @@ const toolsActive = tools.some((tool) => isPathMatch(tool.href));
     });
 
     dropdown.addEventListener("mouseenter", () => {
-      if (window.innerWidth <= 760) return;
+      if (isMobileNav()) return;
       if (hoverCloseTimer) clearTimeout(hoverCloseTimer);
       dropdowns.forEach((other) => {
         if (other !== dropdown) {
@@ -147,7 +216,7 @@ const toolsActive = tools.some((tool) => isPathMatch(tool.href));
     });
 
     dropdown.addEventListener("mouseleave", () => {
-      if (window.innerWidth <= 760) return;
+      if (isMobileNav()) return;
       hoverCloseTimer = setTimeout(closeMenu, 120);
     });
   });

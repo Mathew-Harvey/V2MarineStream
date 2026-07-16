@@ -362,7 +362,7 @@ const gallery = [
                 src={item.src}
                 alt={item.alt}
                 widths={[400, 800]}
-                sizes={item.wide ? "(max-width: 640px) 100vw, 50vw" : "(max-width: 640px) 50vw, 25vw"}
+                sizes={item.wide ? "(max-width: 400px) 100vw, (max-width: 640px) 100vw, 50vw" : "(max-width: 400px) 100vw, (max-width: 640px) 50vw, 25vw"}
                 loading="lazy"
                 style={item.pos ? `object-position: ${item.pos}` : undefined}
               />
@@ -410,7 +410,7 @@ const gallery = [
       <span class="eyebrow">Next step</span>
       <h2>Ready to uplift your capability?</h2>
       <p style="color: rgba(255,255,255,0.82); max-width: 34rem;">
-        Hardware, software, training, and IMS expertise for your teams.
+        Hardware, software, training, and professional services for your teams.
       </p>
       <a class="btn btn--primary" href="/contact">Contact us</a>
     </div>

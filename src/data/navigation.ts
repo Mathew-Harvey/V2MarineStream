@@ -29,12 +29,7 @@ export const serviceNav = [
   {
     href: "/services/professional-services",
     label: "Professional services",
-    description: "Consulting, program design, and operational support.",
-  },
-  {
-    href: "/services/expertise",
-    label: "IMS expertise",
-    description: "Marine science for identification, risk, and treatment.",
+    description: "Consulting, IMS expertise, program design, and operational support.",
   },
 ] as const;
 

@@ -8,7 +8,6 @@
     { href: "/services/hardware", label: "Hardware" },
     { href: "/services/training", label: "Training" },
     { href: "/services/professional-services", label: "Professional services" },
-    { href: "/services/expertise", label: "IMS expertise" },
   ];
 
   const toolLinks = [

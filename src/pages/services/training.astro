@@ -7,115 +7,376 @@ import bannerImage from "../../assets/photos/training-demo.jpg";
 import workshopImage from "../../assets/photos/crew-crawler-workshop.jpg";
 import classroomImage from "../../assets/photos/training-workshop.jpg";
 import docksideImage from "../../assets/photos/dockside-demo.jpg";
+
+const tracks = [
+  {
+    id: "operate",
+    label: "Track A",
+    watermark: "Operate",
+    title: "Run the systems",
+    body: "ROV piloting, crawler operation and the full IWHC hardware train — mobilisation to shutdown, on the equipment your crew will keep.",
+    variant: "navy",
+  },
+  {
+    id: "assess",
+    label: "Track B",
+    watermark: "Assess",
+    title: "Call it correctly",
+    body: "Fouling identification and rating, antifouling-coating awareness, and biosecurity judgement that stands up to review.",
+    variant: "cyan",
+  },
+  {
+    id: "record",
+    label: "Track C",
+    watermark: "Record",
+    title: "Prove the job",
+    body: "MarineStream capture, live streaming, approvals and the reports that pass an IMO, MARPOL and biosecurity audit.",
+    variant: "dark",
+  },
+] as const;
+
+const modules: {
+  num: string;
+  title: string;
+  lead: string;
+  items: string[];
+  wide?: boolean;
+}[] = [
+  {
+    num: "MODULE 1",
+    title: "Environmental Compliance",
+    lead: "The regulatory framework every in-water clean runs under, and the operator's duty within it.",
+    items: [
+      "IMO biofouling guidelines (MEPC.378(80)) & MARPOL Annex V",
+      "Biosecurity protocols and invasive-species prevention",
+      "Water-quality standards and compliant discharge",
+      "Waste management and environmental monitoring",
+    ],
+  },
+  {
+    num: "MODULE 2",
+    title: "Quality Management",
+    lead: "Records and reporting that hold up when a regulator or auditor asks.",
+    items: [
+      "Reporting triggers and the reporting process",
+      "Daily log sheets and maintenance records",
+      "Documentation and record-keeping discipline",
+      "Incident reporting and audit readiness",
+    ],
+  },
+  {
+    num: "MODULE 3",
+    title: "IWHC Hardware Systems",
+    lead: "The filtration and power train, from mobilisation to demobilisation.",
+    items: [
+      "Bow screen, Baleen filter, bag filter & UV stages",
+      "HPU, trash pump, rapid reel and hose management",
+      "Mobilisation, initialisation, operation & shutdown SOPs",
+      "Routine maintenance and troubleshooting",
+    ],
+  },
+  {
+    num: "MODULE 4",
+    title: "MarineStream Software",
+    lead: "Capturing the evidence and turning it into a compliant record.",
+    items: [
+      "Camera setup, live streaming and video capture",
+      "Worklogs, screenshots and evidence tagging",
+      "Automated compliance reporting and BFMP linkage",
+      "Performance analytics and fouling-trend data",
+    ],
+  },
+  {
+    num: "MODULE 5",
+    title: "Introduction to Robotics",
+    lead: "The two ROV classes and the diver tooling that works alongside them — how to choose the right method for the surface, and clean without damaging the coating.",
+    items: [
+      "Flying ROVs for inspection & surveillance",
+      "Crawling ROVs for grooming & cleaning",
+      "Diver hand tools, capture funnels & niche-area methods",
+      "Tool selection and antifouling-coating protection",
+    ],
+    wide: true,
+  },
+];
+
+const deliverySteps = [
+  {
+    label: "01 · In the room",
+    title: "Classroom",
+    body: "Framework, procedure and the why behind each SOP.",
+  },
+  {
+    label: "02 · On the bench",
+    title: "Live equipment",
+    body: "Hands on the machine — familiarisation and setup.",
+  },
+  {
+    label: "03 · At the dock",
+    title: "Demonstration",
+    body: "Dockside demos of the crawler and filtration train.",
+  },
+  {
+    label: "04 · In the water",
+    title: "Supervised work",
+    body: "Real assets, supervised, where the site allows.",
+  },
+] as const;
+
+const roles = [
+  "Equipment operators",
+  "Maintenance technicians",
+  "Site supervisors",
+  "Dive supervisors",
+  "Divers",
+  "Compliance officers",
+] as const;
 ---
 
 <SiteLayout
   title="Training | Services | MarineStream™"
-  description="ROV, biofouling management, and platform training for operators and supervisors, delivered by people who run the operations."
+  description="A five-module IWHC training program built from the operating manual we run our own operations to — Operate, Assess and Record tracks, assessed against a written standard."
 >
-  <PageHero
-    eyebrow="Services"
-    title="Training"
-    lead="Programs delivered by people who run the operations, not classroom theory alone."
-    parent={{ href: "/services", label: "Services" }}
-    image={bannerImage}
-    imageAlt="Group training demonstration at a shipyard"
-  />
+  <div class="tr-hero-wrap">
+    <PageHero
+      eyebrow="Services"
+      title="Training"
+      lead="A five-module program built from the manual we run our own operations to — delivered by the people who run them, and assessed against the same standard your crew will be held to on the job."
+      parent={{ href: "/services", label: "Services" }}
+      image={bannerImage}
+      imageAlt="Group training demonstration at a shipyard"
+    />
 
-  <section class="section">
-    <div class="container narrow">
-      <span class="eyebrow">Overview</span>
-      <h2>Capability that stays after we leave</h2>
-      <hr class="accent-rule" />
-      <p>
-        The point of training is a crew that can run the job without us. Programs are built around
-        the same equipment, ratings, and workflows used on live operations, so what your team
-        practises is exactly what they will deliver.
-      </p>
-      <ul class="checklist checklist--cols">
-        <li>ROV pilot and supervisor training</li>
-        <li>Biofouling management and IMO-aligned inspection practice</li>
-        <li>Platform and reporting workshops for field and office teams</li>
-        <li>On-site, remote, and blended delivery</li>
-        <li>Training on the equipment your team will actually operate</li>
-        <li>Scoped to your fleet, jurisdiction, and equipment</li>
-      </ul>
-    </div>
-  </section>
+    <section class="section tr-pull">
+      <div class="container">
+        <div class="tr-tracks">
+          {
+            tracks.map((track) => (
+              <a
+                class:list={["tr-track", `tr-track--${track.variant}`, "reveal"]}
+                href="#curriculum"
+              >
+                <div class="tr-track__meta">
+                  <span class="tr-track__label">{track.label}</span>
+                  <span class="tr-track__watermark" aria-hidden="true">
+                    {track.watermark}
+                  </span>
+                </div>
+                <h3>{track.title}</h3>
+                <p>{track.body}</p>
+              </a>
+            ))
+          }
+        </div>
 
-  <section class="section section--soft">
-    <div class="container">
-      <span class="eyebrow">Programs</span>
-      <h2>Three tracks, one standard</h2>
-      <hr class="accent-rule" />
-      <ol class="steps steps--three">
-        <li>
-          <strong>Operate</strong>
-          <p>ROV piloting and crawler operation, from first flight to survey discipline.</p>
-        </li>
-        <li>
-          <strong>Assess</strong>
-          <p>Fouling identification and rating, so field calls stand up to review.</p>
-        </li>
-        <li>
-          <strong>Record</strong>
-          <p>Platform workflows: capture, approvals, and reports that pass audit.</p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="grid-2">
-        <div class="reveal">
-          <span class="eyebrow">How it is delivered</span>
-          <h2>On the bench, at the dock, in the water</h2>
-          <hr class="accent-rule" />
+        <div class="tr-overview reveal">
+          <div class="tr-overview__title">
+            <span class="eyebrow">Overview</span>
+            <h2>Capability that stays after we leave</h2>
+            <hr class="accent-rule" />
+          </div>
           <p>
-            Theory happens in the room, but competence happens at the waterline. Courses combine
-            classroom sessions with live equipment time, dockside demonstrations, and supervised
-            work on real assets where the site allows it.
-          </p>
-          <p>
-            Training pairs naturally with a <a href="/services/hardware">hardware</a> purchase or a
-            <a href="/services/software">software subscription</a>, so crews learn on the systems
-            they will keep.
+            The point of training is a crew that runs the job without us. Every module is drawn
+            straight from the operating manual our own teams work to — the same equipment, ratings
+            and workflows used on live in-water hull cleaning. What your people practise in the room
+            is exactly what they deliver at the waterline, and every track closes with a formal
+            assessment against a written standard.
           </p>
         </div>
-        <figure class="figure reveal" style="margin: 0;">
+      </div>
+    </section>
+  </div>
+
+  <section id="curriculum" class="section section--soft">
+    <div class="container">
+      <div class="tr-section-head reveal">
+        <span class="eyebrow">The curriculum</span>
+        <h2>Five modules, one operating standard</h2>
+        <hr class="accent-rule" />
+        <p class="tr-lead">
+          The program follows the IWHC operating manual end to end — from the environmental
+          framework a job runs under, through the hardware and software, to the robotics that do the
+          work. Modules can be delivered as a full certification pathway or scoped individually to a
+          role.
+        </p>
+      </div>
+
+      <div class="tr-modules">
+        {
+          modules.map((mod) => (
+            <article class:list={["tr-module", { "tr-module--wide": mod.wide }, "reveal"]}>
+              <div class="tr-module__head">
+                <span class="tr-module__num">{mod.num}</span>
+                <h3>{mod.title}</h3>
+              </div>
+              {mod.wide ? (
+                <div class="tr-module__wide-body">
+                  <p>{mod.lead}</p>
+                  <ul>
+                    {mod.items.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <>
+                  <p>{mod.lead}</p>
+                  <ul>
+                    {mod.items.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="tr-section-head reveal">
+        <span class="eyebrow">How it is delivered</span>
+        <h2>Theory in the room, competence at the waterline</h2>
+        <hr class="accent-rule" />
+        <p class="tr-lead tr-lead--on-dark">
+          Each module moves the same way — from the classroom to live equipment, to the dock, to
+          supervised work on real assets where the site allows. Delivery is on-site, remote, or
+          blended, and scoped to your fleet, jurisdiction and equipment.
+        </p>
+      </div>
+
+      <div class="tr-flow reveal">
+        {
+          deliverySteps.flatMap((step, i) => {
+            const card = (
+              <div class="tr-flow__step">
+                <span class="tr-flow__label">{step.label}</span>
+                <strong>{step.title}</strong>
+                <p>{step.body}</p>
+              </div>
+            );
+            if (i === 0) return [card];
+            return [
+              <span class="tr-flow__arrow" aria-hidden="true">
+                →
+              </span>,
+              card,
+            ];
+          })
+        }
+      </div>
+
+      <div class="tr-photos reveal">
+        <figure>
+          <Image
+            src={classroomImage}
+            alt="Trainees working through course material at a training workshop"
+            widths={[480, 800]}
+            sizes="(min-width: 900px) 22rem, 100vw"
+            loading="lazy"
+          />
+          <figcaption>Course material in the classroom.</figcaption>
+        </figure>
+        <figure>
           <Image
             src={workshopImage}
             alt="Crew inspecting a hull crawler on a workbench in a vessel workshop"
-            widths={[480, 900]}
-            sizes="(min-width: 800px) 32rem, 100vw"
+            widths={[480, 800]}
+            sizes="(min-width: 900px) 22rem, 100vw"
             loading="lazy"
           />
-          <figcaption>Hands on the machine: crawler familiarisation in a vessel workshop.</figcaption>
+          <figcaption>Hands on the machine — crawler familiarisation.</figcaption>
+        </figure>
+        <figure>
+          <Image
+            src={docksideImage}
+            alt="Dockside demonstration of a tracked crawler beside a vessel in dry dock"
+            widths={[480, 800]}
+            sizes="(min-width: 900px) 22rem, 100vw"
+            loading="lazy"
+          />
+          <figcaption>Dockside demonstration beside a vessel in dry dock.</figcaption>
         </figure>
       </div>
-      <div class="photo-pair">
-        <Image
-          src={classroomImage}
-          alt="Trainees working through course material at a training workshop"
-          widths={[480, 800]}
-          sizes="(min-width: 560px) 32rem, 100vw"
-          loading="lazy"
-        />
-        <Image
-          src={docksideImage}
-          alt="Dockside demonstration of a tracked crawler beside a vessel in dry dock"
-          widths={[480, 800]}
-          sizes="(min-width: 560px) 32rem, 100vw"
-          loading="lazy"
-        />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="tr-audience">
+        <div class="reveal">
+          <span class="eyebrow">Who it is for</span>
+          <h2>Scoped to the role, not one-size-fits-all</h2>
+          <hr class="accent-rule" />
+          <p>
+            The manual serves six roles across an IWHC operation. A program can certify a whole crew
+            end to end, or target the modules a single role needs.
+          </p>
+          <ul class="tr-roles">
+            {
+              roles.map((role) => (
+                <li>
+                  <span aria-hidden="true" />
+                  {role}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <aside class="tr-cert reveal">
+          <span class="tr-cert__eyebrow">Assessment &amp; certification</span>
+          <h3>Signed off against a written standard</h3>
+          <p>
+            Every track closes with assessment against defined criteria — the same standard our own
+            operators are held to. Graduates leave able to run the job unsupervised, with a record
+            of competency behind them.
+          </p>
+          <ul class="tr-cert__list">
+            <li>Written assessment against module criteria</li>
+            <li>Practical sign-off on live equipment</li>
+            <li>Competency record per trainee, per module</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft tr-pair-section">
+    <div class="container">
+      <div class="tr-pair reveal">
+        <div class="tr-pair__title">
+          <span class="tr-pair__eyebrow">Pairs with</span>
+          <strong>Learn on the systems you keep</strong>
+        </div>
+        <div class="tr-pair__grid">
+          <div>
+            <strong>With a hardware purchase</strong>
+            <p>
+              Crews train on the exact ROVs, crawler and filtration plant they'll operate.
+            </p>
+          </div>
+          <div>
+            <strong>With a software subscription</strong>
+            <p>
+              Teams learn the capture, approval and reporting workflow on their own fleet.
+            </p>
+          </div>
+        </div>
+        <div class="tr-pair__actions">
+          <a class="btn btn--primary" href="/services/hardware">Hardware →</a>
+          <a class="btn btn--ghost" href="/services/software">Software →</a>
+        </div>
       </div>
     </div>
   </section>
 
   <ServiceCta
     title="Scope a program for your team"
-    lead="Tell us your fleet, jurisdiction, and equipment, and we will send a program outline with duration and delivery options."
+    lead="Tell us your fleet, jurisdiction and equipment, and we'll send a program outline with modules, duration and delivery options."
     primaryHref="/contact"
     primaryLabel="Enquire about training"
     secondaryHref="/services/professional-services"
