@@ -13,8 +13,9 @@
     padding: 0 var(--space-lg);
 }
 .intro-content {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 .intro-icon {
@@ -31,10 +32,11 @@
 }
 
 .intro-content h2 {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
     color: var(--text-primary);
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-lg);
     text-align: center !important;
+    line-height: 1.25;
 }
 
 .intro-content h3 {
@@ -44,48 +46,70 @@
     text-align: center;
 }
 
-.intro-content p {
-    margin-bottom: var(--space-md);
-    line-height: 1.6;
+.intro-content p,
+body.tool-page .intro-content p {
+    margin: 0 auto var(--space-md);
+    line-height: 1.7;
     color: var(--text-secondary);
-    text-align: center;
-    max-width: none;
-    margin-left: auto;
-    margin-right: auto;
+    text-align: left;
+    max-width: 42rem;
+}
+
+.intro-content p:last-of-type {
+    margin-bottom: 0;
 }
 
 .benefits-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-md);
-    margin: var(--space-lg) 0;
+    margin: var(--space-xl) 0 0;
+    width: 100%;
+}
+
+/* Four-across only when each card has enough room for labels */
+@media (min-width: 900px) {
+    .benefits-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 420px) {
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .benefit-item {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
+    gap: var(--space-sm);
     background-color: var(--bg-secondary);
-    padding: var(--space-md);
+    padding: var(--space-md) var(--space-sm);
     border-radius: var(--radius-md);
-    transition: transform var(--transition-normal);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    min-height: 100%;
 }
 
 .benefit-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     box-shadow: var(--shadow-md);
 }
 
 .benefit-icon {
-    font-size: 2rem;
+    font-size: 1.75rem;
     color: var(--accent-color);
-    margin-bottom: var(--space-sm);
+    line-height: 1;
 }
 
 .benefit-text {
     font-weight: 600;
     text-align: center;
     color: var(--text-primary);
+    font-size: 0.95rem;
+    line-height: 1.35;
 }
 
 #intro-modal .modal-footer {
@@ -377,6 +401,7 @@ textarea.form-control {
 .progress-indicator {
     display: flex;
     justify-content: space-between;
+    gap: var(--space-xs);
     margin-bottom: var(--space-lg);
     position: relative;
     padding: 0 var(--space-sm);
@@ -398,6 +423,8 @@ textarea.form-control {
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: 1;
+    min-width: 0;
     z-index: 2;
 }
 
@@ -414,13 +441,15 @@ textarea.form-control {
     margin-bottom: var(--space-xs);
     color: var(--text-secondary);
     transition: all var(--transition-normal);
+    flex-shrink: 0;
 }
 
 .step-label {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-tertiary);
     text-align: center;
-    max-width: 100px;
+    max-width: 7.5rem;
+    line-height: 1.25;
     transition: all var(--transition-normal);
 }
 
@@ -804,6 +833,16 @@ canvas#signaturePad {
     .modal-content {
         max-height: 95vh;
     }
+
+    .progress-indicator::before {
+        left: 18px;
+        right: 18px;
+    }
+
+    .step-label {
+        font-size: 0.7rem;
+        max-width: 4.5rem;
+    }
 }
 
 /* Info note styles */
@@ -871,24 +910,25 @@ canvas#signaturePad {
 /* Page header styles for standalone page */
 .page-header {
     text-align: center;
-    margin-bottom: 2rem;
-    padding: 2rem 0;
-    background: linear-gradient(135deg, #0066cc, #004d99);
+    margin: 1rem 0 2rem;
+    padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem);
+    background: linear-gradient(120deg, var(--ocean-ink, #0a1721) 0%, var(--ocean-deep, #16465f) 130%);
     color: white;
-    border-radius: 8px;
-    margin-top: 1rem;
+    border-radius: var(--radius, 0.75rem);
 }
 
 .page-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+    font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+    margin: 0 0 0.75rem;
     font-weight: 700;
+    line-height: 1.2;
+    color: white;
 }
 
 .page-description {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     opacity: 0.9;
-    max-width: 800px;
+    max-width: 42rem;
     margin: 0 auto;
     line-height: 1.6;
 }
