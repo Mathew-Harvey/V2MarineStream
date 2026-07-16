@@ -12,9 +12,9 @@ export const serviceNav = [
     description: "In-water cleaning with 10μ filtration and UV.",
   },
   {
-    href: "/services/platform",
-    label: "Platform",
-    description: "Field capture, parallel approvals, automated reports.",
+    href: "/services/software",
+    label: "Software",
+    description: "Field capture, subscriptions, parallel approvals, automated reports.",
   },
   {
     href: "/services/hardware",
@@ -22,14 +22,9 @@ export const serviceNav = [
     description: "ROV systems, filtration units, and field equipment.",
   },
   {
-    href: "/services/software",
-    label: "Software",
-    description: "Platform subscriptions, onboarding, and integration.",
-  },
-  {
     href: "/services/training",
     label: "Training",
-    description: "ROV, biofouling management, and platform programs.",
+    description: "ROV, biofouling management, and software programs.",
   },
   {
     href: "/services/professional-services",

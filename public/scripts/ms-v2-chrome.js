@@ -4,9 +4,8 @@
   const serviceLinks = [
     { href: "/services/inspection", label: "Inspection" },
     { href: "/services/cleaning", label: "Cleaning with capture" },
-    { href: "/services/platform", label: "Platform" },
-    { href: "/services/hardware", label: "Hardware" },
     { href: "/services/software", label: "Software" },
+    { href: "/services/hardware", label: "Hardware" },
     { href: "/services/training", label: "Training" },
     { href: "/services/professional-services", label: "Professional services" },
     { href: "/services/expertise", label: "IMS expertise" },
