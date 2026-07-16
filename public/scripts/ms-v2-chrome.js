@@ -88,7 +88,7 @@
           <div class="container site-footer__inner">
             <div>
               <img class="footer-logo" src="/images/brand/marinestream_logo_white.png" alt="MarineStream™" width="160" height="36" />
-              <p class="footer-tag">Enabling IMO-compliant biofouling inspections and cleans.</p>
+              <p class="footer-tag">Enabling IMO-aligned biofouling inspections and cleans.</p>
               <p><a href="https://www.franmarine.com.au/" rel="noopener noreferrer">A division of Franmarine</a></p>
             </div>
             <nav class="footer-nav" aria-label="Footer">

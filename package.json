@@ -1,7 +1,7 @@
 {
   "name": "v2marinestream",
   "version": "1.0.0",
-  "description": "MarineStream marketing site - IMO-compliant biofouling inspections and cleans",
+  "description": "MarineStream marketing site - IMO-aligned biofouling inspections and cleans",
   "type": "module",
   "scripts": {
     "dev": "astro dev",

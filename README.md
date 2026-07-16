@@ -1,6 +1,6 @@
 # MarineStream™ Website (V2)
 
-Punchy marketing site for [marinestream.com.au](https://www.marinestream.com.au) — enabling partners to deliver **IMO-compliant biofouling inspections and cleans**.
+Punchy marketing site for [marinestream.com.au](https://www.marinestream.com.au) — enabling partners to deliver **IMO-aligned biofouling inspections and cleans**.
 
 Built with **Astro**, hosted on **Netlify**, blog edited via **Decap CMS**.
 
