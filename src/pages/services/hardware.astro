@@ -4,9 +4,12 @@ import PageHero from "../../components/PageHero.astro";
 import ServiceCta from "../../components/ServiceCta.astro";
 import { Image } from "astro:assets";
 import bannerImage from "../../assets/photos/rov-product-dark.jpg";
-import crawlerImage from "../../assets/photos/technician-crawler.jpg";
-import filtrationImage from "../../assets/photos/filtration-plant-quayside.jpg";
+import crawlerImage from "../../assets/photos/iwc-crawler.jpg";
 import recoveryImage from "../../assets/photos/rov-recovery.jpg";
+import plantOpenImage from "../../assets/photos/filtration-plant-open.jpg";
+import powerStandImage from "../../assets/photos/filtration-power-stand.jpg";
+import internalsImage from "../../assets/photos/filtration-internals.jpg";
+import containerImage from "../../assets/photos/filtration-container.jpg";
 ---
 
 <SiteLayout
@@ -49,8 +52,7 @@ import recoveryImage from "../../assets/photos/rov-recovery.jpg";
       <h2>ROVs for survey and intervention</h2>
       <hr class="accent-rule" />
       <p class="rov-showcase__lead">
-        Explore the chassis in 3D. Orbit, zoom, and (on Revolution) pull the manipulator arm
-        free of the body to see how the system is put together.
+        Explore each chassis in 3D. Orbit, zoom, and pan to see how the systems are put together.
       </p>
 
       <div class="rov-showcase" data-rov-showcase>
@@ -115,13 +117,13 @@ import recoveryImage from "../../assets/photos/rov-recovery.jpg";
           <div class="rov-showcase__panel" data-rov-panel="revolution" role="tabpanel" aria-labelledby="tab-revolution" hidden>
             <h3>Revolution</h3>
             <p>
-              7200-DC-4K customer configuration. Pull the glowing manipulator arm forward, or
-              drag any part outward to explode the assembly.
+              7200-DC-4K customer configuration with manipulator arm at the nose. Orbit,
+              zoom, and pan to inspect the full assembly.
             </p>
             <ul class="checklist checklist--compact">
-              <li>Interactive pull-apart chassis</li>
               <li>Manipulator arm at the nose</li>
               <li>True as-built materials</li>
+              <li>Drag to orbit · scroll to zoom</li>
             </ul>
             <a class="text-link" href="/models/viewers/revolution.html" target="_blank" rel="noopener">Open full-screen viewer</a>
           </div>
@@ -147,7 +149,7 @@ import recoveryImage from "../../assets/photos/rov-recovery.jpg";
         <figure class="figure reveal" style="margin: 0;">
           <Image
             src={crawlerImage}
-            alt="Technician holding a magnetic hull crawler in a ship's deck doorway"
+            alt="Magnetic hull crawler with cavitation cleaning head and dual capture ports"
             widths={[480, 900]}
             sizes="(min-width: 800px) 32rem, 100vw"
             loading="lazy"
@@ -155,29 +157,218 @@ import recoveryImage from "../../assets/photos/rov-recovery.jpg";
         </figure>
         <div class="reveal">
           <span class="eyebrow">Cleaning systems</span>
-          <h2>Hull crawlers and capture plant</h2>
+          <h2>Hull crawlers and capture tooling</h2>
           <hr class="accent-rule" />
           <p>
-            Magnetic crawlers work the hull above and below the waterline, recording as they clean.
-            The containerised filtration plant closes the loop: dislodged fouling is captured,
-            filtered to 10μ, and UV treated, so the clean itself stays compliant.
+            Magnetic crawlers work the hull above and below the waterline on permanent-magnet
+            tracks, cleaning with a fresh-water cavitation head and recovering the debris through a
+            capture shroud — around 1,200 L/min straight to filtration. Diver hand tools and
+            penetration cups cover the niches the crawler cannot reach.
           </p>
           <p>
-            Both are the systems behind our own
-            <a href="/services/cleaning">cleaning with capture</a> service.
+            Every head — robotic, handheld or penetration — returns its effluent through the same
+            uplift line into the four-stage plant below. See them in operation on
+            <a href="/services/cleaning">cleaning with capture</a>.
           </p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <span class="eyebrow">Capture &amp; filtration</span>
+      <h2>The IWHC filtration plant</h2>
+      <hr class="accent-rule" />
+      <p style="max-width: var(--narrow);">
+        A self-contained, ISO-deployable system that captures, filters and disinfects in-water hull
+        cleaning effluent — meeting biosecurity discharge standards anywhere in the world. Every
+        drop of process water passes through all four stages; there is no bypass, and screenings
+        and solids are bagged for compliant disposal.
+      </p>
+
+      <div class="stat-row">
+        <div>
+          <div class="stat__value">1,200 L/min</div>
+          <div class="stat__label">Max throughput — 72 m³/hr</div>
+        </div>
+        <div>
+          <div class="stat__value">≤10 μm</div>
+          <div class="stat__label">Filtration + UV disinfection</div>
+        </div>
+        <div>
+          <div class="stat__value">4 stage</div>
+          <div class="stat__label">Bow screen to UV</div>
+        </div>
+        <div>
+          <div class="stat__value">20 ft HC ISO</div>
+          <div class="stat__label">Containerised &amp; mobile</div>
+        </div>
+      </div>
+
       <figure class="figure reveal">
         <Image
-          src={filtrationImage}
-          alt="Containerised filtration plant with bulk bags and hoses operating on a quay"
-          widths={[640, 1280]}
+          src={plantOpenImage}
+          alt="MarineStream IWHC filtration plant in an open 20 ft ISO container with the motorised hose reel and stainless treatment train"
+          widths={[768, 1280, 1785]}
           sizes="(min-width: 68rem) 68rem, 100vw"
           loading="lazy"
         />
-        <figcaption>The capture and filtration plant, a single 20′ container, working dockside.</figcaption>
+        <figcaption>
+          The IWHC plant — a single 20 ft HC ISO container with mobile power stand and 100 mm
+          discharge hose.
+        </figcaption>
       </figure>
+
+      <h3 style="margin-top: var(--space-lg);">Four stages, no bypass</h3>
+      <ol class="steps">
+        <li>
+          <strong>Bow screen</strong>
+          <p>Coarse solids separated to a catch bag; filtrate drains to the bund.</p>
+        </li>
+        <li>
+          <strong>25 μm screen</strong>
+          <p>Self-cleaning micro-screen swept continuously by twin spraybars.</p>
+        </li>
+        <li>
+          <strong>Bag filter</strong>
+          <p>Eight parallel bag housings polish the stream down to 5 μm.</p>
+        </li>
+        <li>
+          <strong>UV disinfection</strong>
+          <p>Quartz-sleeved UV array inactivates organisms before discharge.</p>
+        </li>
+      </ol>
+
+      <h3 style="margin-top: var(--space-lg);">Engineered stages &amp; equipment</h3>
+      <p style="max-width: var(--narrow);">
+        A non-pressurised, gravity-fed, continuously self-cleaning process, tolerant of the fibrous,
+        organic and shell-laden waste streams that defeat conventional filters. Each stage pairs our
+        operational engineering with proven OEM equipment.
+      </p>
+      <div class="spec-cards">
+        <article class="spec-card reveal">
+          <div class="spec-card__body">
+            <span class="spec-card__eyebrow">Capture &amp; uplift · Hydra-Tech · HYDAC</span>
+            <h3>Capture &amp; uplift</h3>
+            <dl class="spec-list">
+              <div><dt>Uplift pump</dt><dd>Hydra-Tech S4SCR 4″ submersible</dd></div>
+              <div><dt>Legacy pump</dt><dd>Stanley TP08 (low-head ≤ 2.5 m)</dd></div>
+              <div><dt>Power unit</dt><dd>HYDAC diesel HPU</dd></div>
+              <div><dt>Hose mgmt</dt><dd>Motorised reel stand · 100 mm</dd></div>
+            </dl>
+            <p>Slurry is drawn from the capture hood to a screw-centrifugal pump, then lifted via 100 mm tiger-tail to the container.</p>
+          </div>
+        </article>
+        <article class="spec-card reveal">
+          <div class="spec-card__body">
+            <span class="spec-card__eyebrow">Stage 01 · Bow screen</span>
+            <h3>Coarse solids separation</h3>
+            <dl class="spec-list">
+              <div><dt>Function</dt><dd>First-pass solids capture</dd></div>
+              <div><dt>Action</dt><dd>Gravity distribution over screen</dd></div>
+              <div><dt>Solids</dt><dd>Directed to hopper &amp; bulker bag</dd></div>
+              <div><dt>Water mgmt</dt><dd>Float-controlled bund return</dd></div>
+            </dl>
+            <p>Debris is separated to a catchment bag while filtrate drains to the bund for fine treatment.</p>
+          </div>
+        </article>
+        <article class="spec-card reveal">
+          <div class="spec-card__body">
+            <span class="spec-card__eyebrow">Stage 02 · 25 micron screen</span>
+            <h3>Self-cleaning micro-screen</h3>
+            <dl class="spec-list">
+              <div><dt>Type</dt><dd>Self-cleaning flat micro-screen</dd></div>
+              <div><dt>Process</dt><dd>Non-pressurised, gravity-fed</dd></div>
+              <div><dt>Cleaning</dt><dd>Twin spraybars, continuous</dd></div>
+              <div><dt>Air / water</dt><dd>6 bar carriage · 8 bar spray</dd></div>
+            </dl>
+            <p>The core particulate stage — spraybars sweep the screen continuously so it never blinds.</p>
+          </div>
+        </article>
+        <article class="spec-card reveal">
+          <div class="spec-card__body">
+            <span class="spec-card__eyebrow">Stage 03 · Bag filter · Feature-Tec</span>
+            <h3>Bag filter module</h3>
+            <dl class="spec-list">
+              <div><dt>Model</dt><dd>ELBR0802S10150B-QV</dd></div>
+              <div><dt>Config</dt><dd>8 × bag filter housings</dd></div>
+              <div><dt>Rating</dt><dd>Polishing to 5 μm</dd></div>
+              <div><dt>Connections</dt><dd>DN150 in / out · 10 bar design</dd></div>
+            </dl>
+            <p>Residual fine particulate is removed across eight parallel bag housings ahead of disinfection.</p>
+          </div>
+        </article>
+        <article class="spec-card reveal">
+          <div class="spec-card__body">
+            <span class="spec-card__eyebrow">Stage 04 · UV · Evoqua</span>
+            <h3>UV disinfection</h3>
+            <dl class="spec-list">
+              <div><dt>Model</dt><dd>Spectra UV VX-4340-B</dd></div>
+              <div><dt>Lamps</dt><dd>4 × UV lamp, quartz-sleeved</dd></div>
+              <div><dt>Supply</dt><dd>200–240 V, 50/60 Hz</dd></div>
+              <div><dt>Max pressure</dt><dd>145 psi (10 bar)</dd></div>
+            </dl>
+            <p>A quartz-sleeved ultraviolet array inactivates organisms passing the filtration stages.</p>
+          </div>
+        </article>
+        <article class="spec-card reveal">
+          <div class="spec-card__body">
+            <span class="spec-card__eyebrow">Ancillaries · Atlas Copco · ABB · Grundfos</span>
+            <h3>Ancillaries &amp; control</h3>
+            <dl class="spec-list">
+              <div><dt>Compressor</dt><dd>Atlas Copco SO G4FF · 10 bar</dd></div>
+              <div><dt>Drive</dt><dd>ABB ACS580 VSD (level control)</dd></div>
+              <div><dt>FW booster</dt><dd>Grundfos CM 5-4 (spraybar)</dd></div>
+              <div><dt>Transfer</dt><dd>Versa-Matic AODD · Tsurumi</dd></div>
+            </dl>
+            <p>VSDs and float sensors automate inter-stage transfer for unattended steady-state running.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="photo-trio reveal" style="margin-top: var(--space-lg);">
+        <figure>
+          <Image
+            src={powerStandImage}
+            alt="Motorised hose reel on the mobile power stand"
+            widths={[400, 760]}
+            sizes="(min-width: 760px) 22rem, 100vw"
+            loading="lazy"
+          />
+          <figcaption>Hose management &amp; power stand.</figcaption>
+        </figure>
+        <figure>
+          <Image
+            src={internalsImage}
+            alt="Stainless treatment train and control panel inside the container"
+            widths={[400, 760]}
+            sizes="(min-width: 760px) 22rem, 100vw"
+            loading="lazy"
+          />
+          <figcaption>Containerised treatment plant.</figcaption>
+        </figure>
+        <figure>
+          <Image
+            src={containerImage}
+            alt="Franmarine-branded 20 ft ISO container housing the filtration plant"
+            widths={[400, 760]}
+            sizes="(min-width: 760px) 22rem, 100vw"
+            loading="lazy"
+          />
+          <figcaption>Deployed worldwide as a single ISO unit.</figcaption>
+        </figure>
+      </div>
+
+      <h3 style="margin-top: var(--space-lg);">Verified performance</h3>
+      <ul class="checklist checklist--cols">
+        <li>≥ 95% capture of debris within 300 mm of the tool</li>
+        <li>Particle removal to ≤ 10 μm, bag-polished to 5 μm</li>
+        <li>Dissolved copper ≤ 3.8 ppb in discharge</li>
+        <li>UV inactivation of viable organisms</li>
+        <li>Non-abrasive — Intersleek® approved, AFC integrity preserved</li>
+        <li>IMO Biofouling Guidelines (MEPC.378(80)); ANZECC verified</li>
+      </ul>
     </div>
   </section>
 

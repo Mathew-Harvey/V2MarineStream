@@ -9,6 +9,11 @@ import filtrationImage from "../../assets/photos/filtration-detail.jpg";
 import dischargeImage from "../../assets/photos/filtration-discharge.jpg";
 import progressImage from "../../assets/photos/cleaning-progress-hud.jpg";
 import costGraph from "../../assets/photos/fouling-cost-graph.jpg";
+import crawlerToolImage from "../../assets/photos/iwc-crawler.jpg";
+import puBladeImage from "../../assets/photos/iwc-pu-blade.jpg";
+import nylonBladeImage from "../../assets/photos/iwc-nylon-blade.jpg";
+import obdToolImage from "../../assets/photos/iwc-obd-tool.jpg";
+import taperNozzleImage from "../../assets/photos/iwc-taper-nozzle.jpg";
 ---
 
 <SiteLayout
@@ -109,6 +114,107 @@ import costGraph from "../../assets/photos/fouling-cost-graph.jpg";
 
   <section class="section section--soft">
     <div class="container">
+      <span class="eyebrow">In-water cleaning methods</span>
+      <h2>One backbone, three ways to clean</h2>
+      <hr class="accent-rule" />
+      <p style="max-width: var(--narrow);">
+        A robotic crawler for hull plating, diver-operated hand tools for niche areas, and
+        dedicated capture tools for penetrations. Change the tool, not the biosecurity outcome —
+        every head returns its effluent through the same uplift line into the four-stage filtration
+        system.
+      </p>
+
+      <div class="spec-cards">
+        <article class="spec-card reveal">
+          <div class="spec-card__media">
+            <Image
+              src={crawlerToolImage}
+              alt="Magnetic hull crawler with cavitation cleaning head and dual capture ports"
+              widths={[480, 900]}
+              sizes="(min-width: 900px) 28rem, 100vw"
+              loading="lazy"
+            />
+          </div>
+          <div class="spec-card__body">
+            <span class="spec-card__eyebrow">Robotic hull-plating cleaning</span>
+            <h3>Magnetic crawler · cavitation</h3>
+            <dl class="spec-list">
+              <div><dt>Adhesion</dt><dd>Permanent magnetic tracks</dd></div>
+              <div><dt>Cleaning head</dt><dd>Cavitation — fresh water, ≈200 bar</dd></div>
+              <div><dt>Capture</dt><dd>Custom shroud, dual exhaust ports</dd></div>
+              <div><dt>Recovery</dt><dd>≈1,200 L/min to filtration</dd></div>
+              <div><dt>Path width</dt><dd>450 mm per pass</dd></div>
+              <div><dt>Depth / control</dt><dd>60 m · tethered console, cameras</dd></div>
+            </dl>
+            <p>Proven on Royal Australian Navy vessels — Australia's first robotic in-water hull clean with full biofouling capture.</p>
+          </div>
+        </article>
+
+        <article class="spec-card reveal">
+          <div class="spec-card__media spec-card__media--contain">
+            <Image
+              src={puBladeImage}
+              alt="Polyurethane-bladed diver hand tool for soft fouling"
+              widths={[320, 480]}
+              sizes="14rem"
+              loading="lazy"
+            />
+            <Image
+              src={nylonBladeImage}
+              alt="Nylon-bladed diver hand tool for hard fouling"
+              widths={[320, 480]}
+              sizes="14rem"
+              loading="lazy"
+            />
+          </div>
+          <div class="spec-card__body">
+            <span class="spec-card__eyebrow">Niche-area hand tools</span>
+            <h3>Diver-operated · suction-through-head</h3>
+            <dl class="spec-list">
+              <div><dt>PU blade</dt><dd>Soft fouling, delicate coatings</dd></div>
+              <div><dt>Nylon blade</dt><dd>Hard macrofouling</dd></div>
+              <div><dt>Blades</dt><dd>Interchangeable push / pull, swapped underwater</dd></div>
+              <div><dt>Capture</dt><dd>Suction at the blade as debris lifts</dd></div>
+            </dl>
+            <p>Interchangeable blades let the diver match soft or hard fouling without leaving the water.</p>
+          </div>
+        </article>
+
+        <article class="spec-card reveal">
+          <div class="spec-card__media spec-card__media--contain">
+            <Image
+              src={obdToolImage}
+              alt="Valve-isolated rotary capture cup for overboard discharges"
+              widths={[320, 480]}
+              sizes="14rem"
+              loading="lazy"
+            />
+            <Image
+              src={taperNozzleImage}
+              alt="Tapered suction nozzle for reaching recesses and crevices"
+              widths={[320, 480]}
+              sizes="14rem"
+              loading="lazy"
+            />
+          </div>
+          <div class="spec-card__body">
+            <span class="spec-card__eyebrow">Penetration &amp; OBD cleaning</span>
+            <h3>Capture cups · taper nozzles</h3>
+            <dl class="spec-list">
+              <div><dt>OBD tool</dt><dd>Valve-isolated rotary capture cup</dd></div>
+              <div><dt>Targets</dt><dd>Overboard discharges, intakes, gratings</dd></div>
+              <div><dt>Taper nozzle</dt><dd>Reaches recesses and crevices</dd></div>
+              <div><dt>Connection</dt><dd>Camlock straight to the uplift line</dd></div>
+            </dl>
+            <p>Dedicated capture tooling for penetrations that a crawler or blade cannot seal against.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
       <div class="grid-2">
         <figure class="figure reveal" style="margin: 0;">
           <Image
@@ -140,12 +246,36 @@ import costGraph from "../../assets/photos/fouling-cost-graph.jpg";
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--soft">
     <div class="container narrow">
       <span class="eyebrow">The capture system</span>
-      <h2>Containerised, mobile, self-contained</h2>
+      <h2>Captured, filtered, disinfected — no open discharge</h2>
       <hr class="accent-rule" />
-      <div class="photo-pair">
+      <p>
+        Whichever tool does the cleaning, the effluent is lifted to a single 20′ container and
+        passes through four filtration stages before it returns to the harbour. Every drop goes
+        through every stage — there is no bypass — and the solids leave the site as documented
+        waste.
+      </p>
+      <ol class="steps">
+        <li>
+          <strong>Bow screen</strong>
+          <p>Coarse solids separated to a catch bag; filtrate drains to the bund.</p>
+        </li>
+        <li>
+          <strong>25 μm screen</strong>
+          <p>Self-cleaning micro-screen swept continuously by twin spraybars.</p>
+        </li>
+        <li>
+          <strong>Bag filter</strong>
+          <p>Eight parallel housings polish the stream down to 5 μm.</p>
+        </li>
+        <li>
+          <strong>UV disinfection</strong>
+          <p>Quartz-sleeved UV array inactivates organisms before discharge.</p>
+        </li>
+      </ol>
+      <div class="photo-pair" style="margin-top: var(--space-lg);">
         <Image
           src={filtrationImage}
           alt="Open containerised filtration plant with stainless vessel and pumps on a wharf"
@@ -162,11 +292,11 @@ import costGraph from "../../assets/photos/fouling-cost-graph.jpg";
         />
       </div>
       <p>
-        The filtration plant ships as a single 20′ container and runs from the wharf or a support
-        vessel alongside. Treated water returns to the harbour; captured biofouling leaves the site
-        as documented waste. The same unit supports
-        <a href="/services/inspection">inspection</a> and diver operations, and is available
-        through <a href="/services/hardware">hardware</a> for partners running their own cleans.
+        The plant runs from the wharf or a support vessel alongside, capturing to ≤10 μm with UV
+        treatment and holding dissolved copper to ≤ 3.8 ppb in discharge. The same unit supports
+        <a href="/services/inspection">inspection</a> and diver operations, and the full
+        specification is on the <a href="/services/hardware">hardware</a> page for partners running
+        their own cleans.
       </p>
       <div class="figure reveal">
         <Image
