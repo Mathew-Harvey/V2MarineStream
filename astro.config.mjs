@@ -22,5 +22,7 @@ export default defineConfig({
     '/sales/software': '/services/software',
     '/sales/training': '/services/training',
     '/sales/professional-services': '/services/professional-services',
+    '/core-pages/rov-autoconnect.html': '/tools/rov-autoconnect',
+    '/core-pages/rov-autoconnect': '/tools/rov-autoconnect',
   },
 });

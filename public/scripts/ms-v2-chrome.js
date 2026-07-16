@@ -14,7 +14,7 @@
     { href: "/tools/ims-species-guide/", label: "IMS Species Guide" },
     { href: "/interactive-tools/hullCalc.html", label: "Fouling Cost Calculator" },
     { href: "/interactive-tools/bfmpGen.html", label: "BFMP Generator" },
-    { href: "/core-pages/rov-autoconnect.html", label: "ROV AutoConnect" },
+    { href: "/tools/rov-autoconnect", label: "ROV AutoConnect" },
   ];
 
   const path = window.location.pathname.replace(/\/$/, "") || "/";

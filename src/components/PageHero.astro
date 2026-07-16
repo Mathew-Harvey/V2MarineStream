@@ -6,12 +6,13 @@ interface Props {
   title: string;
   lead?: string;
   eyebrow?: string;
-  parent?: { href: string; label: string };
+  badge?: string;
+  parent?: { href?: string; label: string };
   image?: ImageMetadata;
   imageAlt?: string;
 }
 
-const { title, lead, eyebrow, parent, image, imageAlt = "" } = Astro.props;
+const { title, lead, eyebrow, badge, parent, image, imageAlt = "" } = Astro.props;
 ---
 
 <section class:list={["page-hero", { "page-hero--photo": image }]}>
@@ -36,11 +37,18 @@ const { title, lead, eyebrow, parent, image, imageAlt = "" } = Astro.props;
         <p class="breadcrumb">
           <a href="/">Home</a>
           {" / "}
-          <a href={parent.href}>{parent.label}</a>
+          {parent.href ? <a href={parent.href}>{parent.label}</a> : <span>{parent.label}</span>}
         </p>
       )
     }
-    {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+    {
+      (eyebrow || badge) && (
+        <div class="page-hero__meta">
+          {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+          {badge && <span class="page-hero__badge">{badge}</span>}
+        </div>
+      )
+    }
     <h1>{title}</h1>
     <hr class="accent-rule" />
     {lead && <p class="page-hero__lead">{lead}</p>}

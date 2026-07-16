@@ -1,0 +1,306 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import bannerImage from "../../assets/photos/rov-controller-hands.jpg";
+
+const downloadHref =
+  "https://github.com/Mathew-Harvey/ROV_Connect/releases/download/v1.0.9/ROV_AutoConnect.exe";
+const githubHref = "https://github.com/Mathew-Harvey/ROV_Connect";
+const issuesHref = "https://github.com/Mathew-Harvey/ROV_Connect/issues";
+const vlcHref = "https://www.videolan.org/vlc/";
+
+const challengePoints = [
+  "Time-consuming and technical",
+  "Prone to user error",
+  "Required networking knowledge",
+  "Caused delays in operations",
+] as const;
+
+const solutionPoints = [
+  "Scans network addresses via ping detection",
+  "Identifies the ROV's RTSP stream location",
+  "Launches VLC Media Player automatically",
+  "Connects to the video feed seamlessly",
+] as const;
+
+const features = [
+  {
+    title: "Automatic detection",
+    body: "Intelligently scans your network to find the ROV's RTSP stream address without manual configuration.",
+    tone: "cyan",
+  },
+  {
+    title: "VLC integration",
+    body: "Launches VLC and connects to the stream in fullscreen mode for immediate viewing.",
+    tone: "cyan",
+  },
+  {
+    title: "Modern interface",
+    body: "A clean, intuitive design with integrated MarineStream branding.",
+    tone: "cyan",
+  },
+  {
+    title: "Progress tracking",
+    body: "A real-time progress bar and status updates keep you informed during connection.",
+    tone: "cyan",
+  },
+  {
+    title: "Customizable",
+    body: "Modify the RTSP URL list in the script to match your specific ROV setup.",
+    tone: "cyan",
+  },
+  {
+    title: "Open source",
+    body: "Fully open-source on GitHub for transparency, customization and community contributions.",
+    tone: "orange",
+  },
+] as const;
+
+const steps = [
+  {
+    num: "1",
+    title: "Connect your ROV",
+    body: "Connect the ROV to your computer via network cable and power it on.",
+  },
+  {
+    num: "2",
+    title: "Launch AutoConnect",
+    body: "Run the executable — the interface appears with connection options.",
+  },
+  {
+    num: "3",
+    title: "Automatic detection",
+    body: "Click Connect and the software scans for and detects the RTSP stream.",
+  },
+  {
+    num: "4",
+    title: "Stream live video",
+    body: "VLC launches in fullscreen, displaying the live feed for immediate operation.",
+  },
+] as const;
+
+const requirements = [
+  { label: "Operating system", value: "Windows 10 or Windows 11" },
+  { label: "VLC Media Player", value: "Required (free download)" },
+  { label: "Network", value: "Ethernet connection to ROV" },
+  { label: "Installation", value: "None — no Python required" },
+] as const;
+
+const support = [
+  {
+    title: "Report issues",
+    body: "Found a bug or have a feature request? Submit an issue on GitHub for the fastest response.",
+    href: issuesHref,
+    cta: "Report an issue →",
+    external: true,
+  },
+  {
+    title: "Contribute",
+    body: "Help improve AutoConnect with code, documentation or feature suggestions on our open-source project.",
+    href: githubHref,
+    cta: "Contribute on GitHub →",
+    external: true,
+  },
+  {
+    title: "Contact MarineStream",
+    body: "For general support or commercial inquiries related to ROV operations and MarineStream services.",
+    href: "/contact",
+    cta: "Contact us →",
+    external: false,
+  },
+] as const;
+---
+
+<SiteLayout
+  title="ROV AutoConnect | MarineStream™"
+  description="Automatic RTSP detection and VLC integration for ROVs. Free beta open-source software by MarineStream."
+>
+  <PageHero
+    eyebrow="Free tool"
+    badge="Beta · Open source"
+    title="ROV AutoConnect"
+    lead="Automatic RTSP detection and VLC integration — connect to your ROV's live video feed in seconds, no networking knowledge required."
+    parent={{ label: "Tools" }}
+    image={bannerImage}
+    imageAlt="ROV controller with live underwater feed"
+  >
+    <div class="btn-row rac-hero-actions">
+      <a class="btn btn--primary" href={downloadHref} target="_blank" rel="noopener noreferrer">
+        Download v1.0.9 <span class="rac-hero-actions__meta">(~58 MB)</span>
+      </a>
+      <a class="btn btn--ghost" href={githubHref} target="_blank" rel="noopener noreferrer">
+        View on GitHub →
+      </a>
+    </div>
+  </PageHero>
+
+  <section class="section rac-beta-section">
+    <div class="container">
+      <aside class="rac-beta reveal" aria-label="Beta software notice">
+        <span class="rac-beta__tag">Beta</span>
+        <div>
+          <h3>Beta software notice</h3>
+          <p>
+            ROV AutoConnect is currently in beta and provided as open-source software. While
+            functional, it may contain bugs or limitations. Use at your own discretion and please
+            report any issues via our GitHub repository.
+          </p>
+          <a href={githubHref} target="_blank" rel="noopener noreferrer">
+            Visit GitHub repository →
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">The problem we solved</span>
+      <h2>Viewing an ROV feed shouldn't need a network engineer</h2>
+      <hr class="accent-rule" />
+      <div class="rac-split">
+        <div class="rac-split__card rac-split__card--challenge reveal">
+          <h3>The challenge</h3>
+          <p>
+            Connecting an ROV over a network cable meant manually working out the right RTSP address
+            to enter into VLC. That process was:
+          </p>
+          <ul class="rac-checklist rac-checklist--bad">
+            {challengePoints.map((item) => <li><span aria-hidden="true">✗</span>{item}</li>)}
+          </ul>
+        </div>
+        <div class="rac-split__card rac-split__card--solution reveal">
+          <h3>Our solution</h3>
+          <p>ROV AutoConnect eliminates the guesswork. It automatically:</p>
+          <ul class="rac-checklist rac-checklist--good">
+            {solutionPoints.map((item) => <li><span aria-hidden="true">✓</span>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <span class="eyebrow">Key features</span>
+      <h2>Built for simplicity and reliability in the field</h2>
+      <hr class="accent-rule" />
+      <div class="rac-features">
+        {
+          features.map((feature) => (
+            <article class:list={["rac-features__card", "reveal", `rac-features__card--${feature.tone}`]}>
+              <h3>{feature.title}</h3>
+              <p>{feature.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">How it works</span>
+      <h2>Connected in seconds</h2>
+      <hr class="accent-rule" />
+      <div class="rac-steps reveal">
+        {
+          steps.flatMap((step, i) => {
+            const card = (
+              <div class="rac-steps__card">
+                <span class="rac-steps__num">{step.num}</span>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
+              </div>
+            );
+            if (i === 0) return [card];
+            return [
+              <span class="rac-steps__arrow" aria-hidden="true">
+                →
+              </span>,
+              card,
+            ];
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <span class="eyebrow">System requirements</span>
+      <h2>Minimal requirements, maximum compatibility</h2>
+      <hr class="accent-rule" />
+      <div class="rac-reqs">
+        {
+          requirements.map((item) => (
+            <div class="rac-reqs__card reveal">
+              <span class="rac-reqs__label">{item.label}</span>
+              <strong>{item.value}</strong>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="rac-download reveal">
+        <h2>Ready to get started?</h2>
+        <p>
+          Download ROV AutoConnect and streamline your ROV operations today. Completely free, ready
+          to use.
+        </p>
+        <div class="rac-download__actions">
+          <a
+            class="btn btn--primary rac-download__btn"
+            href={downloadHref}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Download ROV AutoConnect v1.0.9
+            <span>Windows · ~58 MB</span>
+          </a>
+          <a
+            class="btn btn--ghost rac-download__btn"
+            href={vlcHref}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Download VLC Media Player
+            <span>Required dependency</span>
+          </a>
+        </div>
+        <a class="rac-download__github" href={githubHref} target="_blank" rel="noopener noreferrer">
+          View source code on GitHub →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Support &amp; feedback</span>
+      <h2>Here to help, and always improving</h2>
+      <hr class="accent-rule" />
+      <div class="rac-support">
+        {
+          support.map((item) => (
+            <article class="rac-support__card reveal">
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+              <a
+                href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
+              >
+                {item.cta}
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</SiteLayout>

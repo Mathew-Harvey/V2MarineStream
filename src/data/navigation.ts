@@ -53,7 +53,7 @@ export const tools = [
     description: "Generate an IMO-aligned biofouling management plan.",
   },
   {
-    href: "/core-pages/rov-autoconnect.html",
+    href: "/tools/rov-autoconnect",
     label: "ROV AutoConnect",
     menuLabel: "ROV AutoConnect",
     description: "Detect ROV streams and launch video viewing automatically.",
