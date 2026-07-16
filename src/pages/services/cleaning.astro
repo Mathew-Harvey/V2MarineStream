@@ -4,7 +4,6 @@ import PageHero from "../../components/PageHero.astro";
 import ServiceCta from "../../components/ServiceCta.astro";
 import { Image } from "astro:assets";
 import bannerImage from "../../assets/photos/crawler-underwater.jpg";
-import supervisionImage from "../../assets/photos/crawler-supervision.jpg";
 import filtrationImage from "../../assets/photos/filtration-detail.jpg";
 import dischargeImage from "../../assets/photos/filtration-discharge.jpg";
 import progressImage from "../../assets/photos/cleaning-progress-hud.jpg";
@@ -14,62 +13,137 @@ import puBladeImage from "../../assets/photos/iwc-pu-blade.jpg";
 import nylonBladeImage from "../../assets/photos/iwc-nylon-blade.jpg";
 import obdToolImage from "../../assets/photos/iwc-obd-tool.jpg";
 import taperNozzleImage from "../../assets/photos/iwc-taper-nozzle.jpg";
+
+const highlightCards = [
+  {
+    title: "10μ + UV",
+    body: "Capture and filtration to 10 microns, then UV treatment before discharge.",
+    tone: "accent",
+  },
+  {
+    title: "One 20′ unit",
+    body: "A single container, deployable from wharf or support vessel alongside.",
+    tone: "cyan",
+  },
+  {
+    title: "Every surface",
+    body: "Crawler, hand tools and capture cups — hull plate to sea chests and shafts.",
+    tone: "cyan",
+  },
+  {
+    title: "Recorded",
+    body: "Every clean lands against the survey that triggered it, waste stream documented.",
+    tone: "deep",
+  },
+] as const;
+
+const processSteps = [
+  {
+    label: "01 · SURVEY",
+    body: "Fouling is rated first, so the clean is justified and the baseline is recorded.",
+  },
+  {
+    label: "02 · CLEAN",
+    body: "Crawler, diver or hand tools work the hull and niches with capture running.",
+  },
+  {
+    label: "03 · CAPTURE",
+    body: "Dislodged material is filtered to 10μ and UV treated. No open discharge.",
+  },
+  {
+    label: "04 · RECORD",
+    body: "Before and after evidence lands in the platform with the waste stream documented.",
+  },
+] as const;
+
+const filtrationStages = [
+  {
+    num: "01",
+    title: "Bow screen",
+    body: "Coarse solids separated to a catch bag; filtrate drains to the bund.",
+  },
+  {
+    num: "02",
+    title: "25 μm screen",
+    body: "Self-cleaning micro-screen swept continuously by twin spraybars.",
+    highlight: "Self-cleaning · never blinds",
+  },
+  {
+    num: "03",
+    title: "Bag filter",
+    body: "Eight parallel housings polish the stream down to 5 μm.",
+  },
+  {
+    num: "04",
+    title: "UV disinfection",
+    body: "Quartz-sleeved UV array inactivates organisms before discharge.",
+  },
+] as const;
 ---
 
 <SiteLayout
   title="Cleaning with Capture | MarineStream™"
   description="In-water hull and niche-area cleaning with capture, 10μ filtration and UV treatment aligned to IMO and Australian standards."
 >
-  <PageHero
-    eyebrow="Services"
-    title="Cleaning with capture"
-    lead="In-water cleaning with capture, aligned to IMO and Australian biosecurity requirements."
-    parent={{ href: "/services", label: "Services" }}
-    image={bannerImage}
-    imageAlt="Hull cleaning unit working on a ship's underwater hull"
-  />
+  <div class="clean-hero-wrap">
+    <PageHero
+      eyebrow="Services"
+      title="Cleaning with capture"
+      lead="In-water cleaning that removes the fouling and contains it — filtered to 10μ and UV-treated, aligned to IMO and Australian biosecurity requirements."
+      parent={{ href: "/services", label: "Services" }}
+      image={bannerImage}
+      imageAlt="Hull cleaning unit working on a ship's underwater hull"
+    />
 
-  <section class="section">
-    <div class="container narrow">
-      <span class="eyebrow">Overview</span>
-      <h2>Clean the hull, keep the fouling</h2>
-      <hr class="accent-rule" />
-      <p>
-        Open in-water cleaning spreads exactly the organisms a clean is meant to control, which is
-        why it is restricted in most Australian ports. Cleaning with capture removes fouling and
-        contains it: dislodged material is drawn to the surface, filtered to 10μ, treated with UV,
-        and disposed of properly, with nothing returned to the water untreated.
-      </p>
-      <ul class="checklist checklist--cols">
-        <li>Capture and filtration to 10μ, with UV treatment</li>
-        <li>Single 20′ container, deployable from wharf or support vessel</li>
-        <li>Works with divers, hand tools, and ROV systems</li>
-        <li>Niche areas: sea chests, shafts, rudders, thrusters</li>
-        <li>Every clean recorded against the survey that triggered it</li>
-        <li>Aligned to IMO guidance and Australian biosecurity requirements</li>
-      </ul>
-    </div>
-  </section>
+    <section class="section clean-pull">
+      <div class="container">
+        <div class="clean-highlights reveal">
+          {
+            highlightCards.map((card) => (
+              <div class:list={["clean-highlights__card", `clean-highlights__card--${card.tone}`]}>
+                <strong>{card.title}</strong>
+                <p>{card.body}</p>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="clean-overview reveal">
+          <div class="clean-overview__title">
+            <span class="eyebrow">Overview</span>
+            <h2>Clean the hull, keep the fouling</h2>
+            <hr class="accent-rule" />
+          </div>
+          <p>
+            Open in-water cleaning spreads exactly the organisms a clean is meant to control — which
+            is why it is restricted in most Australian ports. Cleaning with capture removes fouling
+            and contains it: dislodged material is drawn to the surface, filtered to 10μ, treated
+            with UV, and disposed of properly, with nothing returned to the water untreated.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <section class="section section--soft">
     <div class="container">
-      <div class="grid-2">
+      <span class="eyebrow">Why it pays</span>
+      <h2>Fouling is a fuel bill and an emissions bill</h2>
+      <hr class="accent-rule" />
+      <div class="grid-2 clean-cost">
         <div class="reveal">
-          <span class="eyebrow">Why it pays</span>
-          <h2>Fouling is a fuel bill and an emissions bill</h2>
-          <hr class="accent-rule" />
           <p>
             Even light fouling raises hull resistance, and the cost compounds with speed: more fuel
-            burned, more CO2 emitted, and a vessel that no longer meets its performance claims.
+            burned, more CO₂ emitted, and a vessel that no longer meets its performance claims.
             Cleaning restores the hull; capture makes the clean itself compliant.
           </p>
           <p>
             Put your own numbers in with the
-            <a href="/interactive-tools/hullCalc.html">Fouling Cost Calculator</a>, built on the
-            same relationship shown here.
+            <a href="/interactive-tools/hullCalc.html">Fouling Cost Calculator</a>, built on the same
+            relationship shown here.
           </p>
         </div>
-        <figure class="figure reveal" style="margin: 0;">
+        <figure class="clean-cost__figure reveal">
           <Image
             src={costGraph}
             alt="Chart of operating cost and additional CO2 emissions against speed for clean and fouled hulls"
@@ -79,49 +153,49 @@ import taperNozzleImage from "../../assets/photos/iwc-taper-nozzle.jpg";
             style="background: #fff;"
           />
           <figcaption>
-            Operating cost and additional CO2 for a fouled hull (FR1) against a clean hull (FR0).
+            Operating cost and additional CO₂ for a fouled hull (FR1) against a clean hull (FR0).
           </figcaption>
         </figure>
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--dark">
     <div class="container">
       <span class="eyebrow">How a clean runs</span>
       <h2>Survey to sign-off</h2>
       <hr class="accent-rule" />
-      <ol class="steps">
-        <li>
-          <strong>Survey</strong>
-          <p>Fouling is rated first, so the clean is justified and the baseline is recorded.</p>
-        </li>
-        <li>
-          <strong>Clean</strong>
-          <p>Crawler, diver, or hand tools work the hull and niches with capture running.</p>
-        </li>
-        <li>
-          <strong>Capture</strong>
-          <p>Dislodged material is filtered to 10μ and UV treated. No open discharge.</p>
-        </li>
-        <li>
-          <strong>Record</strong>
-          <p>Before and after evidence lands in the platform with the waste stream documented.</p>
-        </li>
-      </ol>
+      <div class="ps-flow reveal">
+        {
+          processSteps.flatMap((step, i) => {
+            const card = (
+              <div class="ps-flow__step">
+                <span class="ps-flow__label">{step.label}</span>
+                <p>{step.body}</p>
+              </div>
+            );
+            if (i === 0) return [card];
+            return [
+              <span class="ps-flow__arrow" aria-hidden="true">
+                →
+              </span>,
+              card,
+            ];
+          })
+        }
+      </div>
     </div>
   </section>
 
-  <section class="section section--soft">
+  <section class="section">
     <div class="container">
       <span class="eyebrow">In-water cleaning methods</span>
       <h2>One backbone, three ways to clean</h2>
       <hr class="accent-rule" />
-      <p style="max-width: var(--narrow);">
-        A robotic crawler for hull plating, diver-operated hand tools for niche areas, and
-        dedicated capture tools for penetrations. Change the tool, not the biosecurity outcome —
-        every head returns its effluent through the same uplift line into the four-stage filtration
-        system.
+      <p class="clean-methods__lead">
+        A robotic crawler for hull plating, diver-operated hand tools for niche areas, and dedicated
+        capture tools for penetrations. Change the tool, not the biosecurity outcome — every head
+        returns its effluent through the same uplift line into the four-stage filtration system.
       </p>
 
       <div class="spec-cards">
@@ -136,17 +210,20 @@ import taperNozzleImage from "../../assets/photos/iwc-taper-nozzle.jpg";
             />
           </div>
           <div class="spec-card__body">
-            <span class="spec-card__eyebrow">Robotic hull-plating cleaning</span>
+            <span class="spec-card__eyebrow">Robotic hull plating</span>
             <h3>Magnetic crawler · cavitation</h3>
             <dl class="spec-list">
               <div><dt>Adhesion</dt><dd>Permanent magnetic tracks</dd></div>
-              <div><dt>Cleaning head</dt><dd>Cavitation — fresh water, ≈200 bar</dd></div>
-              <div><dt>Capture</dt><dd>Custom shroud, dual exhaust ports</dd></div>
+              <div><dt>Cleaning head</dt><dd>Cavitation, fresh water ≈200 bar</dd></div>
+              <div><dt>Capture</dt><dd>Custom shroud, dual ports</dd></div>
               <div><dt>Recovery</dt><dd>≈1,200 L/min to filtration</dd></div>
               <div><dt>Path width</dt><dd>450 mm per pass</dd></div>
-              <div><dt>Depth / control</dt><dd>60 m · tethered console, cameras</dd></div>
+              <div><dt>Depth / control</dt><dd>60 m · tethered console</dd></div>
             </dl>
-            <p>Proven on Royal Australian Navy vessels — Australia's first robotic in-water hull clean with full biofouling capture.</p>
+            <p>
+              Proven on Royal Australian Navy vessels — Australia's first robotic in-water hull clean
+              with full biofouling capture.
+            </p>
           </div>
         </article>
 
@@ -173,10 +250,13 @@ import taperNozzleImage from "../../assets/photos/iwc-taper-nozzle.jpg";
             <dl class="spec-list">
               <div><dt>PU blade</dt><dd>Soft fouling, delicate coatings</dd></div>
               <div><dt>Nylon blade</dt><dd>Hard macrofouling</dd></div>
-              <div><dt>Blades</dt><dd>Interchangeable push / pull, swapped underwater</dd></div>
-              <div><dt>Capture</dt><dd>Suction at the blade as debris lifts</dd></div>
+              <div><dt>Blades</dt><dd>Push / pull, swapped underwater</dd></div>
+              <div><dt>Capture</dt><dd>Suction at the blade</dd></div>
             </dl>
-            <p>Interchangeable blades let the diver match soft or hard fouling without leaving the water.</p>
+            <p>
+              Interchangeable blades let the diver match soft or hard fouling without leaving the
+              water.
+            </p>
           </div>
         </article>
 
@@ -198,122 +278,110 @@ import taperNozzleImage from "../../assets/photos/iwc-taper-nozzle.jpg";
             />
           </div>
           <div class="spec-card__body">
-            <span class="spec-card__eyebrow">Penetration &amp; OBD cleaning</span>
+            <span class="spec-card__eyebrow">Penetration &amp; OBD</span>
             <h3>Capture cups · taper nozzles</h3>
             <dl class="spec-list">
-              <div><dt>OBD tool</dt><dd>Valve-isolated rotary capture cup</dd></div>
-              <div><dt>Targets</dt><dd>Overboard discharges, intakes, gratings</dd></div>
-              <div><dt>Taper nozzle</dt><dd>Reaches recesses and crevices</dd></div>
-              <div><dt>Connection</dt><dd>Camlock straight to the uplift line</dd></div>
+              <div><dt>OBD tool</dt><dd>Valve-isolated rotary cup</dd></div>
+              <div><dt>Targets</dt><dd>Overboard discharges, intakes</dd></div>
+              <div><dt>Taper nozzle</dt><dd>Recesses and crevices</dd></div>
+              <div><dt>Connection</dt><dd>Camlock to uplift line</dd></div>
             </dl>
-            <p>Dedicated capture tooling for penetrations that a crawler or blade cannot seal against.</p>
+            <p>
+              Dedicated capture tooling for penetrations a crawler or blade cannot seal against.
+            </p>
           </div>
         </article>
       </div>
+
+      <figure class="clean-banner reveal">
+        <Image
+          src={progressImage}
+          alt="Live cleaning telemetry showing the boundary between fouled and cleaned hull"
+          widths={[640, 1280]}
+          sizes="(min-width: 68rem) 68rem, 100vw"
+          loading="lazy"
+        />
+        <figcaption>
+          Mid-clean telemetry — the boundary between fouled and cleaned plating, recorded live.
+        </figcaption>
+      </figure>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--dark">
     <div class="container">
-      <div class="grid-2">
-        <figure class="figure reveal" style="margin: 0;">
-          <Image
-            src={progressImage}
-            alt="Live cleaning telemetry showing the boundary between fouled and cleaned hull"
-            widths={[480, 900]}
-            sizes="(min-width: 800px) 32rem, 100vw"
-            loading="lazy"
-          />
-          <figcaption>
-            Mid-clean telemetry: the boundary between fouled and cleaned plating, recorded live.
-          </figcaption>
-        </figure>
-        <div class="reveal">
-          <span class="eyebrow">Proof, not promises</span>
-          <h2>The clean documents itself</h2>
-          <hr class="accent-rule" />
-          <p>
-            Cleaning systems record as they work. Progress, coverage, and the fouled-to-clean
-            boundary are captured frame by frame, so the report is generated from evidence rather
-            than written after the fact.
-          </p>
-          <p>
-            Capture matters where open cleaning is restricted. Every clean lands in the same
-            digital record as the inspection that triggered it.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--soft">
-    <div class="container narrow">
       <span class="eyebrow">The capture system</span>
       <h2>Captured, filtered, disinfected — no open discharge</h2>
       <hr class="accent-rule" />
-      <p>
+      <p class="clean-capture__lead">
         Whichever tool does the cleaning, the effluent is lifted to a single 20′ container and
         passes through four filtration stages before it returns to the harbour. Every drop goes
         through every stage — there is no bypass — and the solids leave the site as documented
         waste.
       </p>
-      <ol class="steps">
-        <li>
-          <strong>Bow screen</strong>
-          <p>Coarse solids separated to a catch bag; filtrate drains to the bund.</p>
-        </li>
-        <li>
-          <strong>25 μm screen</strong>
-          <p>Self-cleaning micro-screen swept continuously by twin spraybars.</p>
-        </li>
-        <li>
-          <strong>Bag filter</strong>
-          <p>Eight parallel housings polish the stream down to 5 μm.</p>
-        </li>
-        <li>
-          <strong>UV disinfection</strong>
-          <p>Quartz-sleeved UV array inactivates organisms before discharge.</p>
-        </li>
-      </ol>
-      <div class="photo-pair" style="margin-top: var(--space-lg);">
-        <Image
-          src={filtrationImage}
-          alt="Open containerised filtration plant with stainless vessel and pumps on a wharf"
-          widths={[480, 800]}
-          sizes="(min-width: 560px) 21rem, 100vw"
-          loading="lazy"
-        />
-        <Image
-          src={dischargeImage}
-          alt="Filtration barge returning treated water to the harbour beside a vessel"
-          widths={[480, 800]}
-          sizes="(min-width: 560px) 21rem, 100vw"
-          loading="lazy"
-        />
+
+      <div class="clean-stages reveal">
+        {
+          filtrationStages.flatMap((stage, i) => {
+            const card = (
+              <div
+                class:list={[
+                  "clean-stages__card",
+                  { "clean-stages__card--highlight": !!stage.highlight },
+                ]}
+              >
+                {stage.highlight && <span class="clean-stages__badge">{stage.highlight}</span>}
+                <span class="clean-stages__num">{stage.num}</span>
+                <strong>{stage.title}</strong>
+                <p>{stage.body}</p>
+              </div>
+            );
+            if (i === 0) return [card];
+            return [
+              <span class="clean-stages__arrow" aria-hidden="true">
+                →
+              </span>,
+              card,
+            ];
+          })
+        }
       </div>
-      <p>
-        The plant runs from the wharf or a support vessel alongside, capturing to ≤10 μm with UV
-        treatment and holding dissolved copper to ≤ 3.8 ppb in discharge. The same unit supports
-        <a href="/services/inspection">inspection</a> and diver operations, and the full
-        specification is on the <a href="/services/hardware">hardware</a> page for partners running
-        their own cleans.
+
+      <div class="clean-capture__photos">
+        <figure class="clean-banner clean-banner--half reveal">
+          <Image
+            src={filtrationImage}
+            alt="Open containerised filtration plant with stainless vessel and pumps on a wharf"
+            widths={[480, 900]}
+            sizes="(min-width: 800px) 32rem, 100vw"
+            loading="lazy"
+          />
+          <figcaption>The plant runs from the wharf or a support vessel alongside.</figcaption>
+        </figure>
+        <figure class="clean-banner clean-banner--half reveal">
+          <Image
+            src={dischargeImage}
+            alt="Filtration barge returning treated water to the harbour beside a vessel"
+            widths={[480, 900]}
+            sizes="(min-width: 800px) 32rem, 100vw"
+            loading="lazy"
+          />
+          <figcaption>Treated water returning to the harbour — ≤3.8 ppb dissolved copper.</figcaption>
+        </figure>
+      </div>
+
+      <p class="clean-capture__close reveal">
+        Capturing to ≤10 μm with UV treatment and holding dissolved copper to ≤3.8 ppb in discharge,
+        the same unit supports <a href="/services/inspection">inspection</a> and diver operations.
+        The full specification is on the <a href="/services/hardware">hardware</a> page for partners
+        running their own cleans.
       </p>
-      <div class="figure reveal">
-        <Image
-          src={supervisionImage}
-          alt="Operator supervising a hull crawler working at a ship's waterline"
-          widths={[480, 900]}
-          sizes="(min-width: 800px) 42rem, 100vw"
-          loading="lazy"
-          style="width: 100%; border-radius: var(--radius);"
-        />
-      </div>
     </div>
   </section>
 
   <ServiceCta
     title="Scope a compliant clean"
-    lead="Tell us the vessel, the fouling state if you know it, and the port. We will confirm the approach and what the record needs to show."
+    lead="Tell us the vessel, the fouling state if you know it, and the port. We'll confirm the approach and what the record needs to show."
     primaryHref="/contact"
     primaryLabel="Enquire about cleaning"
     secondaryHref="/services/inspection"

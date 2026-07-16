@@ -8,62 +8,113 @@ import controllerImage from "../../assets/photos/rov-controller-hands.jpg";
 import chainImage from "../../assets/photos/rov-chain-shackle.jpg";
 import hudImage from "../../assets/photos/inspection-hud.jpg";
 import launchImage from "../../assets/photos/rov-launch-gunwale.jpg";
+
+const highlightCards = [
+  {
+    title: "4K imaging",
+    body: "HD recording with positioning and sonar for repeatable, systematic coverage.",
+    tone: "deep",
+  },
+  {
+    title: "Rated on the spot",
+    body: "Fouling rated in the field against the agreed scale — the finding is the record.",
+    tone: "cyan",
+  },
+  {
+    title: "Live access",
+    body: "Owners, class and regulators watch the same survey as it happens.",
+    tone: "cyan",
+  },
+  {
+    title: "One record",
+    body: "Every frame tagged to its asset and zone — auditable, not a folder of video.",
+    tone: "accent",
+  },
+] as const;
+
+const processSteps = [
+  {
+    label: "01 · MOBILISE",
+    body: "ROV or dive team deploys from wharf or vessel with the survey plan loaded.",
+  },
+  {
+    label: "02 · SURVEY",
+    body: "Systematic coverage of hull, niches or infrastructure with positioning logged.",
+  },
+  {
+    label: "03 · RATE",
+    body: "Fouling rated in the field, on the spot, against the agreed scale.",
+  },
+  {
+    label: "04 · REPORT",
+    body: "Evidence, ratings and sign-offs land in the platform. Reports generate automatically.",
+  },
+] as const;
 ---
 
 <SiteLayout
   title="Inspection | MarineStream™"
   description="High-definition ROV and diver surveys with live multi-stakeholder access and fouling ratings captured at the point of survey."
 >
-  <PageHero
-    eyebrow="Services"
-    title="Inspection"
-    lead="Hull, propeller, and niche-area surveys with fouling ratings captured at the point of survey."
-    parent={{ href: "/services", label: "Services" }}
-    image={bannerImage}
-    imageAlt="Inspection ROV with lights on approaching a fouled mooring chain"
-  />
+  <div class="clean-hero-wrap">
+    <PageHero
+      eyebrow="Services"
+      title="Inspection"
+      lead="Hull, propeller and niche-area surveys — with fouling ratings captured at the point of survey, not reconstructed afterwards."
+      parent={{ href: "/services", label: "Services" }}
+      image={bannerImage}
+      imageAlt="Inspection ROV with lights on approaching a fouled mooring chain"
+    />
 
-  <section class="section">
-    <div class="container narrow">
-      <span class="eyebrow">Overview</span>
-      <h2>See the condition before it becomes a problem</h2>
-      <hr class="accent-rule" />
-      <p>
-        An inspection is only as useful as the decisions it enables. MarineStream surveys rate
-        fouling at the point of survey, stream footage to every stakeholder who needs it, and land
-        the evidence in one auditable record, so a clean, a treatment, or a clearance can be
-        approved without a second visit.
-      </p>
-      <ul class="checklist checklist--cols">
-        <li>4K imaging and HD recording</li>
-        <li>Positioning and sonar for repeatable coverage</li>
-        <li>Fouling ratings captured at the point of survey</li>
-        <li>Live multi-stakeholder access to footage</li>
-        <li>Hull, propeller, sea chest, and niche-area coverage</li>
-        <li>Direct MarineStream™ platform integration</li>
-      </ul>
-    </div>
-  </section>
+    <section class="section clean-pull">
+      <div class="container">
+        <div class="clean-highlights reveal">
+          {
+            highlightCards.map((card) => (
+              <div class:list={["clean-highlights__card", `clean-highlights__card--${card.tone}`]}>
+                <strong>{card.title}</strong>
+                <p>{card.body}</p>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="clean-overview reveal">
+          <div class="clean-overview__title">
+            <span class="eyebrow">Overview</span>
+            <h2>See the condition before it becomes a problem</h2>
+            <hr class="accent-rule" />
+          </div>
+          <p>
+            An inspection is only as useful as the decisions it enables. MarineStream surveys rate
+            fouling at the point of survey, stream footage to every stakeholder who needs it, and
+            land the evidence in one auditable record — so a clean, a treatment or a clearance can
+            be approved without a second visit.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <section class="section section--soft">
     <div class="container">
-      <div class="grid-2">
+      <span class="eyebrow">What we survey</span>
+      <h2>Vessels, moorings and infrastructure</h2>
+      <hr class="accent-rule" />
+      <div class="grid-2 clean-cost">
         <div class="reveal">
-          <span class="eyebrow">What we survey</span>
-          <h2>Vessels, moorings, and infrastructure</h2>
-          <hr class="accent-rule" />
           <p>
-            The same workflow covers ship hulls and the assets around them: mooring chains,
-            anchors, wharf structures, and submerged infrastructure. ROV surveys reach what divers
-            should not, and diver surveys carry the same rating and recording discipline where
-            hands-on access is needed.
+            The same workflow covers ship hulls and the assets around them: mooring chains, anchors,
+            wharf structures and submerged infrastructure. ROV surveys reach what divers should not,
+            and diver surveys carry the same rating and recording discipline where hands-on access
+            is needed.
           </p>
           <p>
-            Every frame is tagged to the asset and zone it belongs to, which is what makes the
+            Every frame is tagged to the asset and zone it belongs to — which is what makes the
             record auditable rather than a folder of video files.
           </p>
         </div>
-        <figure class="figure reveal">
+        <figure class="clean-banner clean-banner--half reveal">
           <Image
             src={chainImage}
             alt="Fouled mooring chains converging at a shackle with an inspection ROV on task"
@@ -71,59 +122,65 @@ import launchImage from "../../assets/photos/rov-launch-gunwale.jpg";
             sizes="(min-width: 800px) 32rem, 100vw"
             loading="lazy"
           />
-          <figcaption>Mooring chain survey. The fouling is the finding, the ROV is the tool.</figcaption>
+          <figcaption>
+            Mooring chain survey — the fouling is the finding, the ROV is the tool.
+          </figcaption>
         </figure>
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--dark">
     <div class="container">
       <span class="eyebrow">How a survey runs</span>
       <h2>Four steps, one record</h2>
       <hr class="accent-rule" />
-      <ol class="steps">
-        <li>
-          <strong>Mobilise</strong>
-          <p>ROV or dive team deploys from wharf or vessel with the survey plan loaded.</p>
-        </li>
-        <li>
-          <strong>Survey</strong>
-          <p>Systematic coverage of hull, niches, or infrastructure with positioning logged.</p>
-        </li>
-        <li>
-          <strong>Rate</strong>
-          <p>Fouling rated in the field, on the spot, against the agreed scale.</p>
-        </li>
-        <li>
-          <strong>Report</strong>
-          <p>Evidence, ratings, and sign-offs land in the platform. Reports generate automatically.</p>
-        </li>
-      </ol>
+      <div class="ps-flow reveal">
+        {
+          processSteps.flatMap((step, i) => {
+            const card = (
+              <div class="ps-flow__step">
+                <span class="ps-flow__label">{step.label}</span>
+                <p>{step.body}</p>
+              </div>
+            );
+            if (i === 0) return [card];
+            return [
+              <span class="ps-flow__arrow" aria-hidden="true">
+                →
+              </span>,
+              card,
+            ];
+          })
+        }
+      </div>
+
+      <figure class="clean-banner reveal" style="margin-top: var(--space-lg);">
+        <Image
+          src={hudImage}
+          alt="Inspection system interface showing a fouled hull section with depth and zone telemetry"
+          widths={[640, 1280]}
+          sizes="(min-width: 68rem) 68rem, 100vw"
+          loading="lazy"
+        />
+        <figcaption>
+          Live inspection telemetry — depth, heading and hull zone recorded with every frame.
+        </figcaption>
+      </figure>
     </div>
   </section>
 
-  <section class="section section--soft">
+  <section class="section">
     <div class="container">
-      <div class="grid-2">
-        <figure class="figure reveal" style="margin: 0;">
-          <Image
-            src={hudImage}
-            alt="Inspection system interface showing a fouled hull section with depth and zone telemetry"
-            widths={[480, 900]}
-            sizes="(min-width: 800px) 32rem, 100vw"
-            loading="lazy"
-          />
-          <figcaption>
-            Live inspection telemetry: depth, heading, and hull zone recorded with every frame.
-          </figcaption>
-        </figure>
-        <div class="reveal">
+      <div class="clean-overview reveal">
+        <div class="clean-overview__title">
           <span class="eyebrow">The evidence layer</span>
           <h2>Stakeholders watch the same survey</h2>
           <hr class="accent-rule" />
+        </div>
+        <div>
           <p>
-            Owners, regulators, and class surveyors do not wait for an edited report. Live access
+            Owners, regulators and class surveyors do not wait for an edited report. Live access
             means questions are answered during the survey, and the record everyone saw is the
             record that gets signed.
           </p>
@@ -136,31 +193,39 @@ import launchImage from "../../assets/photos/rov-launch-gunwale.jpg";
     </div>
   </section>
 
-  <section class="section">
-    <div class="container narrow">
+  <section class="section section--soft">
+    <div class="container">
       <span class="eyebrow">In the field</span>
       <h2>Equipment matched to the job</h2>
       <hr class="accent-rule" />
-      <div class="photo-pair">
-        <Image
-          src={launchImage}
-          alt="Technician launching an ROV over a vessel gunwale"
-          widths={[480, 800]}
-          sizes="(min-width: 560px) 21rem, 100vw"
-          loading="lazy"
-        />
-        <Image
-          src={controllerImage}
-          alt="Operator's hands on an ROV controller showing a live underwater feed"
-          widths={[480, 800]}
-          sizes="(min-width: 560px) 21rem, 100vw"
-          loading="lazy"
-        />
+      <div class="clean-capture__photos">
+        <figure class="clean-banner clean-banner--half reveal">
+          <Image
+            src={launchImage}
+            alt="Technician launching an ROV over a vessel gunwale"
+            widths={[480, 900]}
+            sizes="(min-width: 800px) 32rem, 100vw"
+            loading="lazy"
+          />
+          <figcaption>Inspection-class ROVs handle the routine coverage.</figcaption>
+        </figure>
+        <figure class="clean-banner clean-banner--half reveal">
+          <Image
+            src={controllerImage}
+            alt="Operator's hands on an ROV controller showing a live underwater feed"
+            widths={[480, 900]}
+            sizes="(min-width: 800px) 32rem, 100vw"
+            loading="lazy"
+          />
+          <figcaption>
+            Divers take the niches that need hands and judgement. Both feed the same record.
+          </figcaption>
+        </figure>
       </div>
-      <p>
-        Inspection-class ROVs handle the routine coverage. Divers take the niches that need hands
-        and judgement. Both feed the same record. If you want the equipment itself, see
-        <a href="/services/hardware">hardware</a>, and if you want your own teams surveying to this
+      <p class="clean-capture__close reveal">
+        Inspection-class ROVs handle the routine coverage; divers take the niches that need hands
+        and judgement — and both feed the same record. If you want the equipment itself, see
+        <a href="/services/hardware">hardware</a>; if you want your own teams surveying to this
         standard, see <a href="/services/training">training</a>.
       </p>
     </div>
@@ -168,7 +233,7 @@ import launchImage from "../../assets/photos/rov-launch-gunwale.jpg";
 
   <ServiceCta
     title="Book a survey, or build the capability"
-    lead="Tell us the vessel or asset and the standard you need to meet. We will scope the survey, or set your team up to run it."
+    lead="Tell us the vessel or asset and the standard you need to meet. We'll scope the survey, or set your team up to run it."
     primaryHref="/contact"
     primaryLabel="Enquire about inspection"
     secondaryHref="/services/cleaning"
