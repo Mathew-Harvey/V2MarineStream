@@ -3,123 +3,474 @@ import SiteLayout from "../../layouts/SiteLayout.astro";
 import PageHero from "../../components/PageHero.astro";
 import ServiceCta from "../../components/ServiceCta.astro";
 import { Image } from "astro:assets";
-import { imsExpertise } from "../../data/sales";
 import bannerImage from "../../assets/photos/mooring-buoy-crew.jpg";
 import mobilisationImage from "../../assets/photos/wharf-mobilisation.jpg";
 import buoyImage from "../../assets/photos/buoy-workers.jpg";
+import marcImage from "../../assets/photos/marc-green.png";
+
+const models = [
+  {
+    id: "design",
+    label: "Model 01",
+    watermark: "Design",
+    title: "Build the program",
+    body: "A biofouling management program built for your fleet and the rules it sails under — from the ground up.",
+    variant: "navy",
+  },
+  {
+    id: "uplift",
+    label: "Model 02",
+    watermark: "Uplift",
+    title: "Fix what exists",
+    body: "Existing operations reviewed and reworked so records satisfy auditors and clients the first time.",
+    variant: "cyan",
+  },
+  {
+    id: "sustain",
+    label: "Model 03",
+    watermark: "Sustain",
+    title: "Keep it current",
+    body: "Ongoing advisory support as vessels, rules and jurisdictions change around you.",
+    variant: "dark",
+  },
+] as const;
+
+const coverItems = [
+  {
+    title: "Program design",
+    body: "Compliance and biofouling programs built for your fleet — the plan a regulator accepts and a crew can actually run.",
+  },
+  {
+    title: "Operational consulting",
+    body: "Inspection and cleaning workflows reworked so the field, the office and the auditor all see one job.",
+  },
+  {
+    title: "Reporting setup",
+    body: "Report formats aligned to biosecurity and defence requirements — built to pass review the first time.",
+  },
+  {
+    title: "Mobilisation planning",
+    body: "Vessels, ports and remote sites planned from the wharf up — where programs succeed or fail.",
+  },
+  {
+    title: "Independent review",
+    body: "A frank read of existing programs and records against the standard they'll be held to.",
+  },
+  {
+    title: "Ongoing advisory",
+    body: "A standing line to call as rules, jurisdictions and your fleet change over time.",
+  },
+] as const;
+
+const engagementSteps = [
+  {
+    label: "01 · Scope",
+    title: "The decision",
+    body: "What you operate and what you must prove — the problem defined, not an open brief.",
+  },
+  {
+    label: "02 · Design",
+    title: "The program",
+    body: "Plan, workflow or report format built to the standard it answers to.",
+  },
+  {
+    label: "03 · Validate",
+    title: "Against the rules",
+    body: "Tested against the regulator and the auditor before it goes live.",
+  },
+  {
+    label: "04 · Hand back",
+    title: "Runs without us",
+    body: "Capability that stays — connected to training, hardware and software where it needs to.",
+  },
+] as const;
+
+const marcCredentials = [
+  "Listed on the DPIRD biofouling inspector register",
+  "Marine science degree",
+  "ADAS commercial diver, 1,000+ logged ROV hours",
+  "Led field ops for the IMO-NORAD demonstration, Ecuador",
+] as const;
+
+const imsCapabilities = [
+  {
+    title: "Invasive species identification",
+    body: "Field identification of marine pests against the WA Prevention List, with the diving and ROV background to inspect the niche areas where they actually settle.",
+  },
+  {
+    title: "Biosecurity risk assessment",
+    body: "Risk assessed against DPIRD and IMO frameworks, so a vessel's status is defensible to the regulator and the delay to mobilisation is minimised.",
+  },
+  {
+    title: "Treatment guidance & verification",
+    body: "Guidance aligned to regulation on how to treat what's found — and, uniquely, the crews and capture systems to carry it out and verify the result.",
+  },
+] as const;
+
+const compareTypical = [
+  { ok: true, text: "Accredited inspection & IMS identification" },
+  { ok: true, text: "Biosecurity risk assessment & BFMP" },
+  { ok: false, text: "In-water cleaning & remediation" },
+  { ok: false, text: "Capture & compliant discharge" },
+  { ok: false, text: "One auditable record, finding to fix" },
+  { ok: false, text: "Crews trained on your own systems" },
+] as const;
+
+const compareOurs = [
+  { ok: true, text: "DPIRD-registered inspector & IMS identification" },
+  { ok: true, text: "Biosecurity risk assessment & BFMP" },
+  { ok: true, text: "In-water cleaning & remediation in-house" },
+  { ok: true, text: "Full capture & biosecurity-compliant discharge" },
+  { ok: true, text: "One auditable record on the MarineStream platform" },
+  { ok: true, text: "Crews trained on the systems you keep" },
+] as const;
+
+const proofStats = [
+  { value: "40+ yrs", label: "Underwater sustainment" },
+  { value: "85+", label: "RAN & commercial vessels" },
+  { value: "1st", label: "Commercial IWC port agreement in Australia" },
+  { value: "O2", label: "Independently audited operations" },
+] as const;
+
+const engagementTypes = [
+  {
+    label: "Design",
+    body: "A biofouling management program built for your fleet and the rules it sails under — from vessel profiling to the record book a regulator accepts.",
+  },
+  {
+    label: "Uplift",
+    body: "Existing operations reviewed and reworked so records satisfy auditors and clients — the gap between what you do and what you can prove, closed.",
+  },
+  {
+    label: "Sustain",
+    body: "Ongoing advisory support as vessels, rules and jurisdictions change — a standing line to a team that helps shape these standards through the IMO and Australian consultations, and answers to the regulators on live jobs.",
+  },
+] as const;
+
+const connects = [
+  {
+    title: "Training",
+    body: "Crews certified against the same standard our operators meet.",
+    href: "/services/training",
+  },
+  {
+    title: "Hardware",
+    body: "The ROVs, crawler and filtration that act on the finding.",
+    href: "/services/hardware",
+  },
+  {
+    title: "Software",
+    body: "The platform that holds the evidence, finding to sign-off.",
+    href: "/services/software",
+  },
+] as const;
 ---
 
 <SiteLayout
   title="Professional Services | MarineStream™"
-  description="Maritime consulting, program design, and operational support for biofouling compliance."
+  description="Maritime consulting with a DPIRD-accredited IMS inspector — program design, operational uplift, and delivery capability under one roof."
 >
-  <PageHero
-    eyebrow="Services"
-    title="Professional services"
-    lead="Consulting and advisory support for partners building or scaling IMO-aligned capability."
-    parent={{ href: "/services", label: "Services" }}
-    image={bannerImage}
-    imageAlt="Crew working around a mooring buoy on a vessel deck"
-  />
+  <div class="ps-hero-wrap">
+    <PageHero
+      eyebrow="Services"
+      title="Professional services"
+      lead="The advisory layer around the work — a DPIRD-accredited inspector and a program built for the rules you sail under, backed by the crews and systems that deliver on it."
+      parent={{ href: "/services", label: "Services" }}
+      image={bannerImage}
+      imageAlt="Crew working around a mooring buoy on a vessel deck"
+    />
 
-  <section class="section">
-    <div class="container narrow">
-      <span class="eyebrow">Overview</span>
-      <h2>The advisory layer around the work</h2>
-      <hr class="accent-rule" />
-      <p>
-        Equipment and software only deliver compliance when the program around them is right.
-        Professional services cover that layer: how your teams work, what they record, and how
-        stakeholders sign off.
-      </p>
-      <ul class="checklist checklist--cols">
-        <li>Compliance and biofouling program design</li>
-        <li>Operational consulting for inspection and cleaning workflows</li>
-        <li>Reporting setup aligned to biosecurity and defence requirements</li>
-        <li>Mobilisation planning for vessels, ports, and remote sites</li>
-        <li>Ongoing advisory and review support</li>
-        <li>Independent review of existing programs and records</li>
-      </ul>
+    <section class="section ps-pull">
+      <div class="container">
+        <div class="ps-models">
+          {
+            models.map((model) => (
+              <a
+                class:list={["ps-model", `ps-model--${model.variant}`, "reveal"]}
+                href="#engagements"
+              >
+                <div class="ps-model__meta">
+                  <span class="ps-model__label">{model.label}</span>
+                  <span class="ps-model__watermark" aria-hidden="true">
+                    {model.watermark}
+                  </span>
+                </div>
+                <h3>{model.title}</h3>
+                <p>{model.body}</p>
+              </a>
+            ))
+          }
+        </div>
+
+        <div class="ps-overview reveal">
+          <div class="ps-overview__title">
+            <span class="eyebrow">Overview</span>
+            <h2>Advice grounded in delivery</h2>
+            <hr class="accent-rule" />
+          </div>
+          <p>
+            Equipment and software only deliver compliance when the program around them is right —
+            how your teams work, what they record, and how stakeholders sign off. Our advice comes
+            from the same people who mobilise crews, run surveys and answer to regulators on our own
+            jobs. Engagements are scoped to a decision or a capability, not an open-ended retainer: a
+            program designed, a workflow fixed, a report format that passes review the first time.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="section section--soft">
+    <div class="container">
+      <div class="ps-section-head reveal">
+        <span class="eyebrow">What we cover</span>
+        <h2>The layer between the rules and the water</h2>
+        <hr class="accent-rule" />
+      </div>
+
+      <div class="ps-cover">
+        {
+          coverItems.map((item) => (
+            <article class="ps-cover__card reveal">
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <figure class="ps-banner-figure reveal">
+        <Image
+          src={mobilisationImage}
+          alt="Technician preparing an ROV beside a service trailer on the wharf"
+          widths={[640, 1280]}
+          sizes="(min-width: 68rem) 68rem, 100vw"
+          loading="lazy"
+        />
+        <figcaption>Mobilisation is where programs succeed or fail. We plan from the wharf up.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="engagements" class="section section--dark">
+    <div class="container">
+      <div class="ps-section-head reveal">
+        <span class="eyebrow">How engagements run</span>
+        <h2>Scoped to a decision, not a retainer</h2>
+        <hr class="accent-rule" />
+        <p class="ps-lead ps-lead--on-dark">
+          Every engagement has a start, a deliverable and an end. We scope to the decision you need
+          made or the capability you need to stand up — then hand it back so it runs without us.
+        </p>
+      </div>
+
+      <div class="ps-flow reveal">
+        {
+          engagementSteps.flatMap((step, i) => {
+            const card = (
+              <div class="ps-flow__step">
+                <span class="ps-flow__label">{step.label}</span>
+                <strong>{step.title}</strong>
+                <p>{step.body}</p>
+              </div>
+            );
+            if (i === 0) return [card];
+            return [
+              <span class="ps-flow__arrow" aria-hidden="true">
+                →
+              </span>,
+              card,
+            ];
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="ims" class="section">
+    <div class="container">
+      <div class="ps-section-head reveal">
+        <span class="eyebrow">Within professional services</span>
+        <h2>IMS expertise, on the DPIRD register</h2>
+        <hr class="accent-rule" />
+        <p class="ps-lead">
+          Invasive marine species work turns on the judgement of a suitably qualified expert. Ours is
+          named on the WA Department of Primary Industries and Regional Development's register of
+          biofouling inspectors — the same list the regulator points vessel managers to. Using a
+          listed expert gives DPIRD confidence a vessel's risk has been managed to an acceptable
+          level, which minimises delays to mobilisation.
+        </p>
+      </div>
+
+      <div class="ps-ims">
+        <aside class="ps-inspector reveal">
+          <div class="ps-inspector__photo">
+            <Image
+              src={marcImage}
+              alt="Marc Green, DPIRD-accredited IMS inspector, working dockside"
+              widths={[340, 680]}
+              sizes="(min-width: 900px) 21rem, 100vw"
+              loading="lazy"
+            />
+          </div>
+          <div class="ps-inspector__body">
+            <span class="ps-inspector__eyebrow">DPIRD-accredited IMS inspector</span>
+            <h3>Marc Green</h3>
+            <p class="ps-inspector__role">National ROV Manager · Marine Scientist</p>
+            <ul class="ps-inspector__list">
+              {
+                marcCredentials.map((item) => (
+                  <li>{item}</li>
+                ))
+              }
+            </ul>
+          </div>
+        </aside>
+
+        <div class="ps-ims__caps">
+          {
+            imsCapabilities.map((cap) => (
+              <article class="ps-ims__card reveal">
+                <h4>{cap.title}</h4>
+                <p>{cap.body}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="section section--soft">
     <div class="container">
-      <div class="grid-2">
-        <div class="reveal">
-          <span class="eyebrow">How engagements run</span>
-          <h2>Advice grounded in delivery</h2>
-          <hr class="accent-rule" />
-          <p>
-            The advice comes from the same people who mobilise crews, run surveys, and answer to
-            regulators on our own jobs. Engagements are scoped to a decision or a capability, not
-            an open-ended retainer: a program designed, a workflow fixed, a report format that
-            passes review the first time.
-          </p>
-          <p>
-            Where the answer involves crews or systems, it connects directly to
-            <a href="/services/training">training</a>,
-            <a href="/services/hardware">hardware</a>, and the
-            <a href="/services/software">software</a>.
-          </p>
+      <div class="ps-section-head reveal">
+        <span class="eyebrow">The comparative offer</span>
+        <h2>An inspector who can also act on the finding</h2>
+        <hr class="accent-rule" />
+        <p class="ps-lead">
+          Most marine-biosecurity consultancies stop at the report: they inspect, assess the risk and
+          write the plan, then hand you a recommendation and step away. You still have to find a
+          separate contractor to clean what was found — on a separate job, with the evidence trail
+          split across two parties. We hold the accreditation and the delivery capability under one
+          roof, so the finding and the fix live on one record.
+        </p>
+      </div>
+
+      <div class="ps-compare">
+        <div class="ps-compare__card reveal">
+          <div class="ps-compare__head">
+            <span class="ps-compare__eyebrow">Typical IMS consultancy</span>
+            <strong>Advice, then you're on your own</strong>
+          </div>
+          <ul class="ps-compare__list">
+            {
+              compareTypical.map((row) => (
+                <li class:list={{ "ps-compare__miss": !row.ok }}>
+                  <span aria-hidden="true">{row.ok ? "✓" : "—"}</span>
+                  {row.text}
+                </li>
+              ))
+            }
+          </ul>
         </div>
-        <figure class="figure reveal" style="margin: 0;">
+
+        <div class="ps-compare__card ps-compare__card--ours reveal">
+          <div class="ps-compare__head">
+            <span class="ps-compare__eyebrow">MarineStream professional services</span>
+            <strong>Accreditation and the capability to deliver</strong>
+          </div>
+          <ul class="ps-compare__list">
+            {
+              compareOurs.map((row) => (
+                <li>
+                  <span aria-hidden="true">✓</span>
+                  {row.text}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section ps-proof-section">
+    <div class="container">
+      <div class="ps-proof reveal">
+        <div class="ps-proof__title">
+          <span class="ps-proof__eyebrow">The delivery behind the advice</span>
+          <strong>
+            A division of Franmarine — underwater sustainment since 1981, and Australia's only
+            commercial in-water cleaning port agreement.
+          </strong>
+        </div>
+        <div class="ps-proof__stats">
+          {
+            proofStats.map((stat) => (
+              <div>
+                <span class="ps-proof__value">{stat.value}</span>
+                <span class="ps-proof__label">{stat.label}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="ps-section-head reveal">
+        <span class="eyebrow">Typical engagements</span>
+        <h2>Three ways partners use us</h2>
+        <hr class="accent-rule" />
+      </div>
+
+      <div class="ps-engage">
+        <div class="ps-engage__list">
+          {
+            engagementTypes.map((item) => (
+              <article class="ps-engage__card reveal">
+                <span class="ps-engage__label">{item.label}</span>
+                <p>{item.body}</p>
+              </article>
+            ))
+          }
+        </div>
+        <figure class="ps-engage__figure reveal">
           <Image
-            src={mobilisationImage}
-            alt="Technician preparing an ROV beside a service trailer on the wharf"
-            widths={[480, 900]}
-            sizes="(min-width: 800px) 32rem, 100vw"
+            src={buoyImage}
+            alt="Crew working mooring gear on deck with workers standing on a buoy alongside"
+            widths={[640, 1100]}
+            sizes="(min-width: 900px) 32rem, 100vw"
             loading="lazy"
           />
-          <figcaption>Mobilisation is where programs succeed or fail. We plan from the wharf up.</figcaption>
+          <figcaption>Programs have to survive contact with real operations, like this one.</figcaption>
         </figure>
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--soft ps-pair-section">
     <div class="container">
-      <span class="eyebrow">Typical engagements</span>
-      <h2>Three ways partners use us</h2>
-      <hr class="accent-rule" />
-      <ol class="steps steps--three">
-        <li>
-          <strong>Design</strong>
-          <p>A biofouling management program built for your fleet and the rules it sails under.</p>
-        </li>
-        <li>
-          <strong>Uplift</strong>
-          <p>Existing operations reviewed and reworked so records satisfy auditors and clients.</p>
-        </li>
-        <li>
-          <strong>Sustain</strong>
-          <p>Ongoing advisory support as vessels, rules, and jurisdictions change.</p>
-        </li>
-      </ol>
-      <figure class="figure reveal">
-        <Image
-          src={buoyImage}
-          alt="Crew working mooring gear on deck with workers standing on a buoy alongside"
-          widths={[640, 1280]}
-          sizes="(min-width: 68rem) 68rem, 100vw"
-          loading="lazy"
-        />
-        <figcaption>Programs have to survive contact with real operations, like this one.</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <section class="section section--soft">
-    <div class="container narrow">
-      <span class="eyebrow">Within professional services</span>
-      <h2>{imsExpertise.label}</h2>
-      <hr class="accent-rule" />
-      <p>{imsExpertise.description}</p>
-      <ul class="checklist">
-        {imsExpertise.features.map((feature) => <li>{feature}</li>)}
-      </ul>
-      <div class="btn-row">
-        <a class="btn btn--navy" href={imsExpertise.href}>IMS expertise</a>
+      <div class="ps-pair reveal">
+        <div class="ps-pair__title">
+          <span class="ps-pair__eyebrow">Connects to</span>
+          <strong>Where the answer meets the water</strong>
+        </div>
+        <div class="ps-pair__grid">
+          {
+            connects.map((item) => (
+              <a href={item.href}>
+                <strong>{item.title}</strong>
+                <p>{item.body}</p>
+              </a>
+            ))
+          }
+        </div>
+        <div class="ps-pair__actions">
+          <a class="btn btn--primary" href="/services">Explore services →</a>
+        </div>
       </div>
     </div>
   </section>
@@ -129,7 +480,7 @@ import buoyImage from "../../assets/photos/buoy-workers.jpg";
     lead="A short conversation about what you operate and what you must prove is enough to scope an engagement."
     primaryHref="/contact"
     primaryLabel="Talk to our team"
-    secondaryHref="/services/expertise"
+    secondaryHref="#ims"
     secondaryLabel="IMS expertise"
   />
 </SiteLayout>

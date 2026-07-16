@@ -24,78 +24,182 @@ const classLogos = [
   { src: lrLogo, alt: "Lloyd's Register" },
   { src: nkLogo, alt: "ClassNK" },
 ];
+
+const highlightStats = [
+  { value: "1981", label: "Franmarine founded — decades of underwater sustainment" },
+  { value: "120+", label: "Vessels inspected and cleaned to standard" },
+  { value: "1st", label: "Commercial in-water cleaning port agreement in Australia" },
+  { value: "ISO", label: "9001 · 14001 · 45001 certified, DNV" },
+];
+
+const stackServices = [
+  {
+    href: "/services/hardware",
+    num: "01 · HARDWARE",
+    title: "Eyes and tools on the hull",
+    body: "Inspection ROVs, the cleaning crawler, and full-capture filtration — three tiers of intervention.",
+    cta: "Hardware →",
+  },
+  {
+    href: "/services/software",
+    num: "02 · SOFTWARE",
+    title: "The record everyone shares",
+    body: "Capture once, review in parallel, and the compliance report writes itself from the job.",
+    cta: "Software →",
+  },
+  {
+    href: "/services/training",
+    num: "03 · TRAINING",
+    title: "Crews who run it unsupervised",
+    body: "A five-module program from our own operating manual, assessed against a written standard.",
+    cta: "Training →",
+  },
+  {
+    href: "/services/professional-services",
+    num: "04 · PRO SERVICES",
+    title: "The program around it",
+    body: "A DPIRD-accredited inspector and advisory that make the whole stack pass an audit.",
+    cta: "Professional services →",
+    accent: true,
+  },
+];
+
+const commitments = [
+  {
+    title: "IMO aligned",
+    body: "Inspection, cleaning with capture and records mapped to the biofouling guidelines.",
+    tone: "deep",
+  },
+  {
+    title: "Field proven",
+    body: "Equipment and workflows proven on Navy and commercial vessel operations first.",
+    tone: "cyan",
+  },
+  {
+    title: "Audit ready",
+    body: "One digital trail — ratings, evidence, approvals and reports in a single place.",
+    tone: "cyan",
+  },
+  {
+    title: "Partner first",
+    body: "We uplift contractors and ROV teams rather than compete for every diver day.",
+    tone: "orange",
+  },
+];
+
+const defenceStats = [
+  { value: "85+", label: "RAN vessels serviced" },
+  { value: "DISP", label: "Defence-certified supply chain" },
+  { value: "O2", label: "Independently audited operations" },
+];
 ---
 
 <SiteLayout
   title="About | MarineStream™"
   description="MarineStream is a division of Franmarine, enabling partners to deliver IMO-aligned biofouling work."
 >
-  <PageHero
-    eyebrow="A division of Franmarine"
-    title="About"
-    lead="Built by people who run underwater sustainment, for partners who deliver compliant biofouling work."
-    image={bannerImage}
-    imageAlt="Operator supervising a hull crawler working at a ship's waterline"
-  />
+  <div class="about-hero-wrap">
+    <PageHero
+      eyebrow="A division of Franmarine"
+      title="About MarineStream"
+      lead="Built by the people who run underwater sustainment — so partners can deliver compliant biofouling work on the same systems we trust ourselves."
+      image={bannerImage}
+      imageAlt="Operator supervising a hull crawler working at a ship's waterline"
+    />
 
-  <section class="section">
-    <div class="container">
-      <div class="grid-2">
-        <div class="reveal">
-          <span class="eyebrow">The story</span>
-          <h2>Operational systems, not shelfware</h2>
-          <hr class="accent-rule" />
-          <p>
-            Franmarine has delivered underwater sustainment and biofouling management for decades,
-            from Henderson, Western Australia. MarineStream™ is the platform and capability stack
-            that makes that work transparent, standardised, and auditable, now available to diving
-            contractors, hull cleaners, and ROV operators.
-          </p>
-          <p>
-            The people behind it run the operations themselves: commercial diving, ROV inspection,
-            in-water cleaning with capture, and marine science. That experience shapes everything
-            from the hardware we supply to the way the platform structures a job record.
-          </p>
-          <p>
-            <a href="https://www.franmarine.com.au/" rel="noopener noreferrer">Visit Franmarine →</a>
-          </p>
+    <section class="section about-pull">
+      <div class="container">
+        <div class="about-stats reveal">
+          {
+            highlightStats.map((stat) => (
+              <div class="about-stats__card">
+                <div class="about-stats__value">{stat.value}</div>
+                <div class="about-stats__label">{stat.label}</div>
+              </div>
+            ))
+          }
         </div>
-        <figure class="figure reveal" style="margin: 0;">
-          <Image
-            src={interviewImage}
-            alt="MarineStream spokesperson beside an inspection ROV"
-            widths={[480, 900]}
-            sizes="(min-width: 800px) 32rem, 100vw"
-            loading="lazy"
-          />
-          <figcaption>Clean. Survey. Maintain. Repair. Sustain. The words behind the work.</figcaption>
-        </figure>
+
+        <div class="grid-2 about-story">
+          <div class="reveal">
+            <span class="eyebrow">The story</span>
+            <h2>Operational systems, not shelfware</h2>
+            <hr class="accent-rule" />
+            <p>
+              Franmarine has delivered underwater sustainment and biofouling management for decades,
+              from Henderson, Western Australia. MarineStream is the platform and capability stack
+              that makes that work transparent, standardised and auditable — now available to diving
+              contractors, hull cleaners and ROV operators.
+            </p>
+            <p>
+              The people behind it run the operations themselves: commercial diving, ROV inspection,
+              in-water cleaning with capture, and marine science. That experience shapes everything —
+              from the hardware we supply to the way the platform structures a job record.
+            </p>
+            <p>
+              <a href="https://www.franmarine.com.au/" rel="noopener noreferrer">Visit Franmarine →</a>
+            </p>
+          </div>
+          <figure class="about-story__figure reveal">
+            <Image
+              src={interviewImage}
+              alt="MarineStream spokesperson beside an inspection ROV"
+              widths={[480, 900]}
+              sizes="(min-width: 800px) 32rem, 100vw"
+              loading="lazy"
+            />
+            <figcaption>Clean. Survey. Maintain. Repair. Sustain — the words behind the work.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="reveal">
+        <span class="eyebrow">One capability stack</span>
+        <h2>Four services, one job record</h2>
+        <hr class="accent-rule" />
+        <p class="about-stack__lead">
+          Everything we offer is one loop, not four products. Hardware puts eyes and tools on the
+          hull; software turns what they see into a compliant record; training certifies the crews
+          who run it; and professional services shape the program it all sits inside. Each stands
+          alone — together they close the loop from first inspection to signed-off report.
+        </p>
+      </div>
+      <div class="about-stack">
+        {
+          stackServices.map((service) => (
+            <a
+              class:list={["about-stack__card", "reveal", { "about-stack__card--accent": service.accent }]}
+              href={service.href}
+            >
+              <span class="about-stack__num">{service.num}</span>
+              <h3>{service.title}</h3>
+              <p>{service.body}</p>
+              <span class="about-stack__cta">{service.cta}</span>
+            </a>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <section class="section section--soft">
+  <section class="section">
     <div class="container">
       <span class="eyebrow">How we work</span>
       <h2>Four commitments</h2>
       <hr class="accent-rule" />
-      <div class="pillar-grid">
-        <div class="reveal">
-          <h3>IMO aligned</h3>
-          <p>Inspection, cleaning with capture, and records mapped to biofouling guidelines.</p>
-        </div>
-        <div class="reveal">
-          <h3>Field proven</h3>
-          <p>Equipment and workflows proven on Navy and commercial vessel operations.</p>
-        </div>
-        <div class="reveal">
-          <h3>Audit ready</h3>
-          <p>One digital trail: ratings, evidence, approvals, and reports in one place.</p>
-        </div>
-        <div class="reveal">
-          <h3>Partner first</h3>
-          <p>We uplift contractors and ROV teams rather than competing for every diver day.</p>
-        </div>
+      <div class="about-commitments">
+        {
+          commitments.map((item) => (
+            <div class:list={["about-commitments__card", "reveal", `about-commitments__card--${item.tone}`]}>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -107,10 +211,20 @@ const classLogos = [
         <h2>Defence-grade discipline, commercial pace</h2>
         <hr class="accent-rule" />
         <p>
-          MarineStream systems and crews work on Royal Australian Navy vessels and across
-          commercial fleets, with more than 120 vessels inspected and cleaned to standard. The same
-          record-keeping that satisfies defence customers is what makes commercial audits fast.
+          MarineStream systems and crews work on Royal Australian Navy vessels and across commercial
+          fleets — more than 120 vessels inspected and cleaned to standard. The same record-keeping
+          that satisfies defence customers is what makes commercial audits fast.
         </p>
+        <div class="about-defence-stats">
+          {
+            defenceStats.map((stat) => (
+              <div>
+                <div class="about-defence-stats__value">{stat.value}</div>
+                <div class="about-defence-stats__label">{stat.label}</div>
+              </div>
+            ))
+          }
+        </div>
       </div>
       <div class="tech-band__media reveal">
         <Image
@@ -129,49 +243,49 @@ const classLogos = [
       <span class="eyebrow">The team</span>
       <h2>People who own the outcome</h2>
       <hr class="accent-rule" />
-      <div class="case-strip" style="margin-top: var(--space-md);">
-        <figure class="reveal">
+      <div class="about-mosaic reveal">
+        <figure class="about-mosaic__hero">
           <Image
             src={teamImage}
             alt="Team member in front of racked dive umbilicals"
-            widths={[480, 800]}
-            sizes="(max-width: 860px) 100vw, 33vw"
+            widths={[480, 900]}
+            sizes="(max-width: 860px) 100vw, 42vw"
             loading="lazy"
             style="object-position: 50% 22%"
           />
-          <figcaption style="color: var(--muted);">Dive operations, run in-house.</figcaption>
+          <figcaption>Dive operations, run in-house.</figcaption>
         </figure>
-        <figure class="reveal">
+        <figure class="about-mosaic__wide">
           <Image
             src={operatorImage}
             alt="Operator using a handheld control unit dockside"
-            widths={[480, 800]}
-            sizes="(max-width: 860px) 100vw, 33vw"
+            widths={[480, 900]}
+            sizes="(max-width: 860px) 100vw, 58vw"
             loading="lazy"
           />
-          <figcaption style="color: var(--muted);">ROV pilots who also train partner crews.</figcaption>
+          <figcaption>ROV pilots who also train partner crews.</figcaption>
         </figure>
-        <figure class="reveal">
+        <figure class="about-mosaic__mid">
           <Image
             src={deckImage}
             alt="Crew member on a workboat deck at golden hour"
-            widths={[480, 800]}
+            widths={[400, 720]}
             sizes="(max-width: 860px) 100vw, 33vw"
             loading="lazy"
           />
-          <figcaption style="color: var(--muted);">On the water at whatever hour the job needs.</figcaption>
+          <figcaption>On the water at whatever hour the job needs.</figcaption>
+        </figure>
+        <figure class="about-mosaic__narrow">
+          <Image
+            src={commissioningImage}
+            alt="Project team in front of a containerised treatment unit on commissioning day"
+            widths={[360, 640]}
+            sizes="(max-width: 860px) 100vw, 25vw"
+            loading="lazy"
+          />
+          <figcaption>Commissioning day — team and client together.</figcaption>
         </figure>
       </div>
-      <figure class="figure reveal">
-        <Image
-          src={commissioningImage}
-          alt="Project team in front of a containerised treatment unit on commissioning day"
-          widths={[640, 1280]}
-          sizes="(min-width: 68rem) 68rem, 100vw"
-          loading="lazy"
-        />
-        <figcaption>Commissioning day for a containerised treatment unit, team and client together.</figcaption>
-      </figure>
     </div>
   </section>
 
@@ -181,7 +295,7 @@ const classLogos = [
       <div class="trust-bar__logos">
         {classLogos.map((logo) => <Image src={logo.src} alt={logo.alt} loading="lazy" />)}
       </div>
-      <p class="trust-bar__certs">Certified ISO 9001, ISO 14001, and ISO 45001</p>
+      <p class="trust-bar__certs">Certified ISO 9001, ISO 14001 and ISO 45001</p>
     </div>
   </section>
 

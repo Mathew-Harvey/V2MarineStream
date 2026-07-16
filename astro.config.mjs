@@ -6,6 +6,14 @@ export default defineConfig({
   build: {
     format: 'file',
   },
+  vite: {
+    server: {
+      watch: {
+        // Large design-export HTML mocks lock under OneDrive and crash the watcher.
+        ignored: ['**/MarineStream *.html', '**/_*.html'],
+      },
+    },
+  },
   redirects: {
     '/blog': '/news',
     '/portfolio': '/news',
