@@ -10,95 +10,233 @@ import controllerImage from "../../assets/photos/rov-controller-hands.jpg";
 ---
 
 <SiteLayout
-  title="Software | MarineStream™"
+  title="Software | Services | MarineStream™"
   description="Cloud-native biofouling and underwater asset management: field capture, parallel workflows, automated reporting, and subscription access for your teams."
 >
-  <PageHero
-    eyebrow="Services"
-    title="Software"
-    lead="Field capture once. Parallel review. Audit-ready reports, automatically."
-    parent={{ href: "/services", label: "Services" }}
-    image={bannerImage}
-    imageAlt="Dive supervision control room with live monitoring screens"
-  />
+  <div class="sw-hero-wrap">
+    <PageHero
+      eyebrow="Services"
+      title="Software"
+      lead="Capture once in the field. Review in parallel. The compliance report writes itself from the record everyone already saw."
+      parent={{ href: "/services", label: "Services" }}
+      image={bannerImage}
+      imageAlt="Dive supervision control room with live monitoring screens"
+    />
 
-  <section class="section">
-    <div class="container narrow">
-      <span class="eyebrow">Overview</span>
-      <h2>One record from survey to sign-off</h2>
-      <hr class="accent-rule" />
-      <p>
-        Biofouling compliance fails in the paperwork more often than in the water. MarineStream
-        software closes that gap: field teams capture evidence once, stakeholders review in
-        parallel rather than by email chain, and the compliance report generates itself from the
-        record everyone already saw.
-      </p>
-      <div class="stat-row">
-        <div>
-          <div class="stat__value">80%</div>
-          <div class="stat__label">Less reporting time</div>
+    <section class="section sw-pull">
+      <div class="container">
+        <div class="sw-pillars">
+          <a class="sw-pillar sw-pillar--capture reveal" href="#capture">
+            <span class="sw-pillar__num" aria-hidden="true">01</span>
+            <h3>Capture</h3>
+            <p>
+              Photo, video, ratings and ROV/CCTV feeds land against the job — from phone, tablet or
+              dive control.
+            </p>
+          </a>
+
+          <a class="sw-pillar sw-pillar--review reveal" href="#workflow">
+            <span class="sw-pillar__num" aria-hidden="true">02</span>
+            <h3>Review</h3>
+            <p>
+              Owners, class and regulators review the same evidence in parallel — no sequential
+              email chains.
+            </p>
+          </a>
+
+          <a class="sw-pillar sw-pillar--report reveal" href="#report">
+            <span class="sw-pillar__num" aria-hidden="true">03</span>
+            <h3>Report</h3>
+            <p>
+              BFMPs, logs and inspection reports generate automatically — IMO, biosecurity and
+              defence frameworks.
+            </p>
+          </a>
+
+          <a class="sw-pillar sw-pillar--audit reveal" href="#report">
+            <span class="sw-pillar__num" aria-hidden="true">04</span>
+            <h3>Audit</h3>
+            <p>
+              Every action lands on an immutable, blockchain-verified trail. One digital twin per
+              vessel — always audit-ready.
+            </p>
+          </a>
         </div>
-        <div>
-          <div class="stat__value">120+</div>
-          <div class="stat__label">Vessels managed</div>
-        </div>
-        <div>
-          <div class="stat__value">100%</div>
-          <div class="stat__label">Compliant to date</div>
-        </div>
-        <div>
-          <div class="stat__value">99.9%</div>
-          <div class="stat__label">Uptime</div>
+
+        <div class="sw-overview reveal">
+          <div class="sw-overview__title">
+            <span class="eyebrow">Overview</span>
+            <h2>One record from survey to sign-off</h2>
+            <hr class="accent-rule" />
+          </div>
+          <div>
+            <p>
+              Biofouling compliance fails in the paperwork more often than in the water. MarineStream
+              software closes that gap: field teams capture evidence once, every stakeholder works
+              from the same live job record, and the report your regulator needs is a by-product of
+              the work — not a second job done afterwards from memory and photos.
+            </p>
+            <div class="sw-stats">
+              <div>
+                <div class="sw-stats__value">80%</div>
+                <div class="sw-stats__label">Less reporting time — 40 hrs to 8 per cycle</div>
+              </div>
+              <div>
+                <div class="sw-stats__value">120+</div>
+                <div class="sw-stats__label">Vessels managed, defence and commercial</div>
+              </div>
+              <div>
+                <div class="sw-stats__value">100%</div>
+                <div class="sw-stats__label">Compliance rate — zero violations to date</div>
+              </div>
+              <div>
+                <div class="sw-stats__value">99.9%</div>
+                <div class="sw-stats__label">Uptime — mission-critical reliability</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
-  <section class="section section--soft">
-    <div class="container narrow">
-      <span class="eyebrow">What it covers</span>
-      <h2>Built around the job, not the form</h2>
-      <hr class="accent-rule" />
-      <div class="grid-2" style="margin-top: var(--space-md);">
-        <div class="feature-block reveal">
-          <h3>Work capture</h3>
-          <p>Mobile job records with photo, video, notes, and ROV/CCTV ingest.</p>
-        </div>
-        <div class="feature-block reveal">
-          <h3>Multi-party workflows</h3>
-          <p>Parallel approvals, no sequential email chains.</p>
-        </div>
-        <div class="feature-block reveal">
-          <h3>Compliance reporting</h3>
-          <p>BFMPs, logs, and reports to IMO, biosecurity, and defence frameworks.</p>
-        </div>
-        <div class="feature-block reveal">
-          <h3>Audit trail</h3>
-          <p>Blockchain-verified actions. Digital twin per vessel.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
+  <section id="capture" class="section section--soft">
     <div class="container">
-      <div class="grid-2">
-        <figure class="figure reveal" style="margin: 0;">
+      <div class="sw-section-head reveal">
+        <span class="eyebrow">In the software</span>
+        <h2>Built around the job, not the form</h2>
+        <hr class="accent-rule" />
+        <p class="sw-lead">
+          Everything below is one screen of the same job record — the live dashboard, mobile
+          capture in the field, and the report that writes itself from the work already done.
+        </p>
+      </div>
+
+      <div class="sw-media-grid reveal">
+        <figure class="sw-media-grid__hero">
+          <video
+            src="/videos/platform-in-motion.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            aria-label="MarineStream software dashboard in motion"
+          ></video>
+          <figcaption>The software in motion — every vessel, job and approval state in one view.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/photos/platform-mock.png"
+            alt="MarineStream fleet view on desktop, tablet and phone"
+            loading="lazy"
+            width="800"
+            height="600"
+          />
+          <figcaption>Same record on every screen — desktop, tablet and phone.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/photos/dashboard.png"
+            alt="MarineStream work board, live inspection and vessel status views"
+            loading="lazy"
+            width="800"
+            height="600"
+          />
+          <figcaption>Work boards, live inspection and vessel status — one job record.</figcaption>
+        </figure>
+      </div>
+
+      <div class="sw-features">
+        <div class="sw-feature reveal">
+          <h3>Work capture</h3>
+          <p>
+            Mobile job records with photo, video, notes, fouling ratings and direct ROV/CCTV
+            ingest.
+          </p>
+        </div>
+        <div class="sw-feature reveal">
+          <h3>Live video collaboration</h3>
+          <p>
+            Stream from underwater worksites to shore engineers — real-time guidance without the
+            site visit.
+          </p>
+        </div>
+        <div class="sw-feature reveal">
+          <h3>Multi-party workflows</h3>
+          <p>
+            Parallel approvals with five permission levels, proven on Royal Australian Navy
+            operations.
+          </p>
+        </div>
+        <div class="sw-feature reveal">
+          <h3>Audit trail</h3>
+          <p>
+            Blockchain-verified actions and a digital twin per vessel. Tamper-proof for regulators
+            and auditors.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="workflow" class="section">
+    <div class="container">
+      <div class="sw-section-head reveal">
+        <span class="eyebrow">Who works in it</span>
+        <h2>Everyone sees the same job</h2>
+        <hr class="accent-rule" />
+        <p class="sw-lead">
+          The record moves in one direction — captured once in the water, reviewed in parallel on
+          shore, signed off without a single document leaving the software.
+        </p>
+      </div>
+
+      <div class="sw-flow reveal">
+        <div class="sw-flow__step">
+          <span class="sw-flow__label">01 · Field teams</span>
+          <strong>Capture on the job</strong>
+          <p>
+            Evidence, ratings and telemetry recorded as the work happens. Nothing to reconstruct
+            afterwards.
+          </p>
+        </div>
+        <span class="sw-flow__arrow" aria-hidden="true">→</span>
+        <div class="sw-flow__step">
+          <span class="sw-flow__label">02 · Vessel operators</span>
+          <strong>Track and approve</strong>
+          <p>
+            Fleet fouling state at a glance, approvals in the same record, one auditable history
+            per vessel.
+          </p>
+        </div>
+        <span class="sw-flow__arrow" aria-hidden="true">→</span>
+        <div class="sw-flow__step">
+          <span class="sw-flow__label">03 · Reviewers &amp; regulators</span>
+          <strong>Sign off in parallel</strong>
+          <p>
+            Live or recorded evidence, reviewed alongside every other stakeholder — not after them.
+          </p>
+        </div>
+      </div>
+
+      <div class="sw-caption-duo reveal">
+        <figure>
           <Image
             src={feedsImage}
             alt="Operator monitoring live underwater feeds in a control room"
-            widths={[480, 900]}
-            sizes="(min-width: 800px) 32rem, 100vw"
+            widths={[640, 1100]}
+            sizes="(min-width: 900px) 32rem, 100vw"
             loading="lazy"
           />
-          <figcaption>Live feeds from the water reviewed as the work happens.</figcaption>
+          <figcaption>Live feeds from the water, reviewed as the work happens.</figcaption>
         </figure>
-        <figure class="figure reveal" style="margin: 0;">
+        <figure>
           <Image
             src={hudImage}
-            alt="Cleaning telemetry captured directly into the software record"
-            widths={[480, 900]}
-            sizes="(min-width: 800px) 32rem, 100vw"
+            alt="Cleaning telemetry captured into the software record"
+            widths={[640, 1100]}
+            sizes="(min-width: 900px) 32rem, 100vw"
             loading="lazy"
           />
           <figcaption>Telemetry and evidence attach to the job record automatically.</figcaption>
@@ -109,84 +247,134 @@ import controllerImage from "../../assets/photos/rov-controller-hands.jpg";
 
   <section class="section section--soft">
     <div class="container">
-      <span class="eyebrow">Who works in it</span>
-      <h2>Everyone sees the same job</h2>
-      <hr class="accent-rule" />
-      <ol class="steps steps--three">
-        <li>
-          <strong>Field teams</strong>
-          <p>Capture evidence and ratings on the job. No paperwork to reconstruct afterwards.</p>
-        </li>
-        <li>
-          <strong>Vessel operators</strong>
-          <p>Track fleet fouling state, approve work, and hold one auditable history per vessel.</p>
-        </li>
-        <li>
-          <strong>Reviewers and regulators</strong>
-          <p>See live or recorded evidence and sign off in parallel with other stakeholders.</p>
-        </li>
-      </ol>
+      <div class="sw-proof reveal">
+        <div class="sw-proof__copy">
+          <span class="sw-proof__eyebrow">Proven in service</span>
+          <p>
+            Running Royal Australian Navy operations across 29 platforms — frigates, submarines and
+            patrol boats.
+          </p>
+        </div>
+        <div class="sw-proof__stats">
+          <div>
+            <div class="sw-proof__value">193</div>
+            <div class="sw-proof__label">Work orders completed</div>
+          </div>
+          <div>
+            <div class="sw-proof__value">40→8</div>
+            <div class="sw-proof__label">Hours per reporting cycle</div>
+          </div>
+          <div>
+            <div class="sw-proof__value">0</div>
+            <div class="sw-proof__label">Compliance violations</div>
+          </div>
+          <div>
+            <div class="sw-proof__value">10 TB</div>
+            <div class="sw-proof__label">Evidence managed</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="section">
+  <section id="report" class="section">
     <div class="container">
-      <div class="grid-2">
+      <div class="sw-split">
         <div class="reveal">
           <span class="eyebrow">Subscriptions</span>
           <h2>Same tools we run our own operations on</h2>
           <hr class="accent-rule" />
           <p>
-            A subscription gives your teams the same capture, workflow, and reporting tools we use
-            ourselves, scoped to your fleet and jurisdiction — with onboarding, integration, and
+            A subscription gives your teams the same capture, workflow and reporting tools we use
+            ourselves — scoped to your fleet and jurisdiction, with onboarding, integration and
             ongoing support included.
           </p>
           <ul class="checklist">
-            <li>Mobile capture: photo, video, ROV/CCTV ingest, and fouling ratings</li>
+            <li>Mobile capture — photo, video, ROV/CCTV ingest, fouling ratings</li>
             <li>Parallel approval workflows and automated compliance reports</li>
-            <li>BFMPs, logs, and reports to IMO, biosecurity, and defence frameworks</li>
-            <li>One auditable history per vessel</li>
+            <li>BFMPs, logs and reports to IMO, biosecurity and defence frameworks</li>
+            <li>One auditable, blockchain-verified history per vessel</li>
           </ul>
+          <figure class="figure" style="margin: var(--space-md) 0 0;">
+            <Image
+              src={controllerImage}
+              alt="Operator's hands on an ROV controller showing a live underwater feed"
+              widths={[480, 900]}
+              sizes="(min-width: 900px) 28rem, 100vw"
+              loading="lazy"
+            />
+            <figcaption>Field capture feeds the record directly — from ROV, camera or phone.</figcaption>
+          </figure>
         </div>
-        <figure class="figure reveal" style="margin: 0;">
-          <Image
-            src={controllerImage}
-            alt="Operator's hands on an ROV controller showing a live underwater feed"
-            widths={[480, 900]}
-            sizes="(min-width: 800px) 32rem, 100vw"
-            loading="lazy"
-          />
-          <figcaption>Field capture feeds the record directly, from ROV, camera, or phone.</figcaption>
-        </figure>
+
+        <div class="sw-onboard reveal">
+          <span class="eyebrow">Getting started</span>
+          <h3>Onboarding in three moves</h3>
+          <ol class="sw-onboard__steps">
+            <li>
+              <span class="sw-onboard__num">01</span>
+              <div>
+                <strong>Scope</strong>
+                <p>We map your vessels, roles and the standards your reports answer to.</p>
+              </div>
+            </li>
+            <li>
+              <span class="sw-onboard__num">02</span>
+              <div>
+                <strong>Onboard</strong>
+                <p>
+                  Teams are set up and trained on capture, review and sign-off workflows — typically
+                  30–45 days from contract to first vessel live.
+                </p>
+              </div>
+            </li>
+            <li>
+              <span class="sw-onboard__num">03</span>
+              <div>
+                <strong>Run</strong>
+                <p>
+                  First jobs run with our support alongside — then the record carries itself.
+                </p>
+              </div>
+            </li>
+          </ol>
+          <div class="tool-callout">
+            <div>
+              <strong>Need a biofouling management plan first?</strong>
+              <p>
+                The BFMP Generator drafts an IMO-aligned plan from your vessel details — free to
+                use, and a preview of what the software automates fleet-wide.
+              </p>
+            </div>
+            <a class="btn btn--navy" href="/interactive-tools/bfmpGen.html">Open the BFMP Generator</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section section--soft">
     <div class="container">
-      <span class="eyebrow">Getting started</span>
-      <h2>Onboarding in three moves</h2>
-      <hr class="accent-rule" />
-      <ol class="steps steps--three">
-        <li>
-          <strong>Scope</strong>
-          <p>We map your vessels, roles, and the standards your reports answer to.</p>
-        </li>
-        <li>
-          <strong>Onboard</strong>
-          <p>Teams are set up and trained on capture, review, and sign-off workflows.</p>
-        </li>
-        <li>
-          <strong>Run</strong>
-          <p>First jobs run with our support alongside, then the record carries itself.</p>
-        </li>
-      </ol>
-      <div class="tool-callout reveal">
-        <div>
-          <strong>Need a biofouling management plan?</strong>
-          <p>The BFMP Generator drafts an IMO-aligned plan from your vessel details, free to use.</p>
+      <div class="sw-hardware reveal">
+        <div class="sw-hardware__title">
+          <span class="sw-hardware__eyebrow">Paired with</span>
+          <strong>Hardware, in the water</strong>
         </div>
-        <a class="btn btn--navy" href="/interactive-tools/bfmpGen.html">Open the BFMP Generator</a>
+        <div class="sw-hardware__grid">
+          <div>
+            <strong>ROV AutoConnect</strong>
+            <p>DeepTrekker feeds stream straight into the software — no separate capture rig.</p>
+          </div>
+          <div>
+            <strong>Crawler telemetry</strong>
+            <p>Cleaning progress and coverage recorded live against the job.</p>
+          </div>
+          <div>
+            <strong>Capture &amp; filtration evidence</strong>
+            <p>Discharge results land on the same auditable record.</p>
+          </div>
+        </div>
+        <a class="btn btn--primary" href="/services/hardware">See the hardware</a>
       </div>
     </div>
   </section>
