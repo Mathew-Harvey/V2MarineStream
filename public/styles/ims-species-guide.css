@@ -474,8 +474,7 @@ body[data-region="sl"] .region-badge { border-color: #8D153A; }
     margin-top: 2px;
 }
 
-/* Main Content */
-main { padding: 50px 0; }
+/* Main Content — do not pad SiteLayout <main>; that created a white gap under the header */
 
 .section-title {
     font-size: 1.8rem;
