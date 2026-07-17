@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "og:generate": "node scripts/generate-og-image.mjs"
   },
   "repository": {
     "type": "git",

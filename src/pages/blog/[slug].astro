@@ -19,12 +19,29 @@ const morePosts = (await getCollection("blog", ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 2);
 
+const postThumbs: Record<string, string> = {
+  "beyond-the-surface": "/images/blog/beyond-the-surface/IMG_5414.jpg",
+  "clean-hulls-clear-waters": "/images/blog/clean-hulls-clear-waters/digitalPlatform.jpg",
+  "from-rov-to-remote": "/images/blog/from-rov-to-remote/1.jpg",
+  "the-hull-truth": "/images/blog/the-hull-truth/aquamars.png",
+  "preventative-advantage": "/images/blog/preventative-advantage/Image 2 (1).png",
+  "revolutionising-underwater-inspections":
+    "/images/blog/revolutionising-underwater-inspections/shipDryDock.png",
+};
+
+const ogImage = post.data.image ?? postThumbs[post.slug] ?? "/images/og-default.jpg";
+
 function formatDate(d: Date) {
   return d.toLocaleDateString("en-AU", { year: "numeric", month: "long", day: "numeric" });
 }
 ---
 
-<SiteLayout title={`${post.data.title} | MarineStream™`} description={post.data.description}>
+<SiteLayout
+  title={`${post.data.title} | MarineStream`}
+  description={post.data.description}
+  ogImage={ogImage}
+  ogType="article"
+>
   <PageHero
     eyebrow="News"
     title={post.data.title}
