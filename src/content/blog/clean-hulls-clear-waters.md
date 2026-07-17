@@ -5,8 +5,6 @@ pubDate: 2025-01-15
 author: "MarineStream"
 draft: false
 ---
-*Published: January 2025*
-
 > *The maritime industry faces growing pressure to improve operational efficiency while meeting increasingly stringent environmental standards.*
 
 The maritime industry faces growing pressure to improve operational efficiency while meeting increasingly stringent environmental standards. At the intersection of these demands lies a critical yet often overlooked aspect of vessel management: biofouling control. As vessels traverse global waters, the accumulation of marine organisms on their hulls creates challenges that ripple through every aspect of maritime operations.

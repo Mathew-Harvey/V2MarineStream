@@ -8,41 +8,13 @@
 // =============================================
 
 const regionData = {
-    wa: {
-        name: 'Western Australia',
-        shortName: 'WA',
-        icon: '🦘'
-    },
-    nsw: {
-        name: 'New South Wales',
-        shortName: 'NSW',
-        icon: '🌊'
-    },
-    vic: {
-        name: 'Victoria',
-        shortName: 'VIC',
-        icon: '⭐'
-    },
-    tas: {
-        name: 'Tasmania',
-        shortName: 'TAS',
-        icon: '🏔️'
-    },
-    qld: {
-        name: 'Queensland',
-        shortName: 'QLD',
-        icon: '☀️'
-    },
-    sa: {
-        name: 'South Australia',
-        shortName: 'SA',
-        icon: '🍷'
-    },
-    nt: {
-        name: 'Northern Territory',
-        shortName: 'NT',
-        icon: '🐊'
-    }
+    wa: { name: 'Western Australia', shortName: 'WA' },
+    nsw: { name: 'New South Wales', shortName: 'NSW' },
+    vic: { name: 'Victoria', shortName: 'VIC' },
+    tas: { name: 'Tasmania', shortName: 'TAS' },
+    qld: { name: 'Queensland', shortName: 'QLD' },
+    sa: { name: 'South Australia', shortName: 'SA' },
+    nt: { name: 'Northern Territory', shortName: 'NT' }
 };
 
 function setRegion(region) {
@@ -61,9 +33,7 @@ function setRegion(region) {
     
     // Update header dropdown
     const dropdownText = document.getElementById('region-dropdown-text');
-    const dropdownIcon = document.getElementById('region-dropdown-icon');
     if (dropdownText) dropdownText.textContent = regionData[region].shortName;
-    if (dropdownIcon) dropdownIcon.textContent = regionData[region].icon;
     
     // Update dropdown menu active state
     document.querySelectorAll('.region-dropdown-item').forEach(item => {
@@ -107,6 +77,18 @@ function selectRegionFromModal(region) {
     localStorage.setItem('biofouling-region-selected', 'true');
     closeRegionModal();
 }
+
+// Dismiss without picking a region: keep the current default and don't nag again
+function dismissRegionModal() {
+    localStorage.setItem('biofouling-region-selected', 'true');
+    closeRegionModal();
+}
+
+document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    const modal = document.getElementById('region-modal');
+    if (modal && modal.classList.contains('active')) dismissRegionModal();
+});
 
 // Region modal functions
 function showRegionModal() {

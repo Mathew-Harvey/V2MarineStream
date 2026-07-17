@@ -80,8 +80,8 @@ function initHullFoulingCalculator() {
             cb: 0.65,
             ecoSpeed: 8,
             fullSpeed: 13,
-            costEco: 600,    
-            costFull: 2160,  
+            costEco: 600,
+            costFull: 2150, // multiple of the input's step=50 so the default validates
             waveExp: 4.5,
             category: 'workboat',
             crCf: 5.0  // High Cr/Cf: fuller hull, high Fr → wave-making dominates (Robert Allan Ltd.)
@@ -1032,7 +1032,7 @@ function initHullFoulingCalculator() {
                             boxWidth: 12,
                             padding: 15,
                             font: {
-                                size: window.innerWidth < 768 ? 10 : 12
+                                size: window.innerWidth < 768 ? 11 : 13
                             },
                             usePointStyle: true,
                             pointStyle: 'circle',
@@ -1051,7 +1051,7 @@ function initHullFoulingCalculator() {
                             text: 'Speed (knots)',
                             font: { 
                                 weight: 'bold',
-                                size: window.innerWidth < 768 ? 10 : 12
+                                size: window.innerWidth < 768 ? 12 : 13
                             },
                             color: 'rgba(74, 85, 104, 1)'
                         },
@@ -1060,10 +1060,12 @@ function initHullFoulingCalculator() {
                             color: 'rgba(226, 232, 240, 0.6)'
                         },
                         ticks: {
-                            maxRotation: 45,
-                            minRotation: 45,
+                            // Speed labels are short numbers; keep them horizontal for legibility
+                            maxRotation: 0,
+                            minRotation: 0,
+                            autoSkip: true,
                             font: {
-                                size: window.innerWidth < 768 ? 8 : 10
+                                size: window.innerWidth < 768 ? 11 : 12
                             },
                             color: 'rgba(74, 85, 104, 0.8)',
                             callback: function(value, index, values) {
@@ -1084,7 +1086,7 @@ function initHullFoulingCalculator() {
                             text: `Operating Cost (${(currentCurrency === 'AUD' ? 'A' : currentCurrency === 'USD' ? 'US' : '')}${currencySymbols[currentCurrency]}/hr)`,
                             font: { 
                                 weight: 'bold',
-                                size: window.innerWidth < 768 ? 10 : 12
+                                size: window.innerWidth < 768 ? 12 : 13
                             },
                             color: 'rgba(74, 85, 104, 1)'
                         },
@@ -1093,7 +1095,7 @@ function initHullFoulingCalculator() {
                         max: Math.ceil(maxFouledCost * 1.1 / 500) * 500, // Round up to nearest 500 with 10% padding
                         ticks: {
                             font: {
-                                size: window.innerWidth < 768 ? 8 : 10
+                                size: window.innerWidth < 768 ? 11 : 12
                             },
                             color: 'rgba(74, 85, 104, 0.8)',
                             callback: function(value) {
@@ -1114,7 +1116,7 @@ function initHullFoulingCalculator() {
                             text: 'Additional CO₂ (kg/hr)',
                             font: { 
                                 weight: 'bold',
-                                size: window.innerWidth < 768 ? 10 : 12
+                                size: window.innerWidth < 768 ? 12 : 13
                             },
                             color: 'rgba(74, 85, 104, 1)'
                         },
@@ -1127,7 +1129,7 @@ function initHullFoulingCalculator() {
                         },
                         ticks: {
                             font: {
-                                size: window.innerWidth < 768 ? 8 : 10
+                                size: window.innerWidth < 768 ? 11 : 12
                             },
                             color: 'rgba(74, 85, 104, 0.8)',
                             stepSize: Math.max(50, Math.ceil(maxCO2 * 1.1 / 10 / 50) * 50) // Nice round steps

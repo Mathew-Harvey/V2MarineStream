@@ -20,8 +20,8 @@ const benefits = [
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
   />
-  <link slot="head" rel="stylesheet" href="/styles/bfmp-bridge.css" />
   <link slot="head" rel="stylesheet" href="/styles/bfmpGen.css" />
+  <link slot="head" rel="stylesheet" href="/styles/bfmp-bridge.css" />
 
   <PageHero
     eyebrow="Free tool · IMO-aligned"
@@ -77,4 +77,26 @@ const benefits = [
     src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
     is:inline></script>
   <script src="/scripts/bfmpGen.js" defer is:inline></script>
+  <script is:inline>
+    // The tab bar is hidden (redundant with the stepper); let the stepper
+    // drive navigation by forwarding clicks to the matching tab button.
+    document.addEventListener("DOMContentLoaded", () => {
+      const tabs = Array.from(document.querySelectorAll(".bfmp-tool .tab-btn"));
+      document.querySelectorAll(".bfmp-tool .progress-step").forEach((step) => {
+        step.setAttribute("role", "button");
+        step.setAttribute("tabindex", "0");
+        const go = () => {
+          const idx = parseInt(step.dataset.step, 10) - 1;
+          if (tabs[idx]) tabs[idx].click();
+        };
+        step.addEventListener("click", go);
+        step.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            go();
+          }
+        });
+      });
+    });
+  </script>
 </SiteLayout>

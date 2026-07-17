@@ -1,51 +1,56 @@
 ---
+import PageHero from "./PageHero.astro";
 ---
 
 <div class="ims-tool" data-region="wa">
 <div class="region-modal" id="region-modal">
-        <div class="region-modal-backdrop"></div>
-        <div class="region-modal-content">
+        <div class="region-modal-backdrop" onclick="dismissRegionModal()"></div>
+        <div class="region-modal-content" role="dialog" aria-modal="true" aria-labelledby="region-modal-title">
+            <button class="region-modal-close" type="button" aria-label="Close and browse all regions" onclick="dismissRegionModal()">×</button>
             <div class="region-modal-header">
-                <h2>Welcome to the Hull Biofouling ID Guide</h2>
+                <h2 id="region-modal-title">Welcome to the Hull Biofouling ID Guide</h2>
                 <p>Select your region to see relevant species and contacts</p>
             </div>
             <div class="region-modal-options">
                 <button class="region-modal-btn" onclick="selectRegionFromModal('wa')">
-                    <span class="region-modal-icon">🦘</span>
+                    <span class="region-modal-icon">WA</span>
                     <span class="region-modal-name">Western Australia</span>
                     <span class="region-modal-desc">DPIRD WA regulations & contacts</span>
                 </button>
                 <button class="region-modal-btn" onclick="selectRegionFromModal('nsw')">
-                    <span class="region-modal-icon">🌊</span>
+                    <span class="region-modal-icon">NSW</span>
                     <span class="region-modal-name">New South Wales</span>
                     <span class="region-modal-desc">NSW DPI regulations & contacts</span>
                 </button>
                 <button class="region-modal-btn" onclick="selectRegionFromModal('vic')">
-                    <span class="region-modal-icon">⭐</span>
+                    <span class="region-modal-icon">VIC</span>
                     <span class="region-modal-name">Victoria</span>
                     <span class="region-modal-desc">Agriculture VIC regulations & contacts</span>
                 </button>
                 <button class="region-modal-btn" onclick="selectRegionFromModal('tas')">
-                    <span class="region-modal-icon">🏔️</span>
+                    <span class="region-modal-icon">TAS</span>
                     <span class="region-modal-name">Tasmania</span>
                     <span class="region-modal-desc">Biosecurity TAS regulations & contacts</span>
                 </button>
                 <button class="region-modal-btn" onclick="selectRegionFromModal('qld')">
-                    <span class="region-modal-icon">☀️</span>
+                    <span class="region-modal-icon">QLD</span>
                     <span class="region-modal-name">Queensland</span>
                     <span class="region-modal-desc">Biosecurity QLD regulations & contacts</span>
                 </button>
                 <button class="region-modal-btn" onclick="selectRegionFromModal('sa')">
-                    <span class="region-modal-icon">🍷</span>
+                    <span class="region-modal-icon">SA</span>
                     <span class="region-modal-name">South Australia</span>
                     <span class="region-modal-desc">PIRSA regulations & contacts</span>
                 </button>
                 <button class="region-modal-btn" onclick="selectRegionFromModal('nt')">
-                    <span class="region-modal-icon">🐊</span>
+                    <span class="region-modal-icon">NT</span>
                     <span class="region-modal-name">Northern Territory</span>
                     <span class="region-modal-desc">NT DEPWS regulations & contacts</span>
                 </button>
             </div>
+            <button class="region-modal-skip" type="button" onclick="dismissRegionModal()">
+                Skip — browse with Western Australia defaults
+            </button>
         </div>
     </div>
 
@@ -62,46 +67,38 @@
             </nav>
     <div class="region-dropdown" id="region-dropdown">
                 <button class="region-dropdown-trigger" onclick="toggleRegionDropdown()">
-                    <span class="region-dropdown-icon" id="region-dropdown-icon">🦘</span>
+                    <svg class="region-dropdown-icon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
                     <span class="region-dropdown-text" id="region-dropdown-text">WA</span>
                     <svg class="region-dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
                 </button>
                 <div class="region-dropdown-menu" id="region-dropdown-menu">
-                    <button class="region-dropdown-item" data-region="wa" onclick="setRegion('wa')">
-                        <span>🦘</span> Western Australia
-                    </button>
-                    <button class="region-dropdown-item" data-region="nsw" onclick="setRegion('nsw')">
-                        <span>🌊</span> New South Wales
-                    </button>
-                    <button class="region-dropdown-item" data-region="vic" onclick="setRegion('vic')">
-                        <span>⭐</span> Victoria
-                    </button>
-                    <button class="region-dropdown-item" data-region="tas" onclick="setRegion('tas')">
-                        <span>🏔️</span> Tasmania
-                    </button>
-                    <button class="region-dropdown-item" data-region="qld" onclick="setRegion('qld')">
-                        <span>☀️</span> Queensland
-                    </button>
-                    <button class="region-dropdown-item" data-region="sa" onclick="setRegion('sa')">
-                        <span>🍷</span> South Australia
-                    </button>
-                    <button class="region-dropdown-item" data-region="nt" onclick="setRegion('nt')">
-                        <span>🐊</span> Northern Territory
-                    </button>
+                    <button class="region-dropdown-item" data-region="wa" onclick="setRegion('wa')">Western Australia</button>
+                    <button class="region-dropdown-item" data-region="nsw" onclick="setRegion('nsw')">New South Wales</button>
+                    <button class="region-dropdown-item" data-region="vic" onclick="setRegion('vic')">Victoria</button>
+                    <button class="region-dropdown-item" data-region="tas" onclick="setRegion('tas')">Tasmania</button>
+                    <button class="region-dropdown-item" data-region="qld" onclick="setRegion('qld')">Queensland</button>
+                    <button class="region-dropdown-item" data-region="sa" onclick="setRegion('sa')">South Australia</button>
+                    <button class="region-dropdown-item" data-region="nt" onclick="setRegion('nt')">Northern Territory</button>
                 </div>
             </div>
   </div>
 </div>
 
-<section class="hero">
+<PageHero
+  eyebrow="Free tool · Field ID"
+  title="IMS Species Guide"
+  lead="Quick hull biofouling ID for divers and inspectors — invasive foulers, niche hitchhikers, native fouling, and regional reporting contacts."
+  badge="v3.0"
+  parent={{ label: "Tools" }}
+/>
+
+<section class="ims-actions" aria-label="Region and print downloads">
         <div class="container">
             <div class="region-badge" id="region-badge">
-                <span class="region-badge-icon">📍</span>
+                <svg class="region-badge-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
                 <span class="region-badge-text" id="region-badge-text">Western Australia</span>
             </div>
-            <h1>Hull Biofouling ID Guide</h1>
-            <p id="hero-subtitle">Quick reference for divers cleaning ship hulls in <span class="region-text">WA</span> - know what you're scraping off</p>
-            <div class="hero-badge">Version 3.0 • January 2026</div>
+            <p class="ims-actions__lead">Printable references for divers cleaning hulls in <span class="region-text">WA</span></p>
             <div class="print-links">
                 <!-- WA Print Links -->
                 <a href="/tools/ims-guide/A3Poster.html" class="print-btn region-content wa-content has-sl-override" target="_blank" id="poster-link-wa">
@@ -2000,7 +1997,6 @@
             <!-- Developer Contact -->
             <div class="dev-contact">
                 <div class="dev-contact-inner">
-                    <span class="dev-contact-icon">🧬</span>
                     <div class="dev-contact-text">
                         <span class="dev-contact-label">Developed by Marine Scientist & Developer</span>
                         <span class="dev-contact-name">Mat Harvey</span>

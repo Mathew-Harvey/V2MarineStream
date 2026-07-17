@@ -5,8 +5,6 @@ pubDate: 2025-09-04
 author: "MarineStream"
 draft: false
 ---
-*Published: September 4, 2025*
-
 > *Nine months ago, I stepped into the marine industry with little practical experience but massive willingness to learn. From filtration systems to ROV operations, here's how MarineStream transformed my understanding of what's possible in marine technology.*
 
 Growing up in Perth, I was always drawn to the ocean. Whether it was through boating, exploring the coastline, or observing marine life, that natural curiosity slowly evolved into a deep passion for marine systems and sustainability. I even took a brief detour into Marine Biology studies, which only intensified my interest in how we interact with and preserve our ocean environments. However, it wasn't until I joined Franmarine and MarineStream that this passion really found its purpose.

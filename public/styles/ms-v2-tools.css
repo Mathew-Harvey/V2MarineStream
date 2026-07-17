@@ -1,4 +1,5 @@
-/* MarineStream V2 — shared styling for interactive tool pages */
+/* MarineStream V2 — shared styling for interactive tool pages.
+   Keep tokens in lockstep with src/styles/global.css :root. */
 
 :root {
   --brand-orange: #ff6600;
@@ -6,34 +7,69 @@
   --brand-orange-light: #ff8533;
   --ocean-ink: #0a1721;
   --ocean-deep: #16465f;
+  --brand-blue: #0161b2;
+  --brand-blue-dark: #014789;
+  --brand-blue-light: #3cb4e0;
   --cyan: #3cb4e0;
+  --teal: #139fa3;
+  --buoy-yellow: #e0a728;
+  --steel-100: #eef2f4;
+  --steel-300: #a7b3bc;
+  --steel-500: #616971;
   --navy: var(--ocean-ink);
   --navy-mid: #102636;
   --white: #ffffff;
-  --off-white: #eef2f4;
+  --off-white: var(--steel-100);
   --ink: #0b1520;
-  --muted: #616971;
+  --muted: var(--steel-500);
   --text-secondary: #2c3742;
   --line: rgba(11, 21, 32, 0.12);
   --font-display: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.75rem;
+  --space-lg: 3rem;
+  --space-xl: 4.5rem;
+  --max: 68rem;
   --radius: 0.75rem;
   --shadow-sm: 0 2px 4px rgba(10, 23, 33, 0.05);
   --shadow-md: 0 6px 18px rgba(10, 23, 33, 0.1);
   --header-h: 4.25rem;
 
-  /* Override legacy style.css tokens so old components pick up the V3 palette */
-  --brand-blue: #0161b2;
-  --brand-blue-dark: #014789;
-  --brand-blue-light: #3cb4e0;
-  --primary-color: #0161b2;
-  --primary-dark: #014789;
-  --primary-light: #3cb4e0;
+  /* Legacy style.css + hullCalc aliases → V2 palette */
+  --primary-color: var(--brand-blue);
   --primary-color-rgb: 1, 97, 178;
-  --bg-dark: #0a1721;
-  --bg-secondary: #eef2f4;
-  --text-primary: #0b1520;
-  --radius-md: 0.75rem;
+  --bg-dark: var(--ocean-ink);
+  --bg-secondary: var(--off-white);
+  --text-primary: var(--ink);
+  --radius-md: var(--radius);
+
+  /* Hull Calc local design tokens (override its inline :root) */
+  --primary: var(--ocean-deep);
+  --primary-light: var(--brand-blue);
+  --primary-dark: var(--ocean-ink);
+  --secondary: var(--brand-orange);
+  --secondary-light: var(--brand-orange-light);
+  /* Accent maps to brand blue — the legacy teal reads off-brand next to the V2 palette */
+  --accent: var(--brand-blue);
+  --accent-light: var(--cyan);
+  --accent-dark: var(--brand-blue-dark);
+  --neutral-100: var(--white);
+  --neutral-200: var(--off-white);
+  --neutral-300: #e4e9ed;
+  --neutral-400: #d0d7dd;
+  --neutral-500: var(--steel-300);
+  --neutral-600: var(--steel-500);
+  --neutral-700: var(--text-secondary);
+  --neutral-800: var(--ink);
+  --neutral-900: var(--ocean-ink);
+  --font-sans: var(--font-body);
+  --radius-sm: 0.5rem;
+  --radius-lg: var(--radius);
+  --radius-xl: 1rem;
+  --container-xl: var(--max);
 }
 
 body.tool-page {
@@ -358,6 +394,51 @@ body.tool-page .research-section {
   background: var(--off-white);
 }
 
+body.tool-page h1,
+body.tool-page h2,
+body.tool-page h3,
+body.tool-page h4,
+body.tool-page h5,
+body.tool-page h6 {
+  font-family: var(--font-display);
+  color: var(--ink);
+}
+
+body.tool-page .btn-primary,
+body.tool-page .btn.btn-primary,
+body.tool-page button.btn-primary {
+  background: var(--brand-orange) !important;
+  border-color: var(--brand-orange) !important;
+  color: var(--white) !important;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius);
+}
+
+body.tool-page .btn-primary:hover,
+body.tool-page .btn.btn-primary:hover {
+  background: var(--brand-orange-dark) !important;
+  border-color: var(--brand-orange-dark) !important;
+}
+
+body.tool-page .modal-content .modal-footer button,
+body.tool-page .modal-close-btn {
+  border-radius: var(--radius);
+  font-family: var(--font-display);
+}
+
+body.tool-page .card {
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+body.tool-page .card:hover {
+  transform: none;
+  box-shadow: var(--shadow-md);
+}
+
 /* Hide old chrome remnants */
 body.tool-page .skip-link:not(:focus) {
   position: absolute !important;
@@ -383,5 +464,62 @@ body.tool-page .skip-link:focus {
 
   body.tool-page .ms-hero .container {
     padding-inline: 1rem;
+    /* Match the left-aligned, unhyphenated heroes on the Astro tool pages */
+    text-align: left;
+  }
+
+  body.tool-page .ms-hero-title,
+  body.tool-page .ms-hero-subtitle,
+  body.tool-page .ms-hero-description {
+    text-align: left !important;
+    hyphens: none;
+    -webkit-hyphens: none;
+  }
+
+  body.tool-page .ms-hero-title {
+    font-size: clamp(1.75rem, 8vw, 2.4rem) !important;
+    margin-bottom: 1rem;
+  }
+
+  body.tool-page .ms-hero-cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  body.tool-page .ms-hero-cta .btn,
+  body.tool-page .btn {
+    width: 100%;
+  }
+
+  body.tool-page .container {
+    width: min(100% - 1.5rem, var(--max));
+  }
+
+  body.tool-page input,
+  body.tool-page select,
+  body.tool-page textarea {
+    font-size: 16px; /* avoid iOS zoom on focus */
+  }
+
+  body.tool-page .currency-selector-container {
+    padding-inline: 0.75rem;
+  }
+
+  body.tool-page .card-header,
+  body.tool-page .card-body {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 420px) {
+  body.tool-page .ms-hero {
+    padding-top: calc(var(--header-h) + 1rem);
+    padding-bottom: 1.5rem;
+  }
+
+  body.tool-page .btn {
+    min-height: 44px;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.85rem;
   }
 }

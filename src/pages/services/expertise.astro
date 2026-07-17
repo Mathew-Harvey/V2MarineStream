@@ -94,20 +94,26 @@ import foulingHudImage from "../../assets/photos/fouling-field-hud.jpg";
         </li>
       </ol>
       <div class="photo-pair">
-        <Image
-          src={musselsImage}
-          alt="Dense mussel and sponge growth on a submerged surface"
-          widths={[480, 800]}
-          sizes="(min-width: 560px) 32rem, 100vw"
-          loading="lazy"
-        />
-        <Image
-          src={foulingHudImage}
-          alt="Wide inspection view of a heavily fouled hull bottom with telemetry overlay"
-          widths={[480, 800]}
-          sizes="(min-width: 560px) 32rem, 100vw"
-          loading="lazy"
-        />
+        <figure class="figure" style="margin: 0;">
+          <Image
+            src={musselsImage}
+            alt="Dense mussel and sponge growth on a submerged surface"
+            widths={[480, 800]}
+            sizes="(min-width: 560px) 32rem, 100vw"
+            loading="lazy"
+          />
+          <figcaption>Dense settlement flagged during a routine clean.</figcaption>
+        </figure>
+        <figure class="figure" style="margin: 0;">
+          <Image
+            src={foulingHudImage}
+            alt="Wide inspection view of a heavily fouled hull bottom with telemetry overlay"
+            widths={[480, 800]}
+            sizes="(min-width: 560px) 32rem, 100vw"
+            loading="lazy"
+          />
+          <figcaption>Survey footage carries the telemetry the identification relies on.</figcaption>
+        </figure>
       </div>
       <div class="tool-callout reveal">
         <div>

@@ -144,16 +144,19 @@ const filtrationStages = [
           </p>
         </div>
         <figure class="clean-cost__figure reveal">
-          <Image
-            src={costGraph}
-            alt="Chart of operating cost and additional CO2 emissions against speed for clean and fouled hulls"
-            widths={[480, 960]}
-            sizes="(min-width: 800px) 32rem, 100vw"
-            loading="lazy"
-            style="background: #fff;"
-          />
+          <a href={costGraph.src} target="_blank" rel="noopener" aria-label="Open the full-size cost and emissions chart">
+            <Image
+              src={costGraph}
+              alt="Chart of operating cost and additional CO2 emissions against speed for clean and fouled hulls"
+              widths={[480, 960]}
+              sizes="(min-width: 800px) 32rem, 100vw"
+              loading="lazy"
+              style="background: #fff;"
+            />
+          </a>
           <figcaption>
             Operating cost and additional CO₂ for a fouled hull (FR1) against a clean hull (FR0).
+            Tap the chart to view it full size.
           </figcaption>
         </figure>
       </div>

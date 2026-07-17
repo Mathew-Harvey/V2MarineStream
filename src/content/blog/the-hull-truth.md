@@ -5,8 +5,6 @@ pubDate: 2024-12-01
 author: "MarineStream"
 draft: false
 ---
-*Published: December 2024*
-
 > *For decades, maritime operators have lacked precise measurements quantifying hull fouling's operational impact.*
 
 For decades, maritime operators have lacked precise measurements quantifying hull fouling's operational impact. Groundbreaking University of Melbourne research, employing advanced underwater scanning technology, now provides definitive data: even minimal hull fouling imposes significant, measurable fuel penalties directly affecting profitability [1].

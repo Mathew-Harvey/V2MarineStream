@@ -83,7 +83,13 @@
   #loader .lbl { font-size: 13px; color: var(--muted); }
   #err { color: #ff8080; font-size: 13px; max-width: 420px; text-align: center; padding: 0 16px; }
   @media (max-width: 640px) {
-    #controls { width: auto; flex-direction: row; flex-wrap: wrap; max-width: calc(100% - 24px); }
+    /* Bottom row keeps controls clear of the parent page's "Live 3D" badge */
+    #hint { display: none; }
+    #controls {
+      top: auto; bottom: 12px; left: 12px; right: 12px;
+      width: auto; flex-direction: row; flex-wrap: wrap; justify-content: center;
+    }
+    #controls .btn { min-height: 40px; }
     #controls .btn .state { display: none; }
   }
 </style>

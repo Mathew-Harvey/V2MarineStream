@@ -6904,16 +6904,18 @@ video {
     height: auto;
 }
 
-/* Better form validation accessibility */
-.form-group input:invalid,
-.form-group textarea:invalid,
-.form-group select:invalid {
+/* Better form validation accessibility.
+   :user-invalid only flags fields after the user has interacted with them,
+   so programmatic defaults never show a spurious error border. */
+.form-group input:user-invalid,
+.form-group textarea:user-invalid,
+.form-group select:user-invalid {
     border-color: var(--error);
 }
 
-.form-group input:invalid:focus,
-.form-group textarea:invalid:focus,
-.form-group select:invalid:focus {
+.form-group input:user-invalid:focus,
+.form-group textarea:user-invalid:focus,
+.form-group select:user-invalid:focus {
     outline-color: var(--error);
 }
 

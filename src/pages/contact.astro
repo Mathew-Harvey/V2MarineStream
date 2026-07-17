@@ -31,22 +31,26 @@ import bannerImage from "../assets/photos/harbour-sunrise.jpg";
           <label>Don’t fill this out: <input name="bot-field" /></label>
         </p>
         <label>
-          Name
+          <span>Name <span class="form__required" aria-hidden="true">*</span></span>
           <input type="text" name="name" required autocomplete="name" />
         </label>
         <label>
-          Email
+          <span>Email <span class="form__required" aria-hidden="true">*</span></span>
           <input type="email" name="email" required autocomplete="email" />
         </label>
         <label>
-          Organisation
+          <span>Organisation <span class="form__optional">· optional</span></span>
           <input type="text" name="organisation" autocomplete="organization" />
         </label>
         <label>
-          Message
+          <span>Message <span class="form__required" aria-hidden="true">*</span></span>
           <textarea name="message" required></textarea>
         </label>
         <button class="btn btn--primary" type="submit">Send message</button>
+        <p class="form__note">
+          Required fields are marked <span aria-hidden="true">*</span>. Your details are only used
+          to respond to your enquiry — see our <a href="/privacy">privacy policy</a>.
+        </p>
       </form>
       <div>
         <span class="eyebrow">Direct</span>

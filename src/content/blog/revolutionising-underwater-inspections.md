@@ -5,8 +5,6 @@ pubDate: 2025-07-24
 author: "MarineStream"
 draft: false
 ---
-*Published: July 24, 2025*
-
 > *From port trials to fleet-wide compliance: How cutting-edge ROV technology is making underwater inspections safer, faster, and more reliable.*
 
 Hull inspections have always been expensive, risky, and time-consuming. Traditional methods—sending divers down in murky port waters or hauling vessels out for drydocking—often fall short when you're managing entire fleets.

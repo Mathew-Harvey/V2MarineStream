@@ -56,7 +56,10 @@
             <a class="logo" href="/" aria-label="MarineStream home">
               <img src="/images/brand/marinestream_logo_white.png" alt="MarineStream™" width="180" height="40" />
             </a>
-            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="ms-v2-site-nav" id="ms-v2-nav-toggle">Menu</button>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="ms-v2-site-nav" id="ms-v2-nav-toggle" aria-label="Open menu">
+              <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+              <span class="nav-toggle__label">Menu</span>
+            </button>
             <nav class="nav" id="ms-v2-site-nav" aria-label="Primary">
               <a href="/"${path === "/" ? ' aria-current="page"' : ""}>Home</a>
               <a href="/news"${path.startsWith("/news") || path.startsWith("/blog") ? ' aria-current="page"' : ""}>News</a>
