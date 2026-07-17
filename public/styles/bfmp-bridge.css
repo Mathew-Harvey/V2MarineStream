@@ -1,0 +1,131 @@
+/* Token bridge so bfmpGen.css works inside the V2 SiteLayout chrome */
+.bfmp-tool {
+  --accent-color: var(--brand-orange);
+  --accent-dark: var(--brand-orange-dark);
+  --accent-light: var(--brand-orange-light);
+  --accent-color-rgb: 255, 102, 0;
+  --text-primary: var(--ink);
+  --text-secondary: var(--text-secondary);
+  --text-tertiary: var(--muted);
+  --text-on-accent: #fff;
+  --bg-primary: var(--white);
+  --bg-secondary: var(--off-white);
+  --bg-tertiary: #eef2f4;
+  --border-color: var(--line);
+  --success: #2f9e6a;
+  --warning: #ed8936;
+  --error: #c53d3d;
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: 0 12px 32px rgba(10, 23, 33, 0.14);
+  --radius-sm: 0.3rem;
+  --radius-md: var(--radius);
+  --radius-lg: 1rem;
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+}
+
+.bfmp-tool .container {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* Generator buttons use legacy .btn-* names — keep them scoped */
+.bfmp-tool .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1.15rem;
+  border-radius: 0.35rem;
+  font-weight: 600;
+  font-size: 0.92rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.bfmp-tool .btn-primary {
+  background: var(--brand-orange);
+  color: #fff;
+  border-color: var(--brand-orange);
+}
+
+.bfmp-tool .btn-primary:hover {
+  background: var(--brand-orange-dark);
+  color: #fff;
+}
+
+.bfmp-tool .btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.bfmp-tool .btn-secondary:hover {
+  border-color: var(--brand-orange);
+  color: var(--brand-orange);
+}
+
+.bfmp-tool .btn-success {
+  background: #2f9e6a;
+  color: #fff;
+}
+
+.bfmp-tool .btn-sm {
+  padding: 0.45rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+.bfmp-tool .btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.bfmp-intro {
+  padding: var(--space-xl) 0 var(--space-lg);
+}
+
+.bfmp-intro__inner {
+  max-width: 46rem;
+}
+
+.bfmp-intro__benefits {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: var(--space-md);
+}
+
+.bfmp-intro__benefit {
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--brand-orange);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--ink);
+  background: var(--white);
+}
+
+.bfmp-generator-section {
+  padding-bottom: var(--space-xl);
+}
+
+@media (max-width: 900px) {
+  .bfmp-intro__benefits {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .bfmp-intro__benefits {
+    grid-template-columns: 1fr;
+  }
+}

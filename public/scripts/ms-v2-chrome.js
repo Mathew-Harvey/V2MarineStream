@@ -13,7 +13,7 @@
   const toolLinks = [
     { href: "/tools/ims-species-guide/", label: "IMS Species Guide" },
     { href: "/interactive-tools/hullCalc.html", label: "Fouling Cost Calculator" },
-    { href: "/interactive-tools/bfmpGen.html", label: "BFMP Generator" },
+    { href: "/tools/bfmp-generator", label: "BFMP Generator" },
     { href: "/tools/rov-autoconnect", label: "ROV AutoConnect" },
   ];
 

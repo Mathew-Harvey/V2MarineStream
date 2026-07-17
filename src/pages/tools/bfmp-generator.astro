@@ -1,0 +1,80 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import BfmpGenerator from "../../components/BfmpGenerator.astro";
+
+const benefits = [
+  "Regulatory Compliance",
+  "Environmental Protection",
+  "Reduced Fuel Consumption",
+  "Fewer Port Delays",
+] as const;
+---
+
+<SiteLayout
+  title="BFMP Generator | MarineStream™"
+  description="Build a vessel-specific Biofouling Management Plan and Record Book structured to IMO MEPC.207(62) and Australian biosecurity requirements."
+>
+  <link
+    slot="head"
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <link slot="head" rel="stylesheet" href="/styles/bfmp-bridge.css" />
+  <link slot="head" rel="stylesheet" href="/styles/bfmpGen.css" />
+
+  <PageHero
+    eyebrow="Free tool · IMO-aligned"
+    title="BFMP Generator"
+    lead="Build a vessel-specific Biofouling Management Plan and Record Book — structured to IMO MEPC.207(62) and Australian biosecurity requirements, generated as a print-ready PDF."
+    parent={{ label: "Tools" }}
+  />
+
+  <div class="bfmp-tool">
+    <section class="section bfmp-intro" id="why-needed">
+      <div class="container">
+        <div class="bfmp-intro__inner reveal">
+          <span class="eyebrow">Why it matters</span>
+          <h2>Why You Need a Biofouling Management Plan</h2>
+          <hr class="accent-rule" />
+          <p>
+            A Biofouling Management Plan (BFMP) is a vessel-specific document that outlines
+            strategies and procedures to manage the accumulation of marine organisms on a vessel's
+            submerged surfaces. These plans have become essential for international shipping as
+            biofouling represents a significant pathway for invasive aquatic species transfer, which
+            can devastate marine ecosystems and impact maritime industries.
+          </p>
+          <p>
+            The International Maritime Organization (IMO) established guidelines for biofouling
+            management through Resolution MEPC.207(62), providing a framework that many flag states
+            now recommend or require. Australia and New Zealand have implemented some of the world's
+            most stringent biofouling regulations, making compliant BFMPs mandatory for vessels
+            entering their waters under their respective Biosecurity Acts.
+          </p>
+          <p>
+            While the IMO guidelines are voluntary internationally, they align with ISO 21070:2017
+            standards for marine environmental protection, creating a cohesive approach to biofouling
+            management. For vessel operators navigating global waters, a well-developed BFMP not only
+            ensures regulatory compliance but also demonstrates environmental responsibility, reduces
+            fuel consumption, and minimizes operational disruptions at ports with biofouling
+            inspection requirements.
+          </p>
+        </div>
+        <div class="bfmp-intro__benefits reveal">
+          {benefits.map((item) => <div class="bfmp-intro__benefit">{item}</div>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section bfmp-generator-section" id="main-content">
+      <div class="container">
+        <BfmpGenerator />
+      </div>
+    </section>
+  </div>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+    is:inline></script>
+  <script src="/scripts/bfmpGen.js" defer is:inline></script>
+</SiteLayout>

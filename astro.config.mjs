@@ -24,5 +24,7 @@ export default defineConfig({
     '/sales/professional-services': '/services/professional-services',
     '/core-pages/rov-autoconnect.html': '/tools/rov-autoconnect',
     '/core-pages/rov-autoconnect': '/tools/rov-autoconnect',
+    '/interactive-tools/bfmpGen.html': '/tools/bfmp-generator',
+    '/interactive-tools/bfmpGen': '/tools/bfmp-generator',
   },
 });

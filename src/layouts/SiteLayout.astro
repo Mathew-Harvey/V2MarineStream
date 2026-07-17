@@ -14,6 +14,7 @@ const props = Astro.props;
 ---
 
 <BaseLayout {...props}>
+  <slot name="head" slot="head" />
   <Header slot="header" />
   <slot />
   <Footer slot="footer" />

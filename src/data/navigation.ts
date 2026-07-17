@@ -47,7 +47,7 @@ export const tools = [
     description: "Estimate fuel and emissions impact of hull fouling.",
   },
   {
-    href: "/interactive-tools/bfmpGen.html",
+    href: "/tools/bfmp-generator",
     label: "Biofouling Management Plan Generator",
     menuLabel: "BFMP Generator",
     description: "Generate an IMO-aligned biofouling management plan.",
