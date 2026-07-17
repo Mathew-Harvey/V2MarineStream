@@ -42,11 +42,6 @@ const regionData = {
         name: 'Northern Territory',
         shortName: 'NT',
         icon: '🐊'
-    },
-    sl: {
-        name: 'Sri Lanka',
-        shortName: 'SL',
-        icon: '🇱🇰'
     }
 };
 
@@ -94,33 +89,15 @@ function setRegion(region) {
     closeRegionDropdown();
 }
 
-// For non-Australian regions (e.g. Sri Lanka) the Australian legal status badges
-// ("NOXIOUS", "PROHIBITED", etc.) and "... WA Noxious Listed" group labels are
-// not accurate. Rather than duplicate every species card, we relabel the visible
-// invasive badges to generic risk wording and restore the originals when an
-// Australian region is selected again.
 function applyRegionLabels(region) {
-    const isSL = region === 'sl';
-
     document.querySelectorAll('.species-card.invasive .priority').forEach(el => {
         if (el.dataset.origLabel === undefined) el.dataset.origLabel = el.textContent.trim();
-        if (isSL) {
-            if (el.classList.contains('high')) el.textContent = 'HIGH RISK';
-            else if (el.classList.contains('medium')) el.textContent = 'WATCH';
-            else el.textContent = el.dataset.origLabel;
-        } else {
-            el.textContent = el.dataset.origLabel;
-        }
+        el.textContent = el.dataset.origLabel;
     });
 
     document.querySelectorAll('.species-card.invasive .species-group').forEach(el => {
         if (el.dataset.origLabel === undefined) el.dataset.origLabel = el.textContent.trim();
-        if (isSL) {
-            const taxon = el.dataset.origLabel.split('•')[0].trim();
-            el.textContent = taxon + ' • IMS — Sri Lanka concern';
-        } else {
-            el.textContent = el.dataset.origLabel;
-        }
+        el.textContent = el.dataset.origLabel;
     });
 }
 
@@ -166,8 +143,12 @@ document.addEventListener('click', function(e) {
 // Initialize region
 function initRegion() {
     const hasSelected = localStorage.getItem('biofouling-region-selected');
-    const savedRegion = localStorage.getItem('biofouling-region') || 'wa';
-    
+    let savedRegion = localStorage.getItem('biofouling-region') || 'wa';
+    if (!regionData[savedRegion]) {
+        savedRegion = 'wa';
+        localStorage.setItem('biofouling-region', 'wa');
+    }
+
     // Set the region
     setRegion(savedRegion);
     
