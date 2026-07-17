@@ -51,8 +51,9 @@ const regionData = {
 };
 
 function setRegion(region) {
-    // Update body data attribute
+    // Update body + tool wrapper data attributes (CSS uses body[data-region])
     document.body.setAttribute('data-region', region);
+    document.querySelectorAll('.ims-tool').forEach((el) => el.setAttribute('data-region', region));
     
     // Update region badge in hero
     const badgeText = document.getElementById('region-badge-text');

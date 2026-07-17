@@ -1,21 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <title>Hull Biofouling ID Guide - MarineStream</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="/styles/ms-v2-tools.css">
-    <link rel="stylesheet" href="/styles/ms-v2-chrome.css">
-    <link rel="stylesheet" href="/styles/ms-v2-species-guide.css">
-</head>
-<body data-region="wa" class="tool-page tool-species-guide">
-    <div id="nav-placeholder"></div>
-    
-    <!-- Region Selection Modal (First Visit) -->
-    <div class="region-modal" id="region-modal">
+---
+---
+
+<div class="ims-tool" data-region="wa">
+<div class="region-modal" id="region-modal">
         <div class="region-modal-backdrop"></div>
         <div class="region-modal-content">
             <div class="region-modal-header">
@@ -66,11 +53,10 @@
             </div>
         </div>
     </div>
-    
-    <header>
-        <div class="container">
-            <a href="/" class="logo"><img src="assets/marinestream_logo_white.png" alt="MarineStream" style="height: 32px;"></a>
-            <nav>
+
+<div class="ims-toolbar">
+  <div class="container ims-toolbar__inner">
+    <nav>
                 <ul>
                     <li><a href="#intro">Intro</a></li>
                     <li><a href="#invasive">Invasive Foulers</a></li>
@@ -79,8 +65,7 @@
                     <li><a href="#contact">Report It</a></li>
                 </ul>
             </nav>
-            <!-- Region Dropdown -->
-            <div class="region-dropdown" id="region-dropdown">
+    <div class="region-dropdown" id="region-dropdown">
                 <button class="region-dropdown-trigger" onclick="toggleRegionDropdown()">
                     <span class="region-dropdown-icon" id="region-dropdown-icon">🦘</span>
                     <span class="region-dropdown-text" id="region-dropdown-text">WA</span>
@@ -113,10 +98,10 @@
                     </button>
                 </div>
             </div>
-        </div>
-    </header>
-    
-    <section class="hero">
+  </div>
+</div>
+
+<section class="hero">
         <div class="container">
             <div class="region-badge" id="region-badge">
                 <span class="region-badge-icon">📍</span>
@@ -127,89 +112,89 @@
             <div class="hero-badge">Version 3.0 • January 2026</div>
             <div class="print-links">
                 <!-- WA Print Links -->
-                <a href="A3Poster.html" class="print-btn region-content wa-content has-sl-override" target="_blank" id="poster-link-wa">
+                <a href="/tools/ims-guide/A3Poster.html" class="print-btn region-content wa-content has-sl-override" target="_blank" id="poster-link-wa">
                     <span class="print-icon">🖨️</span>
                     <span class="print-text">A3 Poster</span>
                     <span class="print-desc">Wall reference</span>
                 </a>
-                <a href="A5Booklet.html" class="print-btn region-content wa-content has-sl-override" target="_blank" id="booklet-link-wa">
+                <a href="/tools/ims-guide/A5Booklet.html" class="print-btn region-content wa-content has-sl-override" target="_blank" id="booklet-link-wa">
                     <span class="print-icon">📖</span>
                     <span class="print-text">A5 Booklet</span>
                     <span class="print-desc">Pocket guide</span>
                 </a>
                 <!-- NSW Print Links -->
-                <a href="A3Poster-NSW.html" class="print-btn region-content nsw-content" target="_blank" id="poster-link-nsw" style="display:none;">
+                <a href="/tools/ims-guide/A3Poster-NSW.html" class="print-btn region-content nsw-content" target="_blank" id="poster-link-nsw" style="display:none;">
                     <span class="print-icon">🖨️</span>
                     <span class="print-text">A3 Poster</span>
                     <span class="print-desc">Wall reference</span>
                 </a>
-                <a href="A5Booklet-NSW.html" class="print-btn region-content nsw-content" target="_blank" id="booklet-link-nsw" style="display:none;">
+                <a href="/tools/ims-guide/A5Booklet-NSW.html" class="print-btn region-content nsw-content" target="_blank" id="booklet-link-nsw" style="display:none;">
                     <span class="print-icon">📖</span>
                     <span class="print-text">A5 Booklet</span>
                     <span class="print-desc">Pocket guide</span>
                 </a>
                 <!-- VIC Print Links -->
-                <a href="A3Poster-VIC.html" class="print-btn region-content vic-content" target="_blank" id="poster-link-vic" style="display:none;">
+                <a href="/tools/ims-guide/A3Poster-VIC.html" class="print-btn region-content vic-content" target="_blank" id="poster-link-vic" style="display:none;">
                     <span class="print-icon">🖨️</span>
                     <span class="print-text">A3 Poster</span>
                     <span class="print-desc">Wall reference</span>
                 </a>
-                <a href="A5Booklet-VIC.html" class="print-btn region-content vic-content" target="_blank" id="booklet-link-vic" style="display:none;">
+                <a href="/tools/ims-guide/A5Booklet-VIC.html" class="print-btn region-content vic-content" target="_blank" id="booklet-link-vic" style="display:none;">
                     <span class="print-icon">📖</span>
                     <span class="print-text">A5 Booklet</span>
                     <span class="print-desc">Pocket guide</span>
                 </a>
                 <!-- TAS Print Links -->
-                <a href="A3Poster-TAS.html" class="print-btn region-content tas-content" target="_blank" id="poster-link-tas" style="display:none;">
+                <a href="/tools/ims-guide/A3Poster-TAS.html" class="print-btn region-content tas-content" target="_blank" id="poster-link-tas" style="display:none;">
                     <span class="print-icon">🖨️</span>
                     <span class="print-text">A3 Poster</span>
                     <span class="print-desc">Wall reference</span>
                 </a>
-                <a href="A5Booklet-TAS.html" class="print-btn region-content tas-content" target="_blank" id="booklet-link-tas" style="display:none;">
+                <a href="/tools/ims-guide/A5Booklet-TAS.html" class="print-btn region-content tas-content" target="_blank" id="booklet-link-tas" style="display:none;">
                     <span class="print-icon">📖</span>
                     <span class="print-text">A5 Booklet</span>
                     <span class="print-desc">Pocket guide</span>
                 </a>
                 <!-- QLD Print Links -->
-                <a href="A3Poster-QLD.html" class="print-btn region-content qld-content" target="_blank" id="poster-link-qld" style="display:none;">
+                <a href="/tools/ims-guide/A3Poster-QLD.html" class="print-btn region-content qld-content" target="_blank" id="poster-link-qld" style="display:none;">
                     <span class="print-icon">🖨️</span>
                     <span class="print-text">A3 Poster</span>
                     <span class="print-desc">Wall reference</span>
                 </a>
-                <a href="A5Booklet-QLD.html" class="print-btn region-content qld-content" target="_blank" id="booklet-link-qld" style="display:none;">
+                <a href="/tools/ims-guide/A5Booklet-QLD.html" class="print-btn region-content qld-content" target="_blank" id="booklet-link-qld" style="display:none;">
                     <span class="print-icon">📖</span>
                     <span class="print-text">A5 Booklet</span>
                     <span class="print-desc">Pocket guide</span>
                 </a>
                 <!-- SA Print Links -->
-                <a href="A3Poster-SA.html" class="print-btn region-content sa-content" target="_blank" id="poster-link-sa" style="display:none;">
+                <a href="/tools/ims-guide/A3Poster-SA.html" class="print-btn region-content sa-content" target="_blank" id="poster-link-sa" style="display:none;">
                     <span class="print-icon">🖨️</span>
                     <span class="print-text">A3 Poster</span>
                     <span class="print-desc">Wall reference</span>
                 </a>
-                <a href="A5Booklet-SA.html" class="print-btn region-content sa-content" target="_blank" id="booklet-link-sa" style="display:none;">
+                <a href="/tools/ims-guide/A5Booklet-SA.html" class="print-btn region-content sa-content" target="_blank" id="booklet-link-sa" style="display:none;">
                     <span class="print-icon">📖</span>
                     <span class="print-text">A5 Booklet</span>
                     <span class="print-desc">Pocket guide</span>
                 </a>
                 <!-- NT Print Links -->
-                <a href="A3Poster-NT.html" class="print-btn region-content nt-content" target="_blank" id="poster-link-nt" style="display:none;">
+                <a href="/tools/ims-guide/A3Poster-NT.html" class="print-btn region-content nt-content" target="_blank" id="poster-link-nt" style="display:none;">
                     <span class="print-icon">🖨️</span>
                     <span class="print-text">A3 Poster</span>
                     <span class="print-desc">Wall reference</span>
                 </a>
-                <a href="A5Booklet-NT.html" class="print-btn region-content nt-content" target="_blank" id="booklet-link-nt" style="display:none;">
+                <a href="/tools/ims-guide/A5Booklet-NT.html" class="print-btn region-content nt-content" target="_blank" id="booklet-link-nt" style="display:none;">
                     <span class="print-icon">📖</span>
                     <span class="print-text">A5 Booklet</span>
                     <span class="print-desc">Pocket guide</span>
                 </a>
                 <!-- Sri Lanka Print Links -->
-                <a href="A3Poster-SL.html" class="print-btn region-content sl-content" target="_blank" id="poster-link-sl" style="display:none;">
+                <a href="/tools/ims-guide/A3Poster-SL.html" class="print-btn region-content sl-content" target="_blank" id="poster-link-sl" style="display:none;">
                     <span class="print-icon">🖨️</span>
                     <span class="print-text">A3 Poster</span>
                     <span class="print-desc">Wall reference</span>
                 </a>
-                <a href="A5Booklet-SL.html" class="print-btn region-content sl-content" target="_blank" id="booklet-link-sl" style="display:none;">
+                <a href="/tools/ims-guide/A5Booklet-SL.html" class="print-btn region-content sl-content" target="_blank" id="booklet-link-sl" style="display:none;">
                     <span class="print-icon">📖</span>
                     <span class="print-text">A5 Booklet</span>
                     <span class="print-desc">Pocket guide</span>
@@ -409,7 +394,7 @@
                     
                     <!-- Didemnum vexillum - Carpet Sea Squirt -->
                     <div class="species-card invasive" data-name="didemnum vexillum carpet sea squirt" data-images="assets/dvex1.jpg,assets/dvex2.webp,assets/dvex3.png">
-                        <div class="species-image"><img src="assets/dvex1.jpg" alt="Carpet Sea Squirt"></div>
+                        <div class="species-image"><img src="/tools/ims-guide/assets/dvex1.jpg" alt="Carpet Sea Squirt"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -449,7 +434,7 @@
                     
                     <!-- Perna viridis - Asian Green Mussel -->
                     <div class="species-card invasive" data-name="perna viridis asian green mussel" data-images="assets/AsianGreenLipMuscle.webp,assets/AsianGreen01.jpeg,assets/AsianGreen02.jpg,assets/AsianGreen03.jpg,assets/AsianGreen04.jpg,assets/AsianGreen05.jpg">
-                        <div class="species-image"><img src="assets/AsianGreenLipMuscle.webp" alt="Asian Green Mussel"></div>
+                        <div class="species-image"><img src="/tools/ims-guide/assets/AsianGreenLipMuscle.webp" alt="Asian Green Mussel"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -490,7 +475,7 @@
                     
                     <!-- Mytilopsis sallei - Black-striped Mussel -->
                     <div class="species-card invasive" data-name="mytilopsis sallei black-striped false mussel" data-images="assets/BlackStripedFalseMus01.png,assets/BlackStripedFalseMus02.jpg,assets/BlackStripedFalseMus03.png">
-                        <div class="species-image"><img src="assets/BlackStripedFalseMus01.png" alt="Black-striped False Mussel"></div>
+                        <div class="species-image"><img src="/tools/ims-guide/assets/BlackStripedFalseMus01.png" alt="Black-striped False Mussel"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -527,7 +512,7 @@
                     
                     <!-- Mytella strigata - Charru Mussel (Sri Lanka) -->
                     <div class="species-card invasive region-content sl-content" style="display:none;" data-name="mytella strigata charru mussel black mussel" data-images="assets/charru_mussel.jpg,assets/charru_mussel.svg">
-                        <div class="species-image"><img src="assets/charru_mussel.jpg" alt="Charru Mussel"></div>
+                        <div class="species-image"><img src="/tools/ims-guide/assets/charru_mussel.jpg" alt="Charru Mussel"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -556,7 +541,7 @@
 
                     <!-- Perna perna - Brown Mussel - Multiple Regions -->
                     <div class="species-card invasive region-content wa-content vic-content tas-content sa-content qld-content" data-name="perna perna brown mussel" data-images="assets/brownmuscle01.webp,assets/brownmuscle02.jpg,assets/brownmuscle03.jpg">
-                        <div class="species-image"><img src="assets/brownmuscle01.webp" alt="Brown Mussel"></div>
+                        <div class="species-image"><img src="/tools/ims-guide/assets/brownmuscle01.webp" alt="Brown Mussel"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -589,7 +574,7 @@
                     
                     <!-- Perna canaliculus - NZ Green-lipped Mussel -->
                     <div class="species-card invasive" data-name="perna canaliculus nz green-lipped mussel" data-images="assets/NZGreenLippedMuscle01.jpg,assets/NZGreenLippedMuscle02.jpg,assets/NZGreenLippedMuscle03.png,assets/NZGreenLippedMuscle04.png">
-                        <div class="species-image"><img src="assets/NZGreenLippedMuscle01.jpg" alt="NZ Green-lipped Mussel"></div>
+                        <div class="species-image"><img src="/tools/ims-guide/assets/NZGreenLippedMuscle01.jpg" alt="NZ Green-lipped Mussel"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -653,7 +638,7 @@
                     
                     <!-- Magallana bilineata - Black Scar Oyster (NT/QLD specific - NIMPIS) -->
                     <div class="species-card invasive region-content nt-content qld-content" data-name="magallana bilineata black scar oyster" style="display:none;">
-                        <div class="species-image"><img src="assets/MBilineata.jpg" alt="Black Scar Oyster"></div>
+                        <div class="species-image"><img src="/tools/ims-guide/assets/MBilineata.jpg" alt="Black Scar Oyster"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -819,7 +804,7 @@
                     
                     <!-- Northern Pacific Seastar - WA NOXIOUS -->
                     <div class="species-card invasive region-content wa-content" data-name="asterias amurensis northern pacific seastar">
-                        <div class="species-image"><img src="assets/NorthernPacSeaStar.jpg" alt="Northern Pacific Seastar"></div>
+                        <div class="species-image"><img src="/tools/ims-guide/assets/NorthernPacSeaStar.jpg" alt="Northern Pacific Seastar"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -844,7 +829,7 @@
                     
                     <!-- Northern Pacific Seastar - NSW -->
                     <div class="species-card invasive region-content nsw-content" data-name="asterias amurensis northern pacific seastar" style="display:none;">
-                        <div class="species-image"><img src="assets/NorthernPacSeaStar.jpg" alt="Northern Pacific Seastar"></div>
+                        <div class="species-image"><img src="/tools/ims-guide/assets/NorthernPacSeaStar.jpg" alt="Northern Pacific Seastar"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -870,7 +855,7 @@
                     
                     <!-- Northern Pacific Seastar - VIC (ESTABLISHED) -->
                     <div class="species-card invasive region-content vic-content" data-name="asterias amurensis northern pacific seastar" style="display:none;">
-                        <div class="species-image"><img src="assets/NorthernPacSeaStar.jpg" alt="Northern Pacific Seastar"></div>
+                        <div class="species-image"><img src="/tools/ims-guide/assets/NorthernPacSeaStar.jpg" alt="Northern Pacific Seastar"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -896,7 +881,7 @@
                     
                     <!-- Northern Pacific Seastar - TAS (ESTABLISHED) -->
                     <div class="species-card invasive region-content tas-content" data-name="asterias amurensis northern pacific seastar" style="display:none;">
-                        <div class="species-image"><img src="assets/NorthernPacSeaStar.jpg" alt="Northern Pacific Seastar"></div>
+                        <div class="species-image"><img src="/tools/ims-guide/assets/NorthernPacSeaStar.jpg" alt="Northern Pacific Seastar"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -922,7 +907,7 @@
                     
                     <!-- Northern Pacific Seastar - QLD -->
                     <div class="species-card invasive region-content qld-content" data-name="asterias amurensis northern pacific seastar" style="display:none;">
-                        <div class="species-image"><img src="assets/NorthernPacSeaStar.jpg" alt="Northern Pacific Seastar"></div>
+                        <div class="species-image"><img src="/tools/ims-guide/assets/NorthernPacSeaStar.jpg" alt="Northern Pacific Seastar"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -947,7 +932,7 @@
                     
                     <!-- Northern Pacific Seastar - SA -->
                     <div class="species-card invasive region-content sa-content" data-name="asterias amurensis northern pacific seastar" style="display:none;">
-                        <div class="species-image"><img src="assets/NorthernPacSeaStar.jpg" alt="Northern Pacific Seastar"></div>
+                        <div class="species-image"><img src="/tools/ims-guide/assets/NorthernPacSeaStar.jpg" alt="Northern Pacific Seastar"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -972,7 +957,7 @@
                     
                     <!-- Northern Pacific Seastar - NT -->
                     <div class="species-card invasive region-content nt-content" data-name="asterias amurensis northern pacific seastar" style="display:none;">
-                        <div class="species-image"><img src="assets/NorthernPacSeaStar.jpg" alt="Northern Pacific Seastar"></div>
+                        <div class="species-image"><img src="/tools/ims-guide/assets/NorthernPacSeaStar.jpg" alt="Northern Pacific Seastar"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -997,7 +982,7 @@
                     
                     <!-- Asian Date/Bag Mussel - Multiple Regions -->
                     <div class="species-card invasive" data-name="musculista senhousia asian date bag mussel arcuatula">
-                        <div class="species-image"><img src="assets/AsianDateMussel.jpg" alt="Asian Date Mussel"></div>
+                        <div class="species-image"><img src="/tools/ims-guide/assets/AsianDateMussel.jpg" alt="Asian Date Mussel"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -1040,7 +1025,7 @@
                     
                     <!-- Charru Mussel - Multiple Regions -->
                     <div class="species-card invasive" data-name="mytella strigata charru mussel" data-images="assets/charu1.png,assets/charu2.jpg">
-                        <div class="species-image"><img src="assets/charu1.png" alt="Charru Mussel"></div>
+                        <div class="species-image"><img src="/tools/ims-guide/assets/charu1.png" alt="Charru Mussel"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -1118,7 +1103,7 @@
                     
                     <!-- Harris Mud Crab - QLD Priority -->
                     <div class="species-card invasive region-content qld-content nt-content sa-content tas-content" data-name="rhithropanopeus harrisii harris mud crab" style="display:none;">
-                        <div class="species-image"><img src="assets/harris-mud-crab1.jpg" alt="Harris Mud Crab"></div>
+                        <div class="species-image"><img src="/tools/ims-guide/assets/harris-mud-crab1.jpg" alt="Harris Mud Crab"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -1150,7 +1135,7 @@
                     
                     <!-- White Colonial Sea Squirt - ESTABLISHED QLD -->
                     <div class="species-card invasive region-content qld-content" data-name="didemnum perlucidum white colonial sea squirt" style="display:none;">
-                        <div class="species-image"><img src="assets/didemnum_perlucidum.jpg" alt="White Colonial Sea Squirt"></div>
+                        <div class="species-image"><img src="/tools/ims-guide/assets/didemnum_perlucidum.jpg" alt="White Colonial Sea Squirt"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -1487,7 +1472,7 @@
                     
                     <!-- Native Colonial Sea Squirts -->
                     <div class="species-card native" data-name="didemnidae native colonial sea squirts ascidian">
-                        <div class="species-image"><img src="assets/didemnum_perlucidum.jpg" alt="Native Colonial Sea Squirts"></div>
+                        <div class="species-image"><img src="/tools/ims-guide/assets/didemnum_perlucidum.jpg" alt="Native Colonial Sea Squirts"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -1586,7 +1571,7 @@
                     
                     <!-- Brown Slime Algae -->
                     <div class="species-card native" data-name="hincksia brown filamentous algae slime">
-                        <div class="species-image"><img src="assets/Hincksia.jpeg" alt="Brown Filamentous Algae"></div>
+                        <div class="species-image"><img src="/tools/ims-guide/assets/Hincksia.jpeg" alt="Brown Filamentous Algae"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -1658,7 +1643,7 @@
                     
                     <!-- Sydney Rock Oyster - NSW ONLY -->
                     <div class="species-card native region-content nsw-content" data-name="saccostrea glomerata sydney rock oyster" style="display:none;">
-                        <div class="species-image"><img src="assets/SydneyRockOyster.jpg" alt="Sydney Rock Oyster"></div>
+                        <div class="species-image"><img src="/tools/ims-guide/assets/SydneyRockOyster.jpg" alt="Sydney Rock Oyster"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -2070,9 +2055,4 @@
             </div>
         </div>
     </div>
-    
-    <div id="footer-placeholder"></div>
-    <script src="script.js"></script>
-    <script src="/scripts/ms-v2-chrome.js" defer></script>
-</body>
-</html>
+</div>

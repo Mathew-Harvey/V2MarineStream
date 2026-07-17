@@ -141,13 +141,33 @@
   status = 301
 
 [[redirects]]
-  from = "/BiofoulingIdGuide/*"
-  to = "/tools/ims-species-guide/:splat"
+  from = "/BiofoulingIdGuide"
+  to = "/tools/ims-species-guide"
   status = 301
 
 [[redirects]]
-  from = "/tools/ims-species-guide"
-  to = "/tools/ims-species-guide/"
+  from = "/BiofoulingIdGuide/"
+  to = "/tools/ims-species-guide"
+  status = 301
+
+[[redirects]]
+  from = "/BiofoulingIdGuide/*"
+  to = "/tools/ims-guide/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/tools/ims-species-guide/"
+  to = "/tools/ims-species-guide"
+  status = 301
+
+[[redirects]]
+  from = "/tools/ims-species-guide/index.html"
+  to = "/tools/ims-species-guide"
+  status = 301
+
+[[redirects]]
+  from = "/tools/ims-species-guide/*"
+  to = "/tools/ims-guide/:splat"
   status = 301
 
 [[headers]]

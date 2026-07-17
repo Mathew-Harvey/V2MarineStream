@@ -35,7 +35,7 @@ export const serviceNav = [
 
 export const tools = [
   {
-    href: "/tools/ims-species-guide/",
+    href: "/tools/ims-species-guide",
     label: "IMS Species Guide",
     menuLabel: "IMS Species Guide",
     description: "Identify invasive marine species on hulls and structures.",

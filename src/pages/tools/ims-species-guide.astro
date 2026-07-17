@@ -1,0 +1,19 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import ImsSpeciesGuide from "../../components/ImsSpeciesGuide.astro";
+---
+
+<SiteLayout
+  title="IMS Species Guide | MarineStream™"
+  description="Hull biofouling ID guide for divers and inspectors — invasive foulers, niche hitchhikers, native fouling, and regional reporting contacts."
+>
+  <link slot="head" rel="stylesheet" href="/styles/ims-species-guide.css" />
+
+  <script is:inline>
+    document.body.setAttribute("data-region", "wa");
+  </script>
+
+  <ImsSpeciesGuide />
+
+  <script src="/tools/ims-guide/script.js" defer is:inline></script>
+</SiteLayout>
